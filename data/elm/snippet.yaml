@@ -1,0 +1,9 @@
+---
+type alias:
+  scope: elm,elm
+  prefix: type alias
+  body:
+  - type alias Model =
+  - "{ name : String"
+  - "}"
+  description: Create a type alias
