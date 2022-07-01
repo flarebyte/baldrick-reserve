@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Project",
+    "description": "Schema to describe the Elm project as a whole",
+    "definitions": {
+        "Project": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "packageNameSlash": {
+                    "type": "string",
+                    "description": "The Elm package name separated by slashes",
+                    "examples": ["Bubblegum/Entity"]
+                },
+                "modules": {
+                    "type": "array",
+                    "title": "List of modules",
+                    "items": {
+                        "$ref": "#/definitions/Module"
+                    }
+                }
+            },
+            "required": [
+                "modules",
+                "packageNameSlash"
+            ],
+            "title": "Project",
+            "description": "Description of the Elm project"
+        },
+        "Module": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "moduleName": {
+                    "type": "string",
+                    "description": "The name of the Elm module"
+                }
+            },
+            "required": [
+                "moduleName"
+            ],
+            "title": "Module"
+        }
+    }
+}
