@@ -18,8 +18,8 @@ jobs:
         with:
           elm-version: 0.19.1
       - name: Installation
-        run: elm install -y
+        run: elm make
       - name: Installation for tests
-        run: pushd tests && elm install -y && popd
+        run: pushd tests && elm make && popd
       - name: Test
         run: elm-test
