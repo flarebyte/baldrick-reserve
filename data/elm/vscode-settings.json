@@ -1,0 +1,9 @@
+{
+  "makefile.extensionOutputFolder": "./.vscode",
+  "json.schemas": [
+    {
+      "fileMatch": ["script/data/project.json"],
+      "url": "./script/schema/project.schema.json"
+    }
+  ]
+}
