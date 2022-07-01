@@ -1,25 +1,32 @@
+---
 name: CI
-on:
-  - push
+'on':
+- push
 jobs:
   build:
     name: Build, lint, and test ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    runs-on: "${{ matrix.os }}"
     strategy:
       matrix:
         os:
-          - ubuntu-latest
-          - macOS-latest
+        - ubuntu-latest
+        - macOS-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-      - name: Use Elm
-        uses: jorelali/setup-elm@v3
-        with:
-          elm-version: 0.19.1
-      - name: Installation
-        run: elm make
-      - name: Installation for tests
-        run: pushd tests && elm make && popd
-      - name: Test
-        run: elm-test
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    - name: Use Elm
+      uses: jorelali/setup-elm@v3
+      with:
+        elm-version: 0.19.1
+    - name: Installation for sources
+      run: elm make
+    - name: Installation for tests
+      run: pushd tests && elm make && popd
+    - name: Installation of elm-test
+      run: |-
+        mkdir ~/.npm-global
+        npm config set prefix '~/.npm-global'
+        PATH=~/.npm-global/bin:$PATH
+        npm install -g elm-test
+    - name: Test
+      run: elm-test
