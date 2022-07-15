@@ -3,43 +3,50 @@
     "$ref": "#/definitions/Project",
     "description": "Schema to describe the Elm project as a whole",
     "definitions": {
-        "Project": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "packageNameSlash": {
-                    "type": "string",
-                    "description": "The Elm package name separated by slashes",
-                    "examples": ["Bubblegum/Entity"]
-                },
-                "modules": {
-                    "type": "array",
-                    "title": "List of modules",
-                    "items": {
-                        "$ref": "#/definitions/Module"
-                    }
-                }
-            },
-            "required": [
-                "modules",
-                "packageNameSlash"
-            ],
-            "title": "Project",
-            "description": "Description of the Elm project"
+      "Project": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "packageNameSlash": {
+            "type": "string",
+            "description": "The Elm package name separated by slashes",
+            "examples": ["Bubblegum/Entity"]
+          },
+          "generations": {
+            "type": "array",
+            "title": "List of code generation operations",
+            "items": {
+              "$ref": "#/definitions/Generation"
+            }
+          }
         },
-        "Module": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "moduleName": {
-                    "type": "string",
-                    "description": "The name of the Elm module"
-                }
-            },
-            "required": [
-                "moduleName"
-            ],
-            "title": "Module"
-        }
+        "required": ["generations", "packageNameSlash"],
+        "title": "Project",
+        "description": "Description of the Elm project"
+      },
+      "Generation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "string",
+            "description": "the base name of the data file"
+          },
+          "template": {
+            "type": "string",
+            "description": "the base name of the template file"
+          },
+          "schema": {
+            "type": "string",
+            "description": "the base name of the schema file"
+          },
+          "destination": {
+            "type": "string",
+            "description": "the relative path to the target file"
+          }
+        },
+        "required": ["data", "template", "schema", "destination"],
+        "title": "Generation parameters"
+      }
     }
-}
+  }  
