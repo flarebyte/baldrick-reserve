@@ -9,7 +9,7 @@ mkdir -p script/data
 mkdir -p script/schema
 mkdir -p script/template
 test -f ".vscode/settings.json" || npx baldrick-whisker@latest object .vscode/settings.json github:flarebyte:baldrick-reserve:data/elm/vscode-settings.json
-test -f "script/data/project.yaml" || npx baldrick-whisker@latest object script/data/project.json github:flarebyte:baldrick-reserve:data/elm/project.yaml
+test -f "script/data/project.yaml" || npx baldrick-whisker@latest object script/data/project.yaml github:flarebyte:baldrick-reserve:data/elm/project.yaml
 npx baldrick-whisker@latest object --no-ext .vscode/baldrick.code-snippets.json github:flarebyte:baldrick-reserve:data/elm/snippet.yaml
 npx baldrick-whisker@latest object .github/ISSUE_TEMPLATE/bug_report.yaml github:flarebyte:baldrick-reserve:data/elm/bug-report.yaml
 npx baldrick-whisker@latest object .github/ISSUE_TEMPLATE/feature_request.yaml github:flarebyte:baldrick-reserve:data/elm/feature-request.yaml
