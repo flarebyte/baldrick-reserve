@@ -1,9 +1,6 @@
 {
   "makefile.extensionOutputFolder": "./.vscode",
-  "json.schemas": [
-    {
-      "fileMatch": ["script/data/project.json"],
-      "url": "./script/schema/project.schema.json"
-    }
-  ]
+  "yaml.schemas": {
+    "./script/schema/project.schema.json": "script/data/project.yaml"
+  }
 }

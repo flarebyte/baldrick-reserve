@@ -3,7 +3,51 @@ type alias:
   scope: elm,elm
   prefix: type alias
   body:
-  - type alias Model =
-  - "{ name : String"
-  - "}"
+    - type alias Model =
+    - "{ name : String"
+    - "}"
   description: Create a type alias
+add decision:
+  scope: md,md
+  prefix: add decision
+  body:
+    - "## Title Fixme"
+    - ""
+    - "* MUST-HAVE."
+    - "* Created: month year"
+    - ""
+    - "### Context and Problem Statement"
+    - ""
+    - "> Fixme"
+    - ""
+    - "### Decision Drivers"
+    - ""
+    - "* Fixme"
+    - ""
+    - "### Considered Options"
+    - ""
+    - "* Fixme"
+    - ""
+    - "### Decision Outcome"
+    - ""
+    - "Chosen option: Fixme"
+    - ""
+    - "#### Positive Consequences"
+    - ""
+    - "* Fixme"
+    - ""
+    - "#### Negative Consequences"
+    - ""
+    - "* Fixme"
+    - ""
+    - "### Pros and Cons of the Options"
+    - ""
+    - "#### Option title fixme"
+    - ""
+    - Description fixme
+    - ""
+    - "* Pros: "
+    - "    * Fixme"
+    - "* Cons:"
+    - "    * Fixme"
+description: Adds architecture decision record
