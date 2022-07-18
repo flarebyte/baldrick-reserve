@@ -22,5 +22,5 @@ npx baldrick-whisker@latest render elm.json github:flarebyte:baldrick-reserve:te
 npx baldrick-whisker@latest render github:flarebyte:baldrick-reserve:data/glossary.yaml github:flarebyte:baldrick-reserve:template/glossary.hbs GLOSSARY.md
 npx baldrick-whisker@latest render elm.json github:flarebyte:baldrick-reserve:template/elm/internationalization.hbs INTERNATIONALIZATION.md
 npx baldrick-whisker@latest render elm.json github:flarebyte:baldrick-reserve:template/elm/accessibility.hbs ACCESSIBILITY.md
-npx baldrick-whisker@latest render elm.json github:flarebyte:baldrick-reserve:template/elm/code-generation.hbs CODE_GENERATION.md
+npx baldrick-whisker@latest render github:flarebyte:baldrick-reserve:data/elm/generated.yaml github:flarebyte:baldrick-reserve:template/elm/code-generation.hbs CODE_GENERATION.md
 test -f "DECISIONS.md" || npx baldrick-whisker@latest render elm.json github:flarebyte:baldrick-reserve:template/decisions.hbs DECISIONS.md

@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$ref": "#/definitions/Generated",
+  "definitions": {
+    "Generated": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/File"
+          }
+        }
+      },
+      "required": ["files"],
+      "title": "Generated"
+    },
+    "File": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "filename": {
+          "type": "string",
+          "description": "Relative path to the file"
+        },
+        "description": {
+          "type": "string",
+          "description": "A description for the file"
+        },
+        "generator": {
+          "type": "string",
+          "description": "The generator producing the file",
+          "enum": ["baldrick-elm", "script/normalize.sh", "elm"]
+        },
+        "homepage": {
+            "type": "string",
+            "description": "An URL to the homepage about the file",
+            "format": "uri"
+          },
+        "editable": {
+          "type": "boolean",
+          "description": "Whether the file can be manually edited",
+          "default": false
+        }
+      },
+      "required": ["description", "filename", "generator"],
+      "title": "File",
+      "description": "The file to describe"
+    }
+  }
+}

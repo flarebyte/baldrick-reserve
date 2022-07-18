@@ -20,7 +20,7 @@ The following commands should get you started:
 ```bash
 make install-global
 make install
-yarn test
+make test
 ```
 
 A list of [most used commands](MAINTENANCE.md) is available:

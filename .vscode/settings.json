@@ -1,0 +1,5 @@
+{
+  "yaml.schemas": {
+    "./reserve-schema/generated.schema.json": "data/elm/generated.yaml",
+  }
+}
