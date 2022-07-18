@@ -36,7 +36,7 @@ make generate
 || File || Description || Generator|| Editable || Link ||
 | ------|---------------|-----------|----------|-------|
 {{#each files}}
-| {{filename}} | {{description}} | {{generator}} | {{editable}} | [See more]({{homepage}}) |
+| `{{filename}}` | {{description}} | `{{generator}}` | {{#if editable}}:heavy_check_mark:{{/if}}| {{#if homepage}}[See more]({{homepage}}) {{/if}} |
 {{/each}}
 
 ## Links
