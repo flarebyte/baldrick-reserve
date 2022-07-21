@@ -23,4 +23,5 @@ npx baldrick-whisker@latest render github:flarebyte:baldrick-reserve:data/glossa
 npx baldrick-whisker@latest render elm.json github:flarebyte:baldrick-reserve:template/elm/internationalization.hbs INTERNATIONALIZATION.md
 npx baldrick-whisker@latest render elm.json github:flarebyte:baldrick-reserve:template/elm/accessibility.hbs ACCESSIBILITY.md
 npx baldrick-whisker@latest render github:flarebyte:baldrick-reserve:data/elm/generated.yaml github:flarebyte:baldrick-reserve:template/elm/code-generation.hbs CODE_GENERATION.md
+npx baldrick-whisker@latest render --no-ext elm.json github:flarebyte:baldrick-reserve:template/elm/playwright-config.hbs playwright.config.ts.sh
 test -f "DECISIONS.md" || npx baldrick-whisker@latest render elm.json github:flarebyte:baldrick-reserve:template/decisions.hbs DECISIONS.md
