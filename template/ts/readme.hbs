@@ -6,6 +6,12 @@
 
 > {{model.project.title}}
 
+{{model.project.description}}
+
+Highlights:
+
+{{#each model.readme.Highlights}}* {{this}} {{/each}}
+
 ## Documentation and links
 
 * [Code Maintenance](MAINTENANCE.md)

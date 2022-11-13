@@ -1,0 +1,11 @@
+---
+title: typescript scaffolding
+description: Acceptance testing typescript scaffolding
+cases:
+  test-spec:
+    title: Test specifications files
+    steps:
+      - title: Test specifications
+        run: yarn cli test spec
+        expect:
+          snapshot: spec.txt
