@@ -2,10 +2,25 @@
 title: typescript scaffolding
 description: Acceptance testing typescript scaffolding
 cases:
-  test-spec:
-    title: Test specifications files
+  create-readme:
+    title: Generate README.md
     steps:
-      - title: Test specifications
-        run: yarn cli test spec
+      - title: reset
+        run: rm temp/ts/README.md
+      - title: README.md
+        run: npx baldrick-whisker@latest render pest-spec/fixtures/ts/broth-model.yaml template/ts/readme.hbs temp/ts/README.md
+      - title: save
+        run: cat temp/ts/README.md
         expect:
-          snapshot: spec.txt
+         snapshot: README.md
+  create-readme-cli:
+    title: Generate README.md for a CLI
+    steps:
+      - title: reset
+        run: rm temp/ts/README_CLI.md
+      - title: README.md
+        run: npx baldrick-whisker@latest render pest-spec/fixtures/ts/broth-model.yaml template/ts/readme.hbs temp/ts/README_CLI.md
+      - title: save
+        run: cat temp/ts/README_CLI.md
+        expect:
+         snapshot: README_CLI.md

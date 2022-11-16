@@ -10,7 +10,10 @@
 
 Highlights:
 
-{{#each model.readme.Highlights}}* {{this}} {{/each}}
+{{#each model.readme.highlights}}
+* {{this}}
+{{/each}}
+
 
 ## Documentation and links
 
@@ -24,6 +27,15 @@ Highlights:
 * [Architectural Decision Records](DECISIONS.md)
 * [Contributors](https://github.com/{{model.github.account}}/{{model.github.name}}/graphs/contributors)
 * [Dependencies](https://github.com/{{model.github.account}}/{{model.github.name}}/network/dependencies)
+{{#each model.readme.links}}
+* {{this}}
+{{/each}}
+
+## Related
+
+{{#each model.readme.related}}
+* {{this}}
+{{/each}}
 
 ## Installation
 
