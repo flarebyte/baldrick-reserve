@@ -35,3 +35,14 @@ cases:
         run: cat temp/ts/TECHNICAL_DESIGN.md
         expect:
           snapshot: TECHNICAL_DESIGN.md
+  pull-request-relevant:
+    title: Generate pull_request_relevant.md
+    steps:
+      - title: reset
+        run: rm temp/ts/pull_request_relevant.md
+      - title: TECHNICAL_DESIGN.md
+        run: npx baldrick-whisker@latest render pest-spec/fixtures/ts/pull_request_relevant.yaml template/ts/pull-request-template-relevant.hbs temp/ts/pull_request_relevant.md
+      - title: save
+        run: cat temp/ts/pull_request_relevant.md
+        expect:
+          snapshot: pull_request_relevant.md

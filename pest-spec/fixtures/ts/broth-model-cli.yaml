@@ -10,6 +10,10 @@ model:
       - pest
       - jest
       - i18n
+      - accessibility
+      - zod
+      - railway
+      - commander
   readme:
     highlights:
       - Written in `Typescript`
