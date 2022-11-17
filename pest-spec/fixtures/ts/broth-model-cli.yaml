@@ -3,6 +3,12 @@ model:
   project:
     title: Project title
     description: Project Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+  implementation:
+    tags: 
+      - cli
+      - zest
+      - pest
+      - jest
   readme:
     highlights:
       - Written in `Typescript`
