@@ -2,7 +2,7 @@
 title: typescript scaffolding
 description: Acceptance testing typescript scaffolding
 cases:
-  create-readme:
+  readme:
     title: Generate README.md
     steps:
       - title: reset
@@ -12,8 +12,8 @@ cases:
       - title: save
         run: cat temp/ts/README.md
         expect:
-         snapshot: README.md
-  create-readme-cli:
+          snapshot: README.md
+  readme-cli:
     title: Generate README.md for a CLI
     steps:
       - title: reset
@@ -23,4 +23,15 @@ cases:
       - title: save
         run: cat temp/ts/README_CLI.md
         expect:
-         snapshot: README_CLI.md
+          snapshot: README_CLI.md
+  technical-design:
+    title: Generate TECHNICAL_DESIGN.md
+    steps:
+      - title: reset
+        run: rm temp/ts/TECHNICAL_DESIGN.md
+      - title: TECHNICAL_DESIGN.md
+        run: npx baldrick-whisker@latest render pest-spec/fixtures/ts/broth-model.yaml template/ts/technical-design.hbs temp/ts/TECHNICAL_DESIGN.md
+      - title: save
+        run: cat temp/ts/TECHNICAL_DESIGN.md
+        expect:
+          snapshot: TECHNICAL_DESIGN.md

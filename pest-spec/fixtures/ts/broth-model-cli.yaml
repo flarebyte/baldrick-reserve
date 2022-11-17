@@ -9,6 +9,7 @@ model:
       - zest
       - pest
       - jest
+      - i18n
   readme:
     highlights:
       - Written in `Typescript`
