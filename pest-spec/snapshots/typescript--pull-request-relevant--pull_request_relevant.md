@@ -4,5 +4,7 @@ Fixes: # (issue)
 
 ## Code check
 
- - [x]  Acceptance tests are passing (zest-spec}
+ - [x]  Unit regression tests are passing (zest-spec}
+ - [ ]  Some acceptance tests are failing (pest-spec} ⛈
+ - [x]  Version has been incremented
 

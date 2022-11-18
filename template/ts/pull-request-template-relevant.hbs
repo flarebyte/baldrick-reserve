@@ -5,7 +5,28 @@ Fixes: # (issue)
 ## Code check
 
 {{#ifSatisfy "equals" check.zest-spec "ok"}}
- - [x]  Acceptance tests are passing (zest-spec}
- {{/ifSatisfy}}
+ - [x]  Unit regression tests are passing (zest-spec}
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.zest-spec "ko"}}
+ - [ ]  Some Unit regression tests are failing (zest-spec} ⛈
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.pest-spec "ok"}}
+ - [x]  Acceptance tests are passing (pest-spec}
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.pest-spec "ko"}}
+ - [ ]  Some acceptance tests are failing (pest-spec} ⛈
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.nodejs-test "ok"}}
+ - [x]  Regular unit tests are passing
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.nodejs-test "ko"}}
+ - [ ]  Some regular unit tests are failing ⛈
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.version "ok"}}
+ - [x]  Version has been incremented
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.version "ko"}}
+ - [ ]  Version has not been incremented ⛈
+{{/ifSatisfy}}
 
 
