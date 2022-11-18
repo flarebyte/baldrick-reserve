@@ -19,7 +19,7 @@ cases:
       - title: reset
         run: rm temp/ts/README_CLI.md
       - title: README.md
-        run: npx baldrick-whisker@latest render pest-spec/fixtures/ts/broth-model.yaml template/ts/readme.hbs temp/ts/README_CLI.md
+        run: npx baldrick-whisker@latest render pest-spec/fixtures/ts/broth-model-cli.yaml template/ts/readme.hbs temp/ts/README_CLI.md
       - title: save
         run: cat temp/ts/README_CLI.md
         expect:

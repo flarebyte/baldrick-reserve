@@ -1,4 +1,24 @@
 ---
-model:
-  project:
-    title: Project title
+check:
+    zest-spec: ok
+    pest-spec: ko
+    jest: none
+    nodejs-test: none
+    version: ok
+    linting: ko
+    markdown: ok
+    outdated: ok
+    audit: ok
+features:
+  - title: YAML structure
+    includes:
+    - title: Engine configuration
+    - title: Binary
+    - title: Variable
+    - title: Domain
+    - title: Task
+    - title: Step
+    - title: Task step
+    - title: Shell step
+    - title: Finally section for the task
+    - title: Parameter for the task

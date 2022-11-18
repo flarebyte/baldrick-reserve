@@ -37,5 +37,15 @@ Highlights:
 This package is [ESM only](https://blog.sindresorhus.com/get-ready-for-esm-aa53530b3f77).
 
 ```bash
-yarn add any-project-name
+yarn global add any-project-name
+any-project-name --help
+```
+Or alternatively run it:
+```bash
+npx any-project-name --help
+```
+If you want to tun the latest version from github. Mostly useful for dev:
+```bash
+git clone git@github.com:flarebyte/any-project-name.git
+yarn global add `pwd`
 ```

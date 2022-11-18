@@ -16,6 +16,14 @@ model:
       - '[Usage](USAGE.md)'
     related:
       - '[baldrick-zest-engine](https://github.com/flarebyte/baldrick-zest-engine) Run tests declaratively with a few cunning plans'
+  technical-design:
+    highlights:
+      - OOP
+      - TDD
+    links:
+      - '[Usage](USAGE.md)'
+    related:
+      - '[baldrick-zest-engine](https://github.com/flarebyte/baldrick-zest-engine) Run tests declaratively with a few cunning plans'
   github:
     account: flarebyte
     name: any-project-name
