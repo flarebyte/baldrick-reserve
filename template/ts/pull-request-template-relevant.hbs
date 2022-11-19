@@ -1,14 +1,25 @@
-# Summary of the change 
+# Summary of the change
 
-Fixes: # (issue)
+{{#each features}}
+- {{title}}
+{{#each includes}}
+    - {{title}}
+{{/each}}
+{{/each}}
 
 ## Code check
 
+{{#ifSatisfy "equals" check.build "ok"}}
+ - [x]  Typescript code can be transpiled to javascript
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.build "ko"}}
+ - [ ]  Some Typescript code cannot be transpiled to javascript ⛈
+{{/ifSatisfy}}
 {{#ifSatisfy "equals" check.zest-spec "ok"}}
- - [x]  Unit regression tests are passing (zest-spec}
+ - [x]  Regression unit tests are passing (zest-spec}
 {{/ifSatisfy}}
 {{#ifSatisfy "equals" check.zest-spec "ko"}}
- - [ ]  Some Unit regression tests are failing (zest-spec} ⛈
+ - [ ]  Some regression unit tests are failing (zest-spec} ⛈
 {{/ifSatisfy}}
 {{#ifSatisfy "equals" check.pest-spec "ok"}}
  - [x]  Acceptance tests are passing (pest-spec}
@@ -28,5 +39,28 @@ Fixes: # (issue)
 {{#ifSatisfy "equals" check.version "ko"}}
  - [ ]  Version has not been incremented ⛈
 {{/ifSatisfy}}
-
+{{#ifSatisfy "equals" check.linting "ok"}}
+ - [x]  All linting rules are satisfied
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.linting "ko"}}
+ - [ ]  Some linting rules are not satisfied ⛈
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.markdown "ok"}}
+ - [x]  Markdown files are correctly formatted
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.markdown "ko"}}
+ - [ ]  Some markdown files are not correctly formatted ⛈
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.outdated "ok"}}
+ - [x]  All npm dependencies have been updated to the latest
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.outdated "ko"}}
+ - [ ]  Some npm dependencies have not been updated to the latest ⛈
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.audit "ok"}}
+ - [x]  No vulnerabilities have been found
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.audit "ko"}}
+ - [ ]  Some vulnerabilities have been found ⛈
+{{/ifSatisfy}}
 

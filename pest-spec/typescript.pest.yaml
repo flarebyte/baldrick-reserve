@@ -46,3 +46,14 @@ cases:
         run: cat temp/ts/pull_request_relevant.md
         expect:
           snapshot: pull_request_relevant.md
+  maintenance:
+    title: Generate MAINTENANCE.md
+    steps:
+      - title: reset
+        run: rm temp/ts/MAINTENANCE.md
+      - title: MAINTENANCE.md
+        run: npx baldrick-whisker@latest render pest-spec/fixtures/ts/broth-model.yaml template/ts/maintenance.hbs temp/ts/MAINTENANCE.md
+      - title: save
+        run: cat temp/ts/MAINTENANCE.md
+        expect:
+          snapshot: MAINTENANCE.md
