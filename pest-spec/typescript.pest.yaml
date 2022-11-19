@@ -57,3 +57,14 @@ cases:
         run: cat temp/ts/MAINTENANCE.md
         expect:
           snapshot: MAINTENANCE.md
+  scaffold-upgrade-merge:
+    title: Upg
+    steps:
+      - title: reset
+        run: rm temp/ts/baldrick-broth-merged.yaml
+      - title: merge
+        run: npx baldrick-whisker@latest object temp/ts/baldrick-broth-merged.yaml pest-spec/fixtures/ts/broth-model-cli.yaml data/ts/baldrick-broth.yaml
+      - title: save
+        run: cat temp/ts/baldrick-broth-merged.yaml
+        expect:
+          snapshot: baldrick-broth-merged.yaml
