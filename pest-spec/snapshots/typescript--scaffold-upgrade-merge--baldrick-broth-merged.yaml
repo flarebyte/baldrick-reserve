@@ -31,7 +31,7 @@ model:
     holder: Flarebyte.com
     startYear: 2022
   license: MIT
-  version: 1.0.0
+  workflow-version: 0.1.0
 workflows:
   test:
     title: Test the library
@@ -305,6 +305,10 @@ workflows:
                 links:
                   - title: sponge from MoreUtils homepage
                     url: https://formulae.brew.sh/formula/moreutils
+              - title: merge model with new workflow
+                run: npx baldrick-whisker@latest object baldrick-broth.yaml
+                  temp/broth/baldrick-broth-model.json
+                  github:flarebyte:baldrick-reserve:data/ts/baldrick-broth.yaml
       norm:
         title: Normalize the project
         description: Normalize the project in a similar fashion that the other
