@@ -437,7 +437,7 @@ workflows:
                 title: Extracts dependencies from package.json
                 name: package-json-deps
                 value: data.norm::main::package-json
-                mask: dependencies,devDependencies,peerDependencies
+                mask: dependencies,devDependencies,peerDependencies,keywords
             commands:
               - name: save-package-json-deps
                 title: Save package.json with only dependencies

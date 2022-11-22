@@ -3,6 +3,7 @@ model:
   project:
     title: Project title
     description: Project Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+    version: 0.17.0
   implementation:
     tags: 
       - zest
@@ -31,6 +32,9 @@ model:
     holder: Flarebyte.com
     startYear: 2022
   license: MIT
+  author:
+    name: First name
+    url: https://github.com/super-cool-name
 workflows:
   test:
     title: Test the library

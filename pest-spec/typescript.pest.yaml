@@ -68,3 +68,14 @@ cases:
         run: cat temp/ts/baldrick-broth-merged.yaml
         expect:
           snapshot: baldrick-broth-merged.yaml
+  package-json:
+    title: Upg
+    steps:
+      - title: reset
+        run: rm temp/ts/package-specific.json
+      - title: merge
+        run: npx baldrick-whisker@latest render pest-spec/fixtures/ts/broth-model.yaml template/ts/package.hbs temp/ts/package-specific.json
+      - title: save
+        run: cat temp/ts/package-specific.json
+        expect:
+          snapshot: temp/ts/package-specific.json
