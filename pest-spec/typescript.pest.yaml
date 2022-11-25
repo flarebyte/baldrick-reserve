@@ -1,0 +1,81 @@
+---
+title: typescript scaffolding
+description: Acceptance testing typescript scaffolding
+cases:
+  readme:
+    title: Generate README.md
+    steps:
+      - title: reset
+        run: rm temp/ts/README.md
+      - title: README.md
+        run: npx baldrick-whisker@latest render pest-spec/fixtures/ts/broth-model.yaml template/ts/readme.hbs temp/ts/README.md
+      - title: save
+        run: cat temp/ts/README.md
+        expect:
+          snapshot: README.md
+  readme-cli:
+    title: Generate README.md for a CLI
+    steps:
+      - title: reset
+        run: rm temp/ts/README_CLI.md
+      - title: README.md
+        run: npx baldrick-whisker@latest render pest-spec/fixtures/ts/broth-model-cli.yaml template/ts/readme.hbs temp/ts/README_CLI.md
+      - title: save
+        run: cat temp/ts/README_CLI.md
+        expect:
+          snapshot: README_CLI.md
+  technical-design:
+    title: Generate TECHNICAL_DESIGN.md
+    steps:
+      - title: reset
+        run: rm temp/ts/TECHNICAL_DESIGN.md
+      - title: TECHNICAL_DESIGN.md
+        run: npx baldrick-whisker@latest render pest-spec/fixtures/ts/broth-model.yaml template/ts/technical-design.hbs temp/ts/TECHNICAL_DESIGN.md
+      - title: save
+        run: cat temp/ts/TECHNICAL_DESIGN.md
+        expect:
+          snapshot: TECHNICAL_DESIGN.md
+  pull-request-relevant:
+    title: Generate pull_request_relevant.md
+    steps:
+      - title: reset
+        run: rm temp/ts/pull_request_relevant.md
+      - title: TECHNICAL_DESIGN.md
+        run: npx baldrick-whisker@latest render pest-spec/fixtures/ts/pull_request_relevant.yaml template/ts/pull-request-template-relevant.hbs temp/ts/pull_request_relevant.md
+      - title: save
+        run: cat temp/ts/pull_request_relevant.md
+        expect:
+          snapshot: pull_request_relevant.md
+  maintenance:
+    title: Generate MAINTENANCE.md
+    steps:
+      - title: reset
+        run: rm temp/ts/MAINTENANCE.md
+      - title: MAINTENANCE.md
+        run: npx baldrick-whisker@latest render pest-spec/fixtures/ts/broth-model.yaml template/ts/maintenance.hbs temp/ts/MAINTENANCE.md
+      - title: save
+        run: cat temp/ts/MAINTENANCE.md
+        expect:
+          snapshot: MAINTENANCE.md
+  scaffold-upgrade-merge:
+    title: Upgrade and merge baldrick-broth
+    steps:
+      - title: reset
+        run: rm temp/ts/baldrick-broth-merged.yaml
+      - title: merge
+        run: npx baldrick-whisker@latest object temp/ts/baldrick-broth-merged.yaml pest-spec/fixtures/ts/broth-model-cli.yaml data/ts/baldrick-broth.yaml
+      - title: save
+        run: cat temp/ts/baldrick-broth-merged.yaml
+        expect:
+          snapshot: baldrick-broth-merged.yaml
+  package-json:
+    title: Generate project content in package.json
+    steps:
+      - title: reset
+        run: rm temp/ts/package-specific.json
+      - title: merge
+        run: npx baldrick-whisker@latest render pest-spec/fixtures/ts/broth-model.yaml template/ts/package.hbs temp/ts/package-specific.json
+      - title: save
+        run: cat temp/ts/package-specific.json
+        expect:
+          snapshot: package.json

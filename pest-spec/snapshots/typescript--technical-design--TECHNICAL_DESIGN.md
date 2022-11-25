@@ -4,29 +4,19 @@
 
 Highlights:
 
-{{#each model.technical-design.highlights}}
-* {{this}}
-{{/each}}
+* OOP
+* TDD
 
 ## Code structure
 
  - __src__: Typescript source code
 
-{{#ifSatisfy "equals" model.implementation.tags "jest"}}
- - __test__: Jest unit tests
- {{/ifSatisfy}}
 
- {{#ifSatisfy "equals" model.implementation.tags "node-test"}}
  - __test__: Node.js unit tests. Please prefer `zest` unit tests whenever possible.
- {{/ifSatisfy}}
 
-{{#ifSatisfy "equals" model.implementation.tags "zest"}}
  - __spec__: [baldrick-zest unit regression tests](https://github.com/flarebyte/baldrick-zest-engine)
- {{/ifSatisfy}}
 
-{{#ifSatisfy "equals" model.implementation.tags "pest"}}
  - __pest-spec__: [baldrick-pest acceptance tests](https://github.com/flarebyte/baldrick-pest)
- {{/ifSatisfy}}
 
  - __script__: Folder for bash, python, zx or ts-node scripts
 
@@ -45,15 +35,4 @@ Highlights:
  - Guideline for [Clean Code in Typescript](https://labs42io.github.io/clean-code-typescript/)
 
  - [Supporting node.js ESM](https://the-guild.dev/blog/support-nodejs-esm)
-{{#ifSatisfy "equals" model.implementation.tags "i18n"}}
- - [Internationalization](INTERNATIONALIZATION.md)
- {{/ifSatisfy}}
- {{#ifSatisfy "equals" model.implementation.tags "accessibility"}}
- - [Accessibility](ACCESSIBILITY.md)
- {{/ifSatisfy}}
-{{#ifSatisfy "equals" model.implementation.tags "railway"}}
- - [Railway oriented programming](https://fsharpforfunandprofit.com/posts/recipe-part2/)
- {{/ifSatisfy}}
- {{#each model.technical-design.links}}
-- {{this}}
-{{/each}}
+- [Usage](USAGE.md)

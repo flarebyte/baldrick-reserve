@@ -1,0 +1,76 @@
+---
+model:
+  project:
+    title: Project title
+    description: Project Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+    version: 0.17.0
+  implementation:
+    tags: 
+      - zest
+      - pest
+      - node-test
+  readme:
+    highlights:
+      - Written in `Typescript`
+      - Built to evolve.
+    links:
+      - '[Usage](USAGE.md)'
+    related:
+      - '[baldrick-zest-engine](https://github.com/flarebyte/baldrick-zest-engine) Run tests declaratively with a few cunning plans'
+  technical-design:
+    highlights:
+      - OOP
+      - TDD
+    links:
+      - '[Usage](USAGE.md)'
+    related:
+      - '[baldrick-zest-engine](https://github.com/flarebyte/baldrick-zest-engine) Run tests declaratively with a few cunning plans'
+  github:
+    account: flarebyte
+    name: any-project-name
+  copyright:
+    holder: Flarebyte.com
+    startYear: 2022
+  license: MIT
+  author:
+    name: First name
+    url: https://github.com/super-cool-name
+workflows:
+  test:
+    title: Test the library
+    description: Test the library for defects
+    tasks:
+      jest:
+        title: Run the unit tests with Jest
+        description: Use the Jest framework to run unit test (deprecated)
+        steps:
+          - a: batch
+            title: Run Jest unit tests
+            commands:
+              - title: Test all test files in test folder
+                run: npx baldrick-dev-ts test check
+      spec:
+        title: Run unit tests declaratively
+        description: Run unit tests for pure functions declaratively using YAML files
+        motivation: Check that the units of code behave as intended
+        steps:
+          - a: batch
+            title: Run the baldrick-zest unit tests
+            commands:
+              - title: Run all baldrick zest files
+                run: node --loader ts-node/esm .baldrick-zest.ts
+
+  transpile:
+    title: Transpile the source code
+    description: Transpile source code
+    tasks:
+      ts:
+        title: Transpile typescript
+        description: Generate javascript from the typescript source code
+        motivation: Javascript code is more portable and can be consumed by other projects
+        steps:
+          - a: batch
+            title: Compile the typescript code
+            commands:
+              - title: Delete dist folder
+                run: rm -rf dist

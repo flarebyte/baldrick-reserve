@@ -1,0 +1,16 @@
+{
+  "name": "any-project-name",
+  "description": "Project title",
+  "version": "0.17.0",
+  "author": {
+    "name": "First name",
+    "url": "https://github.com/super-cool-name"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/flarebyte/any-project-name",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flarebyte/any-project-name.git"
+  },
+  "bugs": "https://github.com/flarebyte/any-project-name/issues"
+}

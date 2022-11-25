@@ -6,6 +6,15 @@
 
 > {{model.project.title}}
 
+{{model.project.description}}
+
+Highlights:
+
+{{#each model.readme.highlights}}
+* {{this}}
+{{/each}}
+
+
 ## Documentation and links
 
 * [Code Maintenance](MAINTENANCE.md)
@@ -18,10 +27,21 @@
 * [Architectural Decision Records](DECISIONS.md)
 * [Contributors](https://github.com/{{model.github.account}}/{{model.github.name}}/graphs/contributors)
 * [Dependencies](https://github.com/{{model.github.account}}/{{model.github.name}}/network/dependencies)
+{{#each model.readme.links}}
+* {{this}}
+{{/each}}
+
+## Related
+
+{{#each model.readme.related}}
+* {{this}}
+{{/each}}
 
 ## Installation
 
 This package is [ESM only](https://blog.sindresorhus.com/get-ready-for-esm-aa53530b3f77).
+
+{{#ifSatisfy "equals" model.implementation.tags "cli"}}
 ```bash
 yarn global add {{model.github.name}}
 {{model.github.name}} --help
@@ -35,3 +55,9 @@ If you want to tun the latest version from github. Mostly useful for dev:
 git clone git@github.com:{{model.github.account}}/{{model.github.name}}.git
 yarn global add `pwd`
 ```
+{{/ifSatisfy}}
+{{#ifSatisfy "not equals" model.implementation.tags "cli"}}
+```bash
+yarn add {{model.github.name}}
+```
+{{/ifSatisfy}}

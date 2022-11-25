@@ -1,0 +1,31 @@
+---
+model:
+  project:
+    title: Project title
+    description: Project Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+  implementation:
+    tags: 
+      - cli
+      - zest
+      - pest
+      - jest
+      - i18n
+      - accessibility
+      - zod
+      - railway
+      - commander
+  readme:
+    highlights:
+      - Written in `Typescript`
+      - Built to evolve.
+    links:
+      - '[Usage](USAGE.md)'
+    related:
+      - '[baldrick-zest-engine](https://github.com/flarebyte/baldrick-zest-engine) Run tests declaratively with a few cunning plans'
+  github:
+    account: flarebyte
+    name: any-project-name
+  copyright:
+    holder: Flarebyte.com
+    startYear: 2022
+  license: MIT

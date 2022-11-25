@@ -1,0 +1,30 @@
+---
+check:
+    zest-spec: ok
+    pest-spec: ko
+    jest: none
+    nodejs-test: none
+    version: ok
+    linting: ko
+    markdown: ok
+    outdated: ok
+    audit: ok
+    build: ok
+
+features:
+  - title: YAML structure
+    includes:
+    - title: Engine configuration
+    - title: Binary
+    - title: Variable
+    - title: 'Domain  # (123)'
+    - title: Task
+    - title: Step
+    - title: Task step
+    - title: Shell step
+    - title: Finally section for the task
+    - title: Parameter for the task
+  - title: ZOD structure
+    includes:
+    - title: Engine configuration
+    - title: Binary
