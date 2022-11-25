@@ -58,7 +58,7 @@ cases:
         expect:
           snapshot: MAINTENANCE.md
   scaffold-upgrade-merge:
-    title: Upg
+    title: Upgrade and merge baldrick-broth
     steps:
       - title: reset
         run: rm temp/ts/baldrick-broth-merged.yaml
@@ -69,7 +69,7 @@ cases:
         expect:
           snapshot: baldrick-broth-merged.yaml
   package-json:
-    title: Upg
+    title: Generate project content in package.json
     steps:
       - title: reset
         run: rm temp/ts/package-specific.json
@@ -78,4 +78,4 @@ cases:
       - title: save
         run: cat temp/ts/package-specific.json
         expect:
-          snapshot: temp/ts/package-specific.json
+          snapshot: package.json
