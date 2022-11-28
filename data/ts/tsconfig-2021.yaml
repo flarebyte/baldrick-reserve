@@ -1,0 +1,51 @@
+$schema: "https://json.schemastore.org/tsconfig"
+display: ES2021
+compilerOptions:
+  # allowSyntheticDefaultImports is activated (true) to provide backwards compatibility, Node.js allows you to import most CommonJS packages with a default import. This flag tells TypeScript that it's okay to use import on CommonJS modules (Sindre Sorhus)
+  allowSyntheticDefaultImports: true
+  # declaration is activated (true) and generate .d.ts files for every TypeScript or JavaScript file inside your project.
+  declaration: true
+  # esModuleInterop is activated (true) which should result in better support for import of dependencies regardless whether they are ES or commonjs
+  esModuleInterop: true
+  # forceConsistentCasingInFileNames is activated (true) and TypeScript will issue an error if a program tries to include a file by a casing different from the casing on disk
+  forceConsistentCasingInFileNames: true
+  lib:
+    - es2021
+  module: Node16
+  # moduleDetection is set to force which ensures that every non-declaration file is treated as a module.
+  moduleDetection: force
+  moduleResolution: Node16
+  # newLine is set to LF (unix).
+  newLine: lf
+
+  # noEmitOnError is activated (true) and this will not emit compiler output files like JavaScript source code, source-maps or declarations if any errors were reported.
+  noEmitOnError: true
+  # noFallthroughCasesInSwitch is activated (true) and you get report errors for fallthrough cases in switch statements.
+  noFallthroughCasesInSwitch: true
+  # noImplicitOverride is activated (true) and you can ensure that the sub-classes never go out of sync, by ensuring that functions which override include the keyword override.
+  noImplicitOverride: true
+  # noImplicitReturns is activated (true) and TypeScript will check all code paths in a function to ensure they return a value.
+  noImplicitReturns: true
+  # noPropertyAccessFromIndexSignature is activated (true) and will raise an error when the unknown field uses dot syntax instead of indexed syntax.
+  noPropertyAccessFromIndexSignature: true
+  # noUncheckedIndexedAccess is activated (true) and this will add undefined to any un-declared field in the type.
+  noUncheckedIndexedAccess: true
+  # noUnusedLocals is activated (true) and you get report errors on unused local variables.
+  noUnusedLocals: true
+  # noUnusedParameters is activated (true) and you get report errors on unused parameters in functions.
+  noUnusedParameters: true
+  # resolveJsonModule is deactivated (false) as TypeScript does not support resolving JSON files by default.
+  resolveJsonModule: false
+  # skipLibCheck is activated (true) and skip type checking of declaration files.
+  skipLibCheck: true
+  # strict is activated (true) and enables a wide range of type checking behavior that results in stronger guarantees of program correctness.
+  strict: true
+  target: es2021
+  # useDefineForClassFields is activated (true) and switches to the upcoming standard version of class fields runtime behavior.
+  useDefineForClassFields: true
+  diagnostics: true
+  extendedDiagnostics: true
+ts-node:
+  compilerOptions: {}
+  files: true
+  transpileOnly: true
