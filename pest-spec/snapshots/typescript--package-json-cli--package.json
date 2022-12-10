@@ -1,0 +1,20 @@
+{
+  "name": "any-project-name",
+  "description": "Project title",
+  "version": "",
+  "author": {
+    "name": "",
+    "url": ""
+  },
+  "keywords": [],
+  "license": "MIT",
+  "homepage": "https://github.com/flarebyte/any-project-name",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flarebyte/any-project-name.git"
+  },
+  "bugs": "https://github.com/flarebyte/any-project-name/issues",
+  "bin": {
+    "any-project-name": "dist/src/cli.mjs"
+  }
+}

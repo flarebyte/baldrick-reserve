@@ -18,4 +18,9 @@
     "url": "https://github.com/{{model.github.account}}/{{model.github.name}}.git"
   },
   "bugs": "https://github.com/{{model.github.account}}/{{model.github.name}}/issues"
+  {{#ifSatisfy "equals" model.implementation.tags "cli"}}
+   , "bin": {
+    "{{model.github.name}}": "dist/src/cli.mjs"
+  }
+  {{/ifSatisfy}}
 }

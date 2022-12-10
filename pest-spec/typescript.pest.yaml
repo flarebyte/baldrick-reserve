@@ -79,3 +79,14 @@ cases:
         run: cat temp/ts/package-specific.json
         expect:
           snapshot: package.json
+  package-json-cli:
+    title: Generate project content for CLI in package.json
+    steps:
+      - title: reset
+        run: rm temp/ts/package-cli-specific.json
+      - title: merge
+        run: npx baldrick-whisker@latest render pest-spec/fixtures/ts/broth-model-cli.yaml template/ts/package.hbs temp/ts/package-cli-specific.json
+      - title: save
+        run: cat temp/ts/package-cli-specific.json
+        expect:
+          snapshot: package.json
