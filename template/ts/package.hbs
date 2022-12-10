@@ -6,6 +6,11 @@
     "name": "{{model.author.name}}",
     "url": "{{model.author.url}}"
   },
+  "keywords": [
+  {{#with model.project}}
+  {{#listJoin "," keywords}} "{{this}}" {{/listJoin}}
+  {{/with}}
+  ],
   "license": "{{model.license}}",
   "homepage": "https://github.com/{{model.github.account}}/{{model.github.name}}",
   "repository": {

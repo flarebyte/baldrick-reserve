@@ -4,8 +4,11 @@ model:
     title: Project title
     description: Project Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
     version: 0.17.0
+    keywords:
+      - CLI
+      - typescript
   implementation:
-    tags: 
+    tags:
       - zest
       - pest
       - node-test
@@ -14,17 +17,17 @@ model:
       - Written in `Typescript`
       - Built to evolve.
     links:
-      - '[Usage](USAGE.md)'
+      - "[Usage](USAGE.md)"
     related:
-      - '[baldrick-zest-engine](https://github.com/flarebyte/baldrick-zest-engine) Run tests declaratively with a few cunning plans'
+      - "[baldrick-zest-engine](https://github.com/flarebyte/baldrick-zest-engine) Run tests declaratively with a few cunning plans"
   technical-design:
     highlights:
       - OOP
       - TDD
     links:
-      - '[Usage](USAGE.md)'
+      - "[Usage](USAGE.md)"
     related:
-      - '[baldrick-zest-engine](https://github.com/flarebyte/baldrick-zest-engine) Run tests declaratively with a few cunning plans'
+      - "[baldrick-zest-engine](https://github.com/flarebyte/baldrick-zest-engine) Run tests declaratively with a few cunning plans"
   github:
     account: flarebyte
     name: any-project-name

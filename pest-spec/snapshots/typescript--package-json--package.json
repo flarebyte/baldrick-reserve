@@ -6,6 +6,10 @@
     "name": "First name",
     "url": "https://github.com/super-cool-name"
   },
+  "keywords": [
+    "CLI",
+    "typescript"
+  ],
   "license": "MIT",
   "homepage": "https://github.com/flarebyte/any-project-name",
   "repository": {
