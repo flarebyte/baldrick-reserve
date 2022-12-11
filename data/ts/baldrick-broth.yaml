@@ -300,7 +300,7 @@ workflows:
                 links:
                   - title: Specify files to ignore in source control
                     url: https://git-scm.com/docs/gitignore
-                run: npx baldrick-whisker@latest render --no-ext baldrick-broth.yaml github:flarebyte:baldrick-reserve:template/ts/gitignore.hbs gitignore.sh
+                run: npx baldrick-whisker@latest render --no-ext baldrick-broth.yaml github:flarebyte:baldrick-reserve:template/ts/gitignore.hbs .gitignore.sh
               - title: Create .editorconfig
                 run: npx baldrick-whisker@latest render --no-ext baldrick-broth.yaml github:flarebyte:baldrick-reserve:template/editorconfig.hbs .editorconfig.sh
                 links:
@@ -309,7 +309,7 @@ workflows:
               - title: Create a starter .vscode/settings.json
                 run: npx baldrick-whisker@latest object .vscode/settings.json github:flarebyte:baldrick-reserve:data/ts/vscode-settings.json --no-overwrite
               - title: Create tsconfig.json
-                run: npx baldrick-whisker@latest object tsconfig.json github:flarebyte:baldrick-reserve:data/ts/tsconfig-2021.json
+                run: npx baldrick-whisker@latest object tsconfig.json github:flarebyte:baldrick-reserve:data/ts/tsconfig-2021.yaml
               - title: Create .prettierrc.json
                 run: npx baldrick-whisker@latest object .prettierrc.json github:flarebyte:baldrick-reserve:data/ts/prettierrc.json
               - title: Create .remarkrc.yml
