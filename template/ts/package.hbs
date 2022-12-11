@@ -21,6 +21,59 @@
   {{#ifSatisfy "equals" model.implementation.tags "cli"}}
    , "bin": {
     "{{model.github.name}}": "dist/src/cli.mjs"
-  }
+  },
+    "type": "module",
+    "exports": {
+      ".": {
+        "import": "./dist/src/cli.mjs",
+        "default": "./dist/src/cli.mjs",
+        "types": "./dist/src"
+      },
+      "./package.json": {
+        "default": "./package.json"
+      }
+    },
+    "main": "./dist/src/index.mjs",
+    "files": [
+      "dist/src",
+      "src"
+    ],
+    "engines": {
+      "node": ">=18"
+    },
+    "scripts": {
+      "build": "tsc --outDir dist",
+      "test": "node --test --loader ts-node/esm test/*.test.ts",
+      "cli": "node --loader ts-node/esm src/cli.mts",
+      "spec": "node --loader ts-node/esm .baldrick-zest.ts"
+    }
+  {{/ifSatisfy}}
+  {{#ifSatisfy "equals" model.implementation.tags "lib"}}
+    , "type": "module",
+    "types": "./dist/src/index.d.mts",
+    "exports": {
+      ".": {
+        "import": "./dist/src/index.mjs",
+        "default": "./dist/src/index.mjs",
+        "types": "./dist/src"
+      },
+      "./package.json": {
+        "default": "./package.json"
+      }
+    },
+    "main": "./dist/src/index.mjs",
+    "files": [
+      "dist/src",
+      "src"
+    ],
+    "bin": {},
+    "engines": {
+      "node": ">=18"
+    },
+    "scripts": {
+      "build": "tsc --outDir dist",
+      "test": "node --test --loader ts-node/esm test/*.test.ts",
+      "spec": "node --loader ts-node/esm .baldrick-zest.ts"
+    }
   {{/ifSatisfy}}
 }

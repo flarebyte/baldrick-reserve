@@ -16,5 +16,31 @@
     "type": "git",
     "url": "https://github.com/flarebyte/any-project-name.git"
   },
-  "bugs": "https://github.com/flarebyte/any-project-name/issues"
+  "bugs": "https://github.com/flarebyte/any-project-name/issues",
+  "type": "module",
+  "types": "./dist/src/index.d.mts",
+  "exports": {
+    ".": {
+      "import": "./dist/src/index.mjs",
+      "default": "./dist/src/index.mjs",
+      "types": "./dist/src"
+    },
+    "./package.json": {
+      "default": "./package.json"
+    }
+  },
+  "main": "./dist/src/index.mjs",
+  "files": [
+    "dist/src",
+    "src"
+  ],
+  "bin": {},
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc --outDir dist",
+    "test": "node --test --loader ts-node/esm test/*.test.ts",
+    "spec": "node --loader ts-node/esm .baldrick-zest.ts"
+  }
 }
