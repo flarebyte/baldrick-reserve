@@ -35,6 +35,17 @@ cases:
         run: cat temp/ts/TECHNICAL_DESIGN.md
         expect:
           snapshot: TECHNICAL_DESIGN.md
+  license:
+    title: Generate LICENSE
+    steps:
+      - title: reset
+        run: rm temp/ts/LICENSE
+      - title: LICENSE
+        run: npx baldrick-whisker@latest render --no-ext pest-spec/fixtures/ts/broth-model.yaml template/ts/license.hbs temp/ts/LICENSE.md
+      - title: save
+        run: cat temp/ts/LICENSE
+        expect:
+          snapshot: LICENSE.md
   pull-request-relevant:
     title: Generate pull_request_relevant.md
     steps:
