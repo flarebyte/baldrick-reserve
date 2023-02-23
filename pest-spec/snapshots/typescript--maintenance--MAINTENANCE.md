@@ -8,6 +8,7 @@
 
 __Run:__ ```npx baldrick-broth test jest```
 
+
 ---
 ### Run unit tests declaratively
 
@@ -17,6 +18,10 @@ __Motivation:__ Check that the units of code behave as intended
 
 
 __Run:__ ```npx baldrick-broth test spec```
+
+See also:
+
+* [Testing with baldrick-pest](https://github.com/flarebyte/baldrick-pest)
 
 ---
 
@@ -29,5 +34,6 @@ __Motivation:__ Javascript code is more portable and can be consumed by other pr
 
 
 __Run:__ ```npx baldrick-broth transpile ts```
+
 
 ---

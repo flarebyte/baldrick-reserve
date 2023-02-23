@@ -18,6 +18,14 @@ __Motivation:__ {{task.motivation}}
 
 __Run:__ ```npx baldrick-broth {{workflowId}} {{taskId}}```
 
+{{#if task.links}}
+See also:
+
+{{#each task.links as |link|}}
+* [{{link.title}}]({{link.url}})
+{{/each}}
+{{/if}}
+
 ---
 {{/each}}
 

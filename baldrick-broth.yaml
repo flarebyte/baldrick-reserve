@@ -2,6 +2,9 @@
 model:
   project:
     title: Reserve of templates used for scaffolding
+  pest-filenames:
+    - typescript
+
 workflows:
   test:
     title: Test the library
@@ -11,26 +14,15 @@ workflows:
         title: Run acceptance tests for the CLI
         description: Run acceptance tests declaratively using YAML files
         motivation: Check that the CLI application behaves as intended
-        steps:
-          - a: batch
-            title: Retrieve a list of acceptance tests
-            commands:
-              - name: pest-files
-                title: List pest yaml files
-                run: scc pest-spec --include-ext yaml --by-file --format csv
-                onSuccess:
-                  - save
-                  - csv
-                  - silent
-          - a: batch
-            title: Run the baldrick-pest acceptance tests
-            links:
-              - title: Testing with baldrick-pest
-                url: https://github.com/flarebyte/baldrick-pest
-            each:
-              - name: pest-file
-                values: data.test::pest::pest-files
-            commands:
-              - title: Run regression on file
-                name: Run regression on {{pest-file.Location}}
-                run: npx baldrick-pest@latest test --spec-file {{pest-file.Location}}
+        links:
+          - title: Testing with baldrick-pest
+            url: https://github.com/flarebyte/baldrick-pest
+        main:
+          each:
+            - name: pest-filename
+              values: build.model.pest-filenames
+          commands:
+            - title: Run regression on file
+              name: Run regression on {{pest-filename}}.pest.yaml
+              run: npx baldrick-pest@latest test --spec-file pest-spec/{{pest-filename}}.pest.yaml
+  
