@@ -31,7 +31,7 @@ model:
     holder: Flarebyte.com
     startYear: 2022
   license: MIT
-  workflow-version: 0.2.0
+  workflow-version: 0.3.0
 workflows:
   test:
     title: Test the library
@@ -58,6 +58,17 @@ workflows:
           commands:
             - title: Run all baldrick zest files
               run: node --loader ts-node/esm .baldrick-zest.ts
+      unit:
+        title: Run node.js unit tests
+        description: Run traditional unit tests
+        motivation: Test what is not easily covered with zest
+        links:
+          - title: JavaScript tests that report results in TAP format
+            url: https://nodejs.org/dist/latest-v18.x/docs/api/test.html
+        main:
+          commands:
+            - title: Run unit tests
+              run: yarn test
       pest:
         title: Run acceptance tests for the CLI
         description: Run acceptance tests declaratively using YAML files
@@ -247,6 +258,12 @@ workflows:
         motivation: Detect quality flaws before pushing the code
         main:
           commands:
+            - name: remove-build
+              title: Remove previous build
+              run: rm -rf dist
+            - name: build
+              title: Build the project
+              run: yarn build
             - name: release-check
               title: Checks that the version has been incremented
               run: npx baldrick-dev-ts@latest release check
@@ -265,6 +282,33 @@ workflows:
             - name: outdated
               title: Audit some libraries
               run: yarn audit
+      publish:
+        title: Publish the current library
+        description: Publih the current library to npm
+        motivation: Detect quality flaws before pushing the code
+        main:
+          commands:
+            - name: checkout-main
+              title: Checkout main
+              run: git checkout main
+            - name: fetch-all
+              title: Fetch all
+              run: git fetch --all
+            - name: rebase-main
+              title: Rebase main
+              run: git rebase
+            - name: status
+              title: Git status
+              run: git status
+            - name: remove-build
+              title: Remove previous build
+              run: rm -rf dist
+            - name: build
+              title: Build the project
+              run: yarn build
+            - name: release
+              title: Release the library to NPM and Github
+              run: npx baldrick-dev-ts@latest release ci
   scaffold:
     title: Scaffolding for the project
     tasks:
@@ -374,6 +418,10 @@ workflows:
               run: npx baldrick-whisker@latest render baldrick-broth.yaml
                 github:flarebyte:baldrick-reserve:template/ts/technical-design.hbs
                 TECHNICAL_DESIGN.md
+            - title: Create MAINTENANCE.md
+              run: npx baldrick-whisker@latest render baldrick-broth.yaml
+                github:flarebyte:baldrick-reserve:template/ts/maintenance.hbs
+                MAINTENANCE.md
             - title: Create LICENSE
               run: npx baldrick-whisker@latest render --no-ext baldrick-broth.yaml
                 github:flarebyte:baldrick-reserve:template/ts/license.hbs
