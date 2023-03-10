@@ -1,0 +1,71 @@
+{
+  "$ref": "#/definitions/entities-schema",
+  "definitions": {
+    "entities-schema": {
+      "type": "object",
+      "properties": {
+        "entities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "purpose": {
+                "type": "string"
+              },
+              "mustHave": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "shouldHave": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "niceToHave": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "shouldNotHave": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "name",
+              "title",
+              "description",
+              "purpose",
+              "mustHave",
+              "shouldHave",
+              "niceToHave",
+              "shouldNotHave"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "entities"
+      ],
+      "additionalProperties": false,
+      "description": "Entities schema"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

@@ -5,3 +5,4 @@ report/
 .message
 temp/
 report/
+node_modules/
