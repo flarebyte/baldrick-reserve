@@ -100,11 +100,14 @@
                 ]
               },
               "search": {
-                "type": "string",
-                "enum": [
-                  "id",
-                  "text"
-                ]
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "text"
+                  ]
+                }
               },
               "validation": {
                 "type": "array",

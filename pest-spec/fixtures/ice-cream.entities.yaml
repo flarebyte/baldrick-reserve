@@ -4,28 +4,23 @@ entities:
     title: ice cream
     description: Flavour of an ice cream
     purpose: Dexcribe the purpose for collection this data
-    must-have:
+    mustHave:
       - milk ice-cream
       - sorbet
-    should-have:
+    shouldHave:
       - mint
-    nice-to-have:
+    niceToHave:
       - chocolate
-    should-not-have:
+    shouldNotHave:
       - beetroot
-    retention-period: year
-    create-frequency: once an hour
-    read-frequency: once an hour
-    update-frequency: none
-    delete-frequency: none
-    backup-frequency: once an month
-    data-size: kb
-    format:
-      - tabular
-      - key-value
-      - document
-      - graph
-      - time-series
+    retentionPeriod: year
+    createFrequency: once an hour
+    readFrequency: once an hour
+    updateFrequency: never
+    deleteFrequency: never
+    backupFrequency: once a month
+    dataSize: KB
+    format: tabular
     search:
       - id
       - text
@@ -37,7 +32,7 @@ entities:
       - curated
       - machine-learning  
     ownership:
-      - indvidual
+      - individual
       - business
       - public
     parents:

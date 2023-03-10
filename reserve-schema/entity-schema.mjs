@@ -39,7 +39,7 @@ const entity = z.object({
   backupFrequency: frequency,
   dataSize: z.enum(["B", "KB", "MB", "GB", "TB"]),
   format: z.enum(["tabular", "key-value", "document", "graph", "time-series"]),
-  search: z.enum(["id", "text"]),
+  search: z.array(z.enum(["id", "text"])),
   validation: z.array(
     z.enum([
       "basic",
