@@ -1,0 +1,296 @@
+{
+  "$ref": "#/definitions/entity-schema",
+  "definitions": {
+    "entity-schema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20,
+          "description": "Short name for the entity"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60,
+          "description": "Title"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000,
+          "description": "Detailed description"
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000,
+          "description": "Why is this entity needed"
+        },
+        "mustHave": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "maxItems": 12,
+          "description": "Must have features"
+        },
+        "shouldHave": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "maxItems": 12,
+          "description": "Should have features"
+        },
+        "niceToHave": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "maxItems": 12,
+          "description": "Nice to have features"
+        },
+        "shouldNotHave": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "maxItems": 12,
+          "description": "Should not have features"
+        },
+        "retentionPeriod": {
+          "type": "string",
+          "enum": [
+            "year",
+            "month",
+            "week",
+            "day"
+          ],
+          "description": "Period during which the data should be kept"
+        },
+        "createFrequency": {
+          "type": "string",
+          "enum": [
+            "never",
+            "once a year",
+            "once a month",
+            "once a week",
+            "once a day",
+            "once an hour",
+            "once a minute",
+            "once a second"
+          ],
+          "description": "Frequency at which the entity is created"
+        },
+        "readFrequency": {
+          "type": "string",
+          "enum": [
+            "never",
+            "once a year",
+            "once a month",
+            "once a week",
+            "once a day",
+            "once an hour",
+            "once a minute",
+            "once a second"
+          ],
+          "description": "Frequency at which the entity is read"
+        },
+        "updateFrequency": {
+          "type": "string",
+          "enum": [
+            "never",
+            "once a year",
+            "once a month",
+            "once a week",
+            "once a day",
+            "once an hour",
+            "once a minute",
+            "once a second"
+          ],
+          "description": "Frequency at which the entity is updated"
+        },
+        "deleteFrequency": {
+          "type": "string",
+          "enum": [
+            "never",
+            "once a year",
+            "once a month",
+            "once a week",
+            "once a day",
+            "once an hour",
+            "once a minute",
+            "once a second"
+          ],
+          "description": "Frequency at which the entity is deleted"
+        },
+        "backupFrequency": {
+          "type": "string",
+          "enum": [
+            "never",
+            "once a year",
+            "once a month",
+            "once a week",
+            "once a day",
+            "once an hour",
+            "once a minute",
+            "once a second"
+          ],
+          "description": "Frequency at which the entity is backed up"
+        },
+        "dataSize": {
+          "type": "string",
+          "enum": [
+            "B",
+            "KB",
+            "MB",
+            "GB",
+            "TB"
+          ],
+          "description": "Estimated size of one entity"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "tabular",
+            "key-value",
+            "document",
+            "graph",
+            "time-series"
+          ],
+          "description": "Expected structure of the data"
+        },
+        "textSearch": {
+          "type": "boolean",
+          "default": false,
+          "description": "Should the entity require text search"
+        },
+        "validation": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "basic",
+              "schema",
+              "service",
+              "access-service",
+              "curated",
+              "machine-learning"
+            ]
+          },
+          "description": "How the data is validated"
+        },
+        "ownership": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "public",
+              "business",
+              "individual"
+            ]
+          },
+          "description": "Who owns the data"
+        },
+        "relationhships": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "uses",
+                  "is-used"
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "title",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Describe the relationhships with other entities"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "primitive",
+              "line",
+              "text",
+              "code",
+              "mime",
+              "image",
+              "media",
+              "url",
+              "ref",
+              "tuple",
+              "encrypted",
+              "hashed",
+              "secret"
+            ]
+          }
+        },
+        "privacy": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "sensitive-special-category",
+              "privacy-high-risk",
+              "anonymous",
+              "pseudonymous",
+              "financial",
+              "children",
+              "criminal",
+              "ethnic",
+              "political",
+              "religious",
+              "trade-union",
+              "health",
+              "sexual-life",
+              "biometric"
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "title",
+        "retentionPeriod",
+        "createFrequency",
+        "readFrequency",
+        "updateFrequency",
+        "deleteFrequency",
+        "backupFrequency",
+        "dataSize",
+        "format",
+        "validation",
+        "ownership",
+        "relationhships",
+        "fields",
+        "privacy"
+      ],
+      "additionalProperties": false,
+      "description": "Entity model"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
