@@ -20,7 +20,16 @@ const frequency = z.enum([
 const relationhship = z.object({
   name: z.string(),
   title: z.string(),
-  kind: z.enum(["uses", "is-used"]),
+  kind: z.enum([
+    "uses",
+    "is-used",
+    "contains",
+    "is contained",
+    "relates to",
+    "is related to",
+    "depends on",
+    "is dependant on",
+  ]),
 });
 
 const schema = z
@@ -107,41 +116,45 @@ const schema = z
     relationhships: z
       .array(relationhship)
       .describe("Describe the relationhships with other entities"),
-    fields: z.array(
-      z.enum([
-        "primitive",
-        "line",
-        "text",
-        "code",
-        "mime",
-        "image",
-        "media",
-        "url",
-        "ref",
-        "tuple",
-        "encrypted",
-        "hashed",
-        "secret",
-      ])
-    ),
+    fields: z
+      .array(
+        z.enum([
+          "primitive",
+          "line",
+          "text",
+          "code",
+          "mime",
+          "image",
+          "media",
+          "url",
+          "ref",
+          "tuple",
+          "encrypted",
+          "hashed",
+          "secret",
+        ])
+      )
+      .describe("Type and nature of fields"),
     privacy: z.array(
-      z.enum([
-        "personal",
-        "sensitive-special-category",
-        "privacy-high-risk",
-        "anonymous",
-        "pseudonymous",
-        "financial",
-        "children",
-        "criminal",
-        "ethnic",
-        "political",
-        "religious",
-        "trade-union",
-        "health",
-        "sexual-life",
-        "biometric",
-      ])
+      z
+        .enum([
+          "personal",
+          "sensitive-special-category",
+          "privacy-high-risk",
+          "anonymous",
+          "pseudonymous",
+          "financial",
+          "children",
+          "criminal",
+          "ethnic",
+          "political",
+          "religious",
+          "trade-union",
+          "health",
+          "sexual-life",
+          "biometric",
+        ])
+        .describe("Level of privacy required")
     ),
   })
   .describe("Entity model");

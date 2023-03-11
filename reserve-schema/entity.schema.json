@@ -213,7 +213,13 @@
                 "type": "string",
                 "enum": [
                   "uses",
-                  "is-used"
+                  "is-used",
+                  "contains",
+                  "is contained",
+                  "relates to",
+                  "is related to",
+                  "depends on",
+                  "is dependant on"
                 ]
               }
             },
@@ -245,7 +251,8 @@
               "hashed",
               "secret"
             ]
-          }
+          },
+          "description": "Type and nature of fields"
         },
         "privacy": {
           "type": "array",
@@ -267,7 +274,8 @@
               "health",
               "sexual-life",
               "biometric"
-            ]
+            ],
+            "description": "Level of privacy required"
           }
         }
       },

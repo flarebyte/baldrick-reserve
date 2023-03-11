@@ -25,4 +25,15 @@ workflows:
             - title: Run regression on file
               name: Run regression on {{pest-filename}}.pest.yaml
               run: npx baldrick-pest@latest test --spec-file pest-spec/{{pest-filename}}.pest.yaml
+  generate:
+    title: Generate documents
+    description: Generate documents
+    tasks:
+      schema:
+        title: Generate json schema
+        description: Generate json schema from Zod model
+        main:
+          commands:
+            - title: Generate entity json schema
+              run: npx zx --install reserve-schema/entity-schema.mjs
   
