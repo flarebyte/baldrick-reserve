@@ -249,7 +249,10 @@
               "tuple",
               "encrypted",
               "hashed",
-              "secret"
+              "secret",
+              "non-repudiability",
+              "integrity",
+              "authenticity"
             ]
           },
           "description": "Type and nature of fields"

@@ -132,6 +132,9 @@ const schema = z
           "encrypted",
           "hashed",
           "secret",
+          "non-repudiability",
+          "integrity",
+          "authenticity",
         ])
       )
       .describe("Type and nature of fields"),
