@@ -48,7 +48,7 @@
                         "one-of"
                       ]
                     },
-                    "expectation": {
+                    "value": {
                       "anyOf": [
                         {
                           "type": "string",
@@ -71,7 +71,7 @@
                   "required": [
                     "attribute",
                     "condition",
-                    "expectation"
+                    "value"
                   ],
                   "additionalProperties": false
                 },
@@ -80,7 +80,7 @@
               "action": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/user/items"
+                  "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/user/items/properties/attribute"
                 },
                 "minItems": 1
               },
@@ -163,6 +163,7 @@
       },
       "required": [
         "title",
+        "description",
         "allow"
       ],
       "additionalProperties": false,

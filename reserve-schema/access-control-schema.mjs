@@ -19,8 +19,9 @@ const operator = z.enum([
 const attributeCriteria = z.object({
   attribute: attributeName,
   condition: operator,
-  expectation: stringValues,
+  value: stringValues,
 });
+
 
 const allowance = z.object({
   description: z
@@ -30,7 +31,7 @@ const allowance = z.object({
     .optional()
     .describe('Detailed description'),
   user: z.array(attributeCriteria).min(1),
-  action: z.array(attributeCriteria).min(1),
+  action: z.array(attributeName).min(1),
   target: z.array(attributeCriteria).min(1),
   contextual: z.array(attributeCriteria).min(1),
 });
@@ -75,7 +76,6 @@ const schema = z
       .string()
       .min(1)
       .max(1000)
-      .optional()
       .describe('Detailed description about the access control'),
     allow: z
       .array(allowance)
