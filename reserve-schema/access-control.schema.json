@@ -31,13 +31,24 @@
                 "type": "object",
                 "properties": {
                   "role": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 100,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100,
+                      "description": "Attribute name"
+                    },
+                    "minItems": 1,
+                    "maxItems": 12,
                     "description": "The role that is assigned to principal"
                   },
                   "status": {
-                    "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/principal/properties/role",
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/principal/properties/role/items"
+                    },
+                    "minItems": 1,
+                    "maxItems": 12,
                     "description": "The current status of the principal"
                   },
                   "attributes": {
@@ -46,7 +57,7 @@
                       "type": "object",
                       "properties": {
                         "attribute": {
-                          "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/principal/properties/role"
+                          "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/principal/properties/role/items"
                         },
                         "condition": {
                           "type": "string",
@@ -95,7 +106,7 @@
               "action": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/principal/properties/role"
+                  "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/principal/properties/role/items"
                 },
                 "minItems": 1,
                 "description": "Action that can be performed by the principal"
@@ -106,7 +117,7 @@
                   "documents": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/principal/properties/role"
+                      "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/principal/properties/role/items"
                     },
                     "minItems": 1,
                     "maxItems": 30,

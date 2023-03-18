@@ -24,10 +24,16 @@ const attributeCriteria = z.object({
 
 const principal = z
   .object({
-    role: attributeName
+    role: z
+      .array(attributeName)
+      .min(1)
+      .max(12)
       .optional()
       .describe('The role that is assigned to principal'),
-    status: attributeName
+    status: z
+      .array(attributeName)
+      .min(1)
+      .max(12)
       .optional()
       .describe('The current status of the principal'),
     attributes: z
