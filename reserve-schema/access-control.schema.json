@@ -36,6 +36,10 @@
                     "maxLength": 100,
                     "description": "The role that is assigned to principal"
                   },
+                  "status": {
+                    "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/principal/properties/role",
+                    "description": "The current status of the principal"
+                  },
                   "attributes": {
                     "type": "array",
                     "items": {
@@ -81,12 +85,10 @@
                       ],
                       "additionalProperties": false
                     },
-                    "maxItems": 12
+                    "maxItems": 12,
+                    "description": "A list of attributes"
                   }
                 },
-                "required": [
-                  "attributes"
-                ],
                 "additionalProperties": false,
                 "description": "The role or attributes expected from principal"
               },
@@ -115,12 +117,12 @@
                     "items": {
                       "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/principal/properties/attributes/items"
                     },
-                    "maxItems": 12
+                    "maxItems": 12,
+                    "description": "A list of attributes"
                   }
                 },
                 "required": [
-                  "documents",
-                  "attributes"
+                  "documents"
                 ],
                 "additionalProperties": false,
                 "description": "Documents or attributes that are being accessed"

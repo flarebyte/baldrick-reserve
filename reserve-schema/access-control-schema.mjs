@@ -27,7 +27,14 @@ const principal = z
     role: attributeName
       .optional()
       .describe('The role that is assigned to principal'),
-    attributes: z.array(attributeCriteria).max(12),
+    status: attributeName
+      .optional()
+      .describe('The current status of the principal'),
+    attributes: z
+      .array(attributeCriteria)
+      .max(12)
+      .optional()
+      .describe('A list of attributes'),
   })
   .describe('The role or attributes expected from principal');
 
@@ -38,7 +45,11 @@ const target = z
       .min(1)
       .max(30)
       .describe('The documents that could be accessed'),
-    attributes: z.array(attributeCriteria).max(12),
+    attributes: z
+      .array(attributeCriteria)
+      .max(12)
+      .optional()
+      .describe('A list of attributes'),
   })
   .describe('Documents or attributes that are being accessed');
 
