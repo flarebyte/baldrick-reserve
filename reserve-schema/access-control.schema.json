@@ -27,83 +27,116 @@
                 "maxLength": 1000,
                 "description": "Detailed description"
               },
-              "user": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "attribute": {
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 100,
-                      "description": "Attribute name"
-                    },
-                    "condition": {
-                      "type": "string",
-                      "enum": [
-                        "equals",
-                        "not-equals",
-                        "more-than",
-                        "less-than",
-                        "one-of"
-                      ]
-                    },
-                    "value": {
-                      "anyOf": [
-                        {
-                          "type": "string",
-                          "minLength": 1,
-                          "maxLength": 100
-                        },
-                        {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 100
-                          },
-                          "minItems": 2,
-                          "maxItems": 30
-                        }
-                      ]
-                    }
+              "principal": {
+                "type": "object",
+                "properties": {
+                  "role": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100,
+                    "description": "The role that is assigned to principal"
                   },
-                  "required": [
-                    "attribute",
-                    "condition",
-                    "value"
-                  ],
-                  "additionalProperties": false
+                  "attributes": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "attribute": {
+                          "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/principal/properties/role"
+                        },
+                        "condition": {
+                          "type": "string",
+                          "enum": [
+                            "equals",
+                            "not-equals",
+                            "more-than",
+                            "less-than",
+                            "one-of"
+                          ]
+                        },
+                        "value": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 100
+                            },
+                            {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 100
+                              },
+                              "minItems": 2,
+                              "maxItems": 30
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "attribute",
+                        "condition",
+                        "value"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "maxItems": 12
+                  }
                 },
-                "minItems": 1
+                "required": [
+                  "attributes"
+                ],
+                "additionalProperties": false,
+                "description": "The role or attributes expected from principal"
               },
               "action": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/user/items/properties/attribute"
+                  "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/principal/properties/role"
                 },
-                "minItems": 1
+                "minItems": 1,
+                "description": "Action that can be performed by the principal"
               },
               "target": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/user/items"
+                "type": "object",
+                "properties": {
+                  "documents": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/principal/properties/role"
+                    },
+                    "minItems": 1,
+                    "maxItems": 30,
+                    "description": "The documents that could be accessed"
+                  },
+                  "attributes": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/principal/properties/attributes/items"
+                    },
+                    "maxItems": 12
+                  }
                 },
-                "minItems": 1
+                "required": [
+                  "documents",
+                  "attributes"
+                ],
+                "additionalProperties": false,
+                "description": "Documents or attributes that are being accessed"
               },
               "contextual": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/user/items"
+                  "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/principal/properties/attributes/items"
                 },
                 "minItems": 1
               }
             },
             "required": [
-              "user",
+              "principal",
               "action",
-              "target",
-              "contextual"
+              "target"
             ],
             "additionalProperties": false
           },

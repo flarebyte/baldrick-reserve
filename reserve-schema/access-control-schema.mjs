@@ -22,6 +22,25 @@ const attributeCriteria = z.object({
   value: stringValues,
 });
 
+const principal = z
+  .object({
+    role: attributeName
+      .optional()
+      .describe('The role that is assigned to principal'),
+    attributes: z.array(attributeCriteria).max(12),
+  })
+  .describe('The role or attributes expected from principal');
+
+const target = z
+  .object({
+    documents: z
+      .array(attributeName)
+      .min(1)
+      .max(30)
+      .describe('The documents that could be accessed'),
+    attributes: z.array(attributeCriteria).max(12),
+  })
+  .describe('Documents or attributes that are being accessed');
 
 const allowance = z.object({
   description: z
@@ -30,10 +49,13 @@ const allowance = z.object({
     .max(1000)
     .optional()
     .describe('Detailed description'),
-  user: z.array(attributeCriteria).min(1),
-  action: z.array(attributeName).min(1),
-  target: z.array(attributeCriteria).min(1),
-  contextual: z.array(attributeCriteria).min(1),
+  principal,
+  action: z
+    .array(attributeName)
+    .min(1)
+    .describe('Action that can be performed by the principal'),
+  target,
+  contextual: z.array(attributeCriteria).min(1).optional(),
 });
 
 const riskFlag = z.enum([
