@@ -144,6 +144,55 @@
                   "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/principal/properties/attributes/items"
                 },
                 "minItems": 1
+              },
+              "risks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 1000,
+                      "description": "Description of the risk"
+                    },
+                    "mitigation": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 1000,
+                      "description": "Mitigation for the risk"
+                    },
+                    "levels": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "medium-reward",
+                          "high-reward",
+                          "easy-hack",
+                          "medium-hack",
+                          "high-hack",
+                          "vulnerable-to-dev",
+                          "vulnerable-to-admin",
+                          "vulnerable-to-internal-user",
+                          "vulnerable-to-user",
+                          "vulnerable-to-anonymous-user"
+                        ]
+                      },
+                      "maxItems": 10,
+                      "description": "Motivation and difficulty of the hack"
+                    }
+                  },
+                  "required": [
+                    "description",
+                    "levels"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Description of the security risk"
+                },
+                "minItems": 1,
+                "maxItems": 12,
+                "description": "Risks to consider"
               }
             },
             "required": [
@@ -156,55 +205,6 @@
           "minItems": 1,
           "maxItems": 300,
           "description": "Operations that are permitted"
-        },
-        "risks": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "description": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 1000,
-                "description": "Description of the risk"
-              },
-              "mitigation": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 1000,
-                "description": "Mitigation for the risk"
-              },
-              "levels": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "enum": [
-                    "medium-reward",
-                    "high-reward",
-                    "easy-hack",
-                    "medium-hack",
-                    "high-hack",
-                    "vulnerable-to-dev",
-                    "vulnerable-to-admin",
-                    "vulnerable-to-internal-user",
-                    "vulnerable-to-user",
-                    "vulnerable-to-anonymous-user"
-                  ]
-                },
-                "maxItems": 10,
-                "description": "Motivation and difficulty of the hack"
-              }
-            },
-            "required": [
-              "description",
-              "levels"
-            ],
-            "additionalProperties": false,
-            "description": "Description of the security risk"
-          },
-          "minItems": 1,
-          "maxItems": 12,
-          "description": "Must have features"
         }
       },
       "required": [

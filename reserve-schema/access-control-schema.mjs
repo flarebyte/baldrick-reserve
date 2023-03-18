@@ -59,22 +59,6 @@ const target = z
   })
   .describe('Documents or attributes that are being accessed');
 
-const allowance = z.object({
-  description: z
-    .string()
-    .min(1)
-    .max(1000)
-    .optional()
-    .describe('Detailed description'),
-  principal,
-  action: z
-    .array(attributeName)
-    .min(1)
-    .describe('Action that can be performed by the principal'),
-  target,
-  contextual: z.array(attributeCriteria).min(1).optional(),
-});
-
 const riskFlag = z.enum([
   'medium-reward',
   'high-reward',
@@ -107,6 +91,22 @@ const risk = z
       .describe('Motivation and difficulty of the hack'),
   })
   .describe('Description of the security risk');
+const allowance = z.object({
+  description: z
+    .string()
+    .min(1)
+    .max(1000)
+    .optional()
+    .describe('Detailed description'),
+  principal,
+  action: z
+    .array(attributeName)
+    .min(1)
+    .describe('Action that can be performed by the principal'),
+  target,
+  contextual: z.array(attributeCriteria).min(1).optional(),
+  risks: z.array(risk).min(1).max(12).optional().describe('Risks to consider'),
+});
 
 const schema = z
   .object({
@@ -121,12 +121,6 @@ const schema = z
       .min(1)
       .max(300)
       .describe('Operations that are permitted'),
-    risks: z
-      .array(risk)
-      .min(1)
-      .max(12)
-      .optional()
-      .describe('Must have features'),
   })
   .describe('Access control model');
 
