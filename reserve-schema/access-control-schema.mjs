@@ -59,19 +59,6 @@ const target = z
   })
   .describe('Documents or attributes that are being accessed');
 
-const riskFlag = z.enum([
-  'medium-reward',
-  'high-reward',
-  'easy-hack',
-  'medium-hack',
-  'high-hack',
-  'vulnerable-to-dev',
-  'vulnerable-to-admin',
-  'vulnerable-to-internal-user',
-  'vulnerable-to-user',
-  'vulnerable-to-anonymous-user',
-]);
-
 const risk = z
   .object({
     description: z
@@ -85,10 +72,6 @@ const risk = z
       .max(1000)
       .optional()
       .describe('Mitigation for the risk'),
-    levels: z
-      .array(riskFlag)
-      .max(10)
-      .describe('Motivation and difficulty of the hack'),
   })
   .describe('Description of the security risk');
 const allowance = z.object({
@@ -97,7 +80,14 @@ const allowance = z.object({
     .min(1)
     .max(1000)
     .optional()
-    .describe('Detailed description'),
+    .describe(
+      [
+        'Description of the action including:',
+        '- the wider context',
+        '- the desired focus',
+        '- a list of points you want to address',
+      ].join('\n')
+    ),
   principal,
   action: z
     .array(attributeName)
@@ -114,8 +104,16 @@ const schema = z
     description: z
       .string()
       .min(1)
-      .max(1000)
-      .describe('Detailed description about the access control'),
+      .max(3000)
+      .describe(
+        [
+          'Description of the access control and the list of actions including:',
+          '- the wider context',
+          '- the desired focus',
+          '- a list of points you want to address',
+          '- the prefered technology stack',
+        ].join('\n')
+      ),
     allow: z
       .array(allowance)
       .min(1)
