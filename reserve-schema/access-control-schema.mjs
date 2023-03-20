@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 
 const attributeName = z.string().min(1).max(100).describe('Attribute name');
+
 const stringValues = z
   .string()
   .min(1)
@@ -44,10 +45,26 @@ const principal = z
   })
   .describe('The role or attributes expected from principal');
 
+const document = z
+  .object({
+    name: attributeName.describe(
+      [
+        'Name of the document using an URI style format',
+        'The prefix should represent the short name for the entity',
+      ].join('\n')
+    ),
+    description: z
+      .string()
+      .min(1)
+      .max(1000)
+      .describe('Description of the document including some possible fields'),
+  })
+  .describe('Description of a document');
+
 const target = z
   .object({
     documents: z
-      .array(attributeName)
+      .array(document)
       .min(1)
       .max(30)
       .describe('The documents that could be accessed'),

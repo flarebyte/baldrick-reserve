@@ -117,7 +117,27 @@
                   "documents": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/definitions/access-control-schema/properties/allow/items/properties/principal/properties/role/items"
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 100,
+                          "description": "Name of the document using an URI style format\nThe prefix should represent the short name for the entity"
+                        },
+                        "description": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 1000,
+                          "description": "Description of the document including some possible fields"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "description"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Description of a document"
                     },
                     "minItems": 1,
                     "maxItems": 30,
