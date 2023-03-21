@@ -38,4 +38,6 @@ workflows:
               run: npx zx --install reserve-schema/entity-schema.mjs
             - title: Generate access control json schema
               run: npx zx --install reserve-schema/access-control-schema.mjs
+            - title: Generate technology json schema
+              run: npx zx --install reserve-schema/technology-schema.mjs
   

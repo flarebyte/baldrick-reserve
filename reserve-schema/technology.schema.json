@@ -1,0 +1,154 @@
+{
+  "$ref": "#/definitions/technology-schema",
+  "definitions": {
+    "technology-schema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60,
+          "description": "Title describing the use of technologies in the workgroup or company"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000,
+          "description": "Description of the technologies and the list of actions including:\n- the wider context\n- the desired focus\n- a list of points you want to address"
+        },
+        "technologies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 30,
+                "description": "A short name for the technology"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 60,
+                "description": "A title for the technology"
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000,
+                "description": "A description for the technology"
+              },
+              "team": {
+                "type": "object",
+                "properties": {
+                  "skill": {
+                    "type": "string",
+                    "enum": [
+                      "aware",
+                      "novice",
+                      "professional",
+                      "expert"
+                    ],
+                    "description": "Skill level of the team"
+                  },
+                  "interest": {
+                    "type": "string",
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ]
+                  },
+                  "learningInDays": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "description": "Number of days required to learn the technology to a novice level"
+                  }
+                },
+                "required": [
+                  "skill",
+                  "interest",
+                  "learningInDays"
+                ],
+                "additionalProperties": false,
+                "description": "Team or company perception of the technology"
+              },
+              "advantages": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                },
+                "maxItems": 20,
+                "description": "List of advantages of the technology"
+              },
+              "drawbacks": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/technology-schema/properties/technologies/items/properties/advantages/items"
+                },
+                "maxItems": 20,
+                "description": "List of drawbacks of the technology"
+              },
+              "usecases": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/technology-schema/properties/technologies/items/properties/advantages/items"
+                },
+                "maxItems": 20,
+                "description": "List of use cases for the technology"
+              },
+              "links": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 60,
+                      "description": "A title describing the link"
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "The URL for the link"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "url"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 1,
+                "maxItems": 30
+              }
+            },
+            "required": [
+              "name",
+              "title",
+              "description",
+              "team",
+              "links"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 100,
+          "description": "List of technologies used"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "technologies"
+      ],
+      "additionalProperties": false,
+      "description": "Model for the technology stack"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
