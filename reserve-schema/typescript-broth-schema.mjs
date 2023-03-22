@@ -22,7 +22,7 @@ const schema = z
             ),
           version: z
             .string()
-            .min(15)
+            .min(5)
             .max(20)
             .describe('The version of the package in the format 0.0.0'),
           keywords: z
@@ -37,10 +37,10 @@ const schema = z
             .array(z.string().min(1).max(500))
             .describe('Main highlights for the project'),
           links: z
-            .array(z.string().min(1).max(100))
+            .array(z.string().min(1).max(200))
             .describe('A list of links in Markdown format'),
           related: z
-            .array(z.string().min(1).max(100))
+            .array(z.string().min(1).max(200))
             .describe('A list of related links in Markdown format'),
         })
         .describe('Information to populate the README.md'),
@@ -73,6 +73,39 @@ const schema = z
           .describe('The starting year for the copyright'),
       })
       .describe('Information about the Github repository'),
+    license: z
+      .enum(['MIT', 'UNLICENSED'])
+      .describe('License for the source code'),
+    author: z
+      .object({
+        name: z.string().min(1).max(100).describe('The name of the author'),
+        url: z.string().url().describe('The URL for the author'),
+      })
+      .describe('Information about the author'),
+    implementation: z
+      .object({
+        tags: z
+          .array(
+            z.enum([
+              'cli',
+              'lib',
+              'commander',
+              'zod',
+              'zest',
+              'pest',
+              'railway',
+            ])
+          )
+          .describe('A list of tags used to trigger some code generation'),
+        workflowVersion: z
+          .literal('0.3.0')
+          .describe(
+            'Version for the model and workflow of the baldrick-broth config file'
+          ),
+      })
+      .describe(
+        'Information about the implementation that could be useful some of the code generators'
+      ),
   })
   .describe('Describe the model for a typical typescript project');
 const jsonSchema = zodToJsonSchema(schema, 'typescript-broth');
