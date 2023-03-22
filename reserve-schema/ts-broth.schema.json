@@ -4,150 +4,150 @@
     "typescript-broth": {
       "type": "object",
       "properties": {
-        "title": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 60,
-          "description": "Title describing the use of technologies in the workgroup or company"
-        },
-        "description": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 1000,
-          "description": "Description of the technologies and the list of actions including:\n- the wider context\n- the desired focus\n- a list of points you want to address"
-        },
-        "technologies": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 30,
-                "description": "A short name for the technology"
-              },
-              "title": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 60,
-                "description": "A title for the technology"
-              },
-              "description": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 1000,
-                "description": "A description for the technology"
-              },
-              "team": {
-                "type": "object",
-                "properties": {
-                  "skill": {
-                    "type": "string",
-                    "enum": [
-                      "aware",
-                      "novice",
-                      "professional",
-                      "expert"
-                    ],
-                    "description": "Skill level of the team"
-                  },
-                  "interest": {
-                    "type": "string",
-                    "enum": [
-                      "low",
-                      "medium",
-                      "high"
-                    ]
-                  },
-                  "learningInDays": {
-                    "type": "number",
-                    "exclusiveMinimum": 0,
-                    "description": "Number of days required to learn the technology to a novice level"
-                  }
-                },
-                "required": [
-                  "skill",
-                  "interest",
-                  "learningInDays"
-                ],
-                "additionalProperties": false,
-                "description": "Team or company perception of the technology"
-              },
-              "advantages": {
-                "type": "array",
-                "items": {
+        "model": {
+          "type": "object",
+          "properties": {
+            "project": {
+              "type": "object",
+              "properties": {
+                "title": {
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 500
+                  "maxLength": 60,
+                  "description": "Title of the project"
                 },
-                "maxItems": 20,
-                "description": "List of advantages of the technology"
-              },
-              "drawbacks": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/typescript-broth/properties/technologies/items/properties/advantages/items"
+                "description": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "description": "A concise description that highligths the purpose and main use case"
                 },
-                "maxItems": 20,
-                "description": "List of drawbacks of the technology"
-              },
-              "usecases": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/typescript-broth/properties/technologies/items/properties/advantages/items"
+                "version": {
+                  "type": "string",
+                  "minLength": 15,
+                  "maxLength": 20,
+                  "description": "The version of the package in the format 0.0.0"
                 },
-                "maxItems": 20,
-                "description": "List of use cases for the technology"
-              },
-              "links": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "title": {
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 60,
-                      "description": "A title describing the link"
-                    },
-                    "url": {
-                      "type": "string",
-                      "format": "uri",
-                      "description": "The URL for the link"
-                    }
+                "keywords": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 60
                   },
-                  "required": [
-                    "title",
-                    "url"
-                  ],
-                  "additionalProperties": false
-                },
-                "minItems": 1,
-                "maxItems": 30
-              }
+                  "minItems": 1,
+                  "description": "List of keywords"
+                }
+              },
+              "required": [
+                "title",
+                "description",
+                "version",
+                "keywords"
+              ],
+              "additionalProperties": false,
+              "description": "About the project"
             },
-            "required": [
-              "name",
-              "title",
-              "description",
-              "team",
-              "links"
-            ],
-            "additionalProperties": false
+            "readme": {
+              "type": "object",
+              "properties": {
+                "highlights": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "description": "Main highlights for the project"
+                },
+                "links": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "description": "A list of links in Markdown format"
+                },
+                "related": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "description": "A list of related links in Markdown format"
+                }
+              },
+              "required": [
+                "highlights",
+                "links",
+                "related"
+              ],
+              "additionalProperties": false,
+              "description": "Information to populate the README.md"
+            },
+            "github": {
+              "type": "object",
+              "properties": {
+                "account": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100,
+                  "description": "The name of the Github account"
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100,
+                  "description": "The name of the Github project"
+                }
+              },
+              "required": [
+                "account",
+                "name"
+              ],
+              "additionalProperties": false,
+              "description": "Information about the Github repository"
+            }
           },
-          "minItems": 1,
-          "maxItems": 100,
-          "description": "List of technologies used"
+          "required": [
+            "project",
+            "readme",
+            "github"
+          ],
+          "additionalProperties": false
+        },
+        "copyright": {
+          "type": "object",
+          "properties": {
+            "holder": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100,
+              "description": "The name of the copyright holder"
+            },
+            "startYear": {
+              "type": "number",
+              "minimum": 2000,
+              "maximum": 2900,
+              "description": "The starting year for the copyright"
+            }
+          },
+          "required": [
+            "holder",
+            "startYear"
+          ],
+          "additionalProperties": false,
+          "description": "Information about the Github repository"
         }
       },
       "required": [
-        "title",
-        "description",
-        "technologies"
+        "model",
+        "copyright"
       ],
       "additionalProperties": false,
-      "description": "Model for the technology stack"
+      "description": "Describe the model for a typical typescript project"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#"

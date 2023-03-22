@@ -7,78 +7,74 @@ const link = z.object({
   url: z.string().url().describe('The URL for the link'),
 });
 
-const bulletPoint = z.string().min(1).max(500);
-
-const technology = z.object({
-  name: z.string().min(1).max(30).describe('A short name for the technology'),
-  title: z.string().min(1).max(60).describe('A title for the technology'),
-  description: z
-    .string()
-    .min(1)
-    .max(1000)
-    .describe('A description for the technology'),
-  team: z
-    .object({
-      skill: z
-        .enum(['aware', 'novice', 'professional', 'expert'])
-        .describe('Skill level of the team'),
-      interest: z.enum(['low', 'medium', 'high']),
-      learningInDays: z
-        .number()
-        .positive()
-        .describe(
-          'Number of days required to learn the technology to a novice level'
-        ),
-    })
-    .describe('Team or company perception of the technology'),
-  advantages: z
-    .array(bulletPoint)
-    .max(20)
-    .optional()
-    .describe('List of advantages of the technology'),
-  drawbacks: z
-    .array(bulletPoint)
-    .max(20)
-    .optional()
-    .describe('List of drawbacks of the technology'),
-  usecases: z
-    .array(bulletPoint)
-
-    .max(20)
-    .optional()
-    .describe('List of use cases for the technology'),
-  links: z.array(link).min(1).max(30),
-});
-
 const schema = z
   .object({
-    title: z
-      .string()
-      .min(1)
-      .max(60)
-      .describe(
-        'Title describing the use of technologies in the workgroup or company'
-      ),
-    description: z
-      .string()
-      .min(1)
-      .max(1000)
-      .describe(
-        [
-          'Description of the technologies and the list of actions including:',
-          '- the wider context',
-          '- the desired focus',
-          '- a list of points you want to address',
-        ].join('\n')
-      ),
-    technologies: z
-      .array(technology)
-      .min(1)
-      .max(100)
-      .describe('List of technologies used'),
+    model: z.object({
+      project: z
+        .object({
+          title: z.string().min(1).max(60).describe('Title of the project'),
+          description: z
+            .string()
+            .min(1)
+            .max(1000)
+            .describe(
+              'A concise description that highligths the purpose and main use case'
+            ),
+          version: z
+            .string()
+            .min(15)
+            .max(20)
+            .describe('The version of the package in the format 0.0.0'),
+          keywords: z
+            .array(z.string().min(1).max(60))
+            .min(1)
+            .describe('List of keywords'),
+        })
+        .describe('About the project'),
+      readme: z
+        .object({
+          highlights: z
+            .array(z.string().min(1).max(500))
+            .describe('Main highlights for the project'),
+          links: z
+            .array(z.string().min(1).max(100))
+            .describe('A list of links in Markdown format'),
+          related: z
+            .array(z.string().min(1).max(100))
+            .describe('A list of related links in Markdown format'),
+        })
+        .describe('Information to populate the README.md'),
+      github: z
+        .object({
+          account: z
+            .string()
+            .min(1)
+            .max(100)
+            .describe('The name of the Github account'),
+          name: z
+            .string()
+            .min(1)
+            .max(100)
+            .describe('The name of the Github project'),
+        })
+        .describe('Information about the Github repository'),
+    }),
+    copyright: z
+      .object({
+        holder: z
+          .string()
+          .min(1)
+          .max(100)
+          .describe('The name of the copyright holder'),
+        startYear: z
+          .number()
+          .min(2000)
+          .max(2900)
+          .describe('The starting year for the copyright'),
+      })
+      .describe('Information about the Github repository'),
   })
-  .describe('Model for the technology stack');
-
+  .describe('Describe the model for a typical typescript project');
 const jsonSchema = zodToJsonSchema(schema, 'typescript-broth');
 
 await fs.writeJson('reserve-schema/ts-broth.schema.json', jsonSchema, {
