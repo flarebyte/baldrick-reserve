@@ -40,4 +40,6 @@ workflows:
               run: npx zx --install reserve-schema/access-control-schema.mjs
             - title: Generate technology json schema
               run: npx zx --install reserve-schema/technology-schema.mjs
+            - title: Generate typescript broth json schema
+              run: npx zx --install reserve-schema/typescript-broth-schema.mjs
   
