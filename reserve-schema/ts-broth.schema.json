@@ -206,42 +206,10 @@
             "workflowVersion"
           ],
           "additionalProperties": false
-        },
-        "workflows": {
-          "anyOf": [
-            {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1
-                },
-                {
-                  "type": "number"
-                },
-                {
-                  "type": "boolean"
-                }
-              ]
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/typescript-broth/properties/workflows"
-              }
-            },
-            {
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/typescript-broth/properties/workflows"
-              }
-            }
-          ],
-          "description": "Any JSON document without null values"
         }
       },
       "required": [
-        "model",
-        "workflows"
+        "model"
       ],
       "additionalProperties": false,
       "description": "Describe the model for a typical typescript project"
