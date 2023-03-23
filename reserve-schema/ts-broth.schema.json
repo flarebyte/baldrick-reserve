@@ -109,107 +109,107 @@
               ],
               "additionalProperties": false,
               "description": "Information about the Github repository"
+            },
+            "copyright": {
+              "type": "object",
+              "properties": {
+                "holder": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100,
+                  "description": "The name of the copyright holder"
+                },
+                "startYear": {
+                  "type": "number",
+                  "minimum": 2000,
+                  "maximum": 2900,
+                  "description": "The starting year for the copyright"
+                }
+              },
+              "required": [
+                "holder",
+                "startYear"
+              ],
+              "additionalProperties": false,
+              "description": "Information about the Github repository"
+            },
+            "license": {
+              "type": "string",
+              "enum": [
+                "MIT",
+                "UNLICENSED"
+              ],
+              "description": "License for the source code"
+            },
+            "author": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100,
+                  "description": "The name of the author"
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "The URL for the author"
+                }
+              },
+              "required": [
+                "name",
+                "url"
+              ],
+              "additionalProperties": false,
+              "description": "Information about the author"
+            },
+            "implementation": {
+              "type": "object",
+              "properties": {
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "cli",
+                      "lib",
+                      "commander",
+                      "zod",
+                      "zest",
+                      "pest",
+                      "railway"
+                    ]
+                  },
+                  "description": "A list of tags used to trigger some code generation"
+                },
+                "workflowVersion": {
+                  "type": "string",
+                  "const": "0.3.0",
+                  "description": "Version for the model and workflow of the baldrick-broth config file"
+                }
+              },
+              "required": [
+                "tags",
+                "workflowVersion"
+              ],
+              "additionalProperties": false,
+              "description": "Information about the implementation that could be useful some of the code generators"
             }
           },
           "required": [
             "project",
             "readme",
-            "github"
+            "github",
+            "copyright",
+            "license",
+            "author",
+            "implementation"
           ],
           "additionalProperties": false
-        },
-        "copyright": {
-          "type": "object",
-          "properties": {
-            "holder": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 100,
-              "description": "The name of the copyright holder"
-            },
-            "startYear": {
-              "type": "number",
-              "minimum": 2000,
-              "maximum": 2900,
-              "description": "The starting year for the copyright"
-            }
-          },
-          "required": [
-            "holder",
-            "startYear"
-          ],
-          "additionalProperties": false,
-          "description": "Information about the Github repository"
-        },
-        "license": {
-          "type": "string",
-          "enum": [
-            "MIT",
-            "UNLICENSED"
-          ],
-          "description": "License for the source code"
-        },
-        "author": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 100,
-              "description": "The name of the author"
-            },
-            "url": {
-              "type": "string",
-              "format": "uri",
-              "description": "The URL for the author"
-            }
-          },
-          "required": [
-            "name",
-            "url"
-          ],
-          "additionalProperties": false,
-          "description": "Information about the author"
-        },
-        "implementation": {
-          "type": "object",
-          "properties": {
-            "tags": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": [
-                  "cli",
-                  "lib",
-                  "commander",
-                  "zod",
-                  "zest",
-                  "pest",
-                  "railway"
-                ]
-              },
-              "description": "A list of tags used to trigger some code generation"
-            },
-            "workflowVersion": {
-              "type": "string",
-              "const": "0.3.0",
-              "description": "Version for the model and workflow of the baldrick-broth config file"
-            }
-          },
-          "required": [
-            "tags",
-            "workflowVersion"
-          ],
-          "additionalProperties": false,
-          "description": "Information about the implementation that could be useful some of the code generators"
         }
       },
       "required": [
-        "model",
-        "copyright",
-        "license",
-        "author",
-        "implementation"
+        "model"
       ],
       "additionalProperties": false,
       "description": "Describe the model for a typical typescript project"
