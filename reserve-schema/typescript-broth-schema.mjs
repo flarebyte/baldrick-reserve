@@ -7,6 +7,14 @@ const link = z.object({
   url: z.string().url().describe('The URL for the link'),
 });
 
+/** JSON like */
+const literalSchema = z.union([z.string().min(1), z.number(), z.boolean()]);
+const jsonishSchema = z
+  .lazy(() =>
+    z.union([literalSchema, z.array(jsonishSchema), z.record(jsonishSchema)])
+  )
+  .describe('Any JSON document without null values');
+
 const schema = z
   .object({
     model: z.object({
@@ -96,16 +104,17 @@ const schema = z
               ])
             )
             .describe('A list of tags used to trigger some code generation'),
-          workflowVersion: z
-            .literal('0.3.0')
-            .describe(
-              'Version for the model and workflow of the baldrick-broth config file'
-            ),
         })
         .describe(
           'Information about the implementation that could be useful some of the code generators'
         ),
+      workflowVersion: z
+        .literal('0.3.0')
+        .describe(
+          'Version for the model and workflow of the baldrick-broth config file'
+        ),
     }),
+    workflows: jsonishSchema,
   })
   .describe('Describe the model for a typical typescript project');
 const jsonSchema = zodToJsonSchema(schema, 'typescript-broth');
