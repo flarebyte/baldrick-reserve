@@ -17,6 +17,24 @@ const schema = z
       .max(1000)
       .describe('A bit more detailed description of the problem'),
     context: z.string().min(1).max(1000).describe('Context of the problem'),
+    usecases: z
+      .array(smallParagraph)
+      .min(1)
+      .max(12)
+      .optional()
+      .describe('List of use cases showing how the problem manifest itself'),
+    personas: z
+      .array(smallParagraph)
+      .min(1)
+      .max(12)
+      .optional()
+      .describe('List of user personas and target audience'),
+    existingSolutions: z
+      .array(smallParagraph)
+      .min(1)
+      .max(12)
+      .optional()
+      .describe('Existing solutions and their limits'),
     mustHave: z
       .array(smallParagraph)
       .min(1)

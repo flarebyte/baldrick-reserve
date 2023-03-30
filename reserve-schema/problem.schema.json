@@ -22,7 +22,7 @@
           "maxLength": 1000,
           "description": "Context of the problem"
         },
-        "mustHave": {
+        "usecases": {
           "type": "array",
           "items": {
             "type": "string",
@@ -31,12 +31,39 @@
           },
           "minItems": 1,
           "maxItems": 12,
+          "description": "List of use cases showing how the problem manifest itself"
+        },
+        "personas": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/problem-schema/properties/usecases/items"
+          },
+          "minItems": 1,
+          "maxItems": 12,
+          "description": "List of user personas and target audience"
+        },
+        "existingSolutions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/problem-schema/properties/usecases/items"
+          },
+          "minItems": 1,
+          "maxItems": 12,
+          "description": "Existing solutions and their limits"
+        },
+        "mustHave": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/problem-schema/properties/usecases/items"
+          },
+          "minItems": 1,
+          "maxItems": 12,
           "description": "Must have features"
         },
         "shouldHave": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/problem-schema/properties/mustHave/items"
+            "$ref": "#/definitions/problem-schema/properties/usecases/items"
           },
           "minItems": 1,
           "maxItems": 12,
@@ -45,7 +72,7 @@
         "niceToHave": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/problem-schema/properties/mustHave/items"
+            "$ref": "#/definitions/problem-schema/properties/usecases/items"
           },
           "minItems": 1,
           "maxItems": 12,
@@ -54,7 +81,7 @@
         "mustNotHave": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/problem-schema/properties/mustHave/items"
+            "$ref": "#/definitions/problem-schema/properties/usecases/items"
           },
           "minItems": 1,
           "maxItems": 12,
@@ -63,7 +90,7 @@
         "shouldNotHave": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/problem-schema/properties/mustHave/items"
+            "$ref": "#/definitions/problem-schema/properties/usecases/items"
           },
           "minItems": 1,
           "maxItems": 12,
