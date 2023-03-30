@@ -42,4 +42,6 @@ workflows:
               run: npx zx --install reserve-schema/technology-schema.mjs
             - title: Generate typescript broth json schema
               run: npx zx --install reserve-schema/typescript-broth-schema.mjs
+            - title: Generate typescript problem json schema
+              run: npx zx --install reserve-schema/problem-schema.mjs
   
