@@ -1,0 +1,110 @@
+{
+  "$ref": "#/definitions/baldrick-tavern-schema",
+  "definitions": {
+    "baldrick-tavern-schema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60,
+          "description": "Title summarizing the nature of the problem"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000,
+          "description": "A bit more detailed description of the problem"
+        },
+        "context": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000,
+          "description": "Context of the problem"
+        },
+        "usecases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "minItems": 1,
+          "maxItems": 12,
+          "description": "List of use cases showing how the problem manifest itself"
+        },
+        "personas": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/baldrick-tavern-schema/properties/usecases/items"
+          },
+          "minItems": 1,
+          "maxItems": 12,
+          "description": "List of user personas and target audience"
+        },
+        "existingSolutions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/baldrick-tavern-schema/properties/usecases/items"
+          },
+          "minItems": 1,
+          "maxItems": 12,
+          "description": "Existing solutions and their limits"
+        },
+        "mustHave": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/baldrick-tavern-schema/properties/usecases/items"
+          },
+          "minItems": 1,
+          "maxItems": 12,
+          "description": "Must have features"
+        },
+        "shouldHave": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/baldrick-tavern-schema/properties/usecases/items"
+          },
+          "minItems": 1,
+          "maxItems": 12,
+          "description": "Should have features"
+        },
+        "niceToHave": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/baldrick-tavern-schema/properties/usecases/items"
+          },
+          "minItems": 1,
+          "maxItems": 12,
+          "description": "Nice to have features"
+        },
+        "mustNotHave": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/baldrick-tavern-schema/properties/usecases/items"
+          },
+          "minItems": 1,
+          "maxItems": 12,
+          "description": "Must not have features"
+        },
+        "shouldNotHave": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/baldrick-tavern-schema/properties/usecases/items"
+          },
+          "minItems": 1,
+          "maxItems": 12,
+          "description": "Should not have features"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "context"
+      ],
+      "additionalProperties": false,
+      "description": "Model for specifying a problem"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
