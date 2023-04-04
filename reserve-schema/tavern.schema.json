@@ -8,102 +8,142 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 60,
-          "description": "Title summarizing the nature of the problem"
+          "description": "Title summarizing the nature of the discussion"
         },
-        "description": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 1000,
-          "description": "A bit more detailed description of the problem"
-        },
-        "context": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 1000,
-          "description": "Context of the problem"
-        },
-        "usecases": {
+        "tags": {
           "type": "array",
           "items": {
             "type": "string",
-            "minLength": 1,
-            "maxLength": 1000
+            "enum": [
+              "creativity:creative"
+            ]
           },
-          "minItems": 1,
-          "maxItems": 12,
-          "description": "List of use cases showing how the problem manifest itself"
+          "maxItems": 50
         },
-        "personas": {
+        "sections": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/baldrick-tavern-schema/properties/usecases/items"
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80,
+                "description": "Title summarizing the nature of the section"
+              },
+              "engine": {
+                "type": "string",
+                "enum": [
+                  "openai:gpt-4",
+                  "openai:instructGPT:ada",
+                  "openai:instructGPT:babbage",
+                  "openai:instructGPT:curie",
+                  "openai:instructGPT:davinci",
+                  "openai:dall-e",
+                  "classify",
+                  "digraph",
+                  "fs:find",
+                  "git:read",
+                  "gh:read",
+                  "json:read",
+                  "yaml:read",
+                  "csv:read",
+                  "text:read"
+                ]
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "creativity:creative",
+                    "creativity:balanced",
+                    "creativity:precise",
+                    "output:image"
+                  ]
+                },
+                "maxItems": 50
+              },
+              "persona": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 60
+              },
+              "features": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                },
+                "minItems": 1,
+                "maxItems": 24,
+                "description": "List of features detailing the section"
+              }
+            },
+            "required": [
+              "title",
+              "engine",
+              "tags",
+              "persona"
+            ],
+            "additionalProperties": false
           },
           "minItems": 1,
-          "maxItems": 12,
-          "description": "List of user personas and target audience"
+          "maxItems": 16,
+          "description": "List of sections describing context, must have, should have, ..."
         },
-        "existingSolutions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/baldrick-tavern-schema/properties/usecases/items"
+        "limits": {
+          "type": "object",
+          "properties": {
+            "budget": {
+              "type": "object",
+              "properties": {
+                "maxAmount": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 10000,
+                  "default": 1
+                },
+                "targetAmount": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 10000,
+                  "default": 0.5
+                },
+                "currency": {
+                  "type": "string",
+                  "enum": [
+                    "pound",
+                    "euro",
+                    "dollar"
+                  ],
+                  "default": "pound"
+                }
+              },
+              "additionalProperties": false
+            },
+            "requests": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 10000
+            }
           },
-          "minItems": 1,
-          "maxItems": 12,
-          "description": "Existing solutions and their limits"
-        },
-        "mustHave": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/baldrick-tavern-schema/properties/usecases/items"
-          },
-          "minItems": 1,
-          "maxItems": 12,
-          "description": "Must have features"
-        },
-        "shouldHave": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/baldrick-tavern-schema/properties/usecases/items"
-          },
-          "minItems": 1,
-          "maxItems": 12,
-          "description": "Should have features"
-        },
-        "niceToHave": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/baldrick-tavern-schema/properties/usecases/items"
-          },
-          "minItems": 1,
-          "maxItems": 12,
-          "description": "Nice to have features"
-        },
-        "mustNotHave": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/baldrick-tavern-schema/properties/usecases/items"
-          },
-          "minItems": 1,
-          "maxItems": 12,
-          "description": "Must not have features"
-        },
-        "shouldNotHave": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/baldrick-tavern-schema/properties/usecases/items"
-          },
-          "minItems": 1,
-          "maxItems": 12,
-          "description": "Should not have features"
+          "required": [
+            "budget",
+            "requests"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [
         "title",
-        "description",
-        "context"
+        "tags",
+        "sections",
+        "limits"
       ],
       "additionalProperties": false,
-      "description": "Model for specifying a problem"
+      "description": "Model for specifying a discussion for Baldrick tavern"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#"

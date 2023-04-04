@@ -4,69 +4,75 @@ import { zodToJsonSchema } from 'zod-to-json-schema';
 
 const smallParagraph = z.string().min(1).max(1000);
 
+const limits = z.object({
+  budget: z.object({
+    maxAmount: z.number().positive().max(10000).default(1),
+    targetAmount: z.number().positive().max(10000).default(0.5),
+    currency: z.enum(['pound', 'euro', 'dollar']).default('pound'),
+  }),
+  requests: z.number().positive().max(10000),
+});
+
+const mainTag = z.enum(['creativity:creative']);
+const sectionTag = z.enum([
+  'creativity:creative',
+  'creativity:balanced',
+  'creativity:precise',
+  'output:image',
+]);
+
+const engine = z.enum([
+  'openai:gpt-4',
+  'openai:instructGPT:ada',
+  'openai:instructGPT:babbage',
+  'openai:instructGPT:curie',
+  'openai:instructGPT:davinci',
+  'openai:dall-e',
+  'classify',
+  'digraph',
+  'fs:find',
+  'git:read',
+  'gh:read',
+  'json:read',
+  'yaml:read',
+  'csv:read',
+  'text:read',
+]);
+
+const section = z.object({
+  title: z
+    .string()
+    .min(1)
+    .max(80)
+    .describe('Title summarizing the nature of the section'),
+  engine,
+  tags: z.array(sectionTag).max(50),
+  persona: z.string().min(1).max(60),
+  features: z
+    .array(smallParagraph)
+    .min(1)
+    .max(24)
+    .optional()
+    .describe('List of features detailing the section'),
+});
 const schema = z
   .object({
     title: z
       .string()
       .min(1)
       .max(60)
-      .describe('Title summarizing the nature of the problem'),
-    description: z
-      .string()
+      .describe('Title summarizing the nature of the discussion'),
+    tags: z.array(mainTag).max(50),
+    sections: z
+      .array(section)
       .min(1)
-      .max(1000)
-      .describe('A bit more detailed description of the problem'),
-    context: z.string().min(1).max(1000).describe('Context of the problem'),
-    usecases: z
-      .array(smallParagraph)
-      .min(1)
-      .max(12)
-      .optional()
-      .describe('List of use cases showing how the problem manifest itself'),
-    personas: z
-      .array(smallParagraph)
-      .min(1)
-      .max(12)
-      .optional()
-      .describe('List of user personas and target audience'),
-    existingSolutions: z
-      .array(smallParagraph)
-      .min(1)
-      .max(12)
-      .optional()
-      .describe('Existing solutions and their limits'),
-    mustHave: z
-      .array(smallParagraph)
-      .min(1)
-      .max(12)
-      .optional()
-      .describe('Must have features'),
-    shouldHave: z
-      .array(smallParagraph)
-      .min(1)
-      .max(12)
-      .optional()
-      .describe('Should have features'),
-    niceToHave: z
-      .array(smallParagraph)
-      .min(1)
-      .max(12)
-      .optional()
-      .describe('Nice to have features'),
-    mustNotHave: z
-      .array(smallParagraph)
-      .min(1)
-      .max(12)
-      .optional()
-      .describe('Must not have features'),
-    shouldNotHave: z
-      .array(smallParagraph)
-      .min(1)
-      .max(12)
-      .optional()
-      .describe('Should not have features'),
+      .max(16)
+      .describe(
+        'List of sections describing context, must have, should have, ...'
+      ),
+    limits,
   })
-  .describe('Model for specifying a problem');
+  .describe('Model for specifying a discussion for Baldrick tavern');
 
 const jsonSchema = zodToJsonSchema(schema, 'baldrick-tavern-schema');
 
