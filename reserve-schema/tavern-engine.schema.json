@@ -15,11 +15,72 @@
           "minLength": 1,
           "maxLength": 60,
           "description": "Title summarizing the nature of the tavern engine"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000,
+          "description": "Description of the engine"
+        },
+        "commands": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40,
+                "description": "Short name for the command"
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 600,
+                "description": "Description of the command"
+              },
+              "mainArgument": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 600,
+                    "description": "Description of the argument"
+                  },
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "string",
+                      "string:url",
+                      "string:path"
+                    ],
+                    "description": "Kind of the argument with either of:\nstring: Any kind of string\nstring:url: A url\nstring:path: A path relative the current folder"
+                  }
+                },
+                "required": [
+                  "description",
+                  "kind"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "name",
+              "description",
+              "mainArgument"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 50
         }
       },
       "required": [
         "name",
-        "title"
+        "title",
+        "description",
+        "commands"
       ],
       "additionalProperties": false,
       "description": "Model for specifying a discussion for Baldrick tavern"
