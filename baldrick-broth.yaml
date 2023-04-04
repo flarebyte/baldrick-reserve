@@ -44,4 +44,8 @@ workflows:
               run: npx zx --install reserve-schema/typescript-broth-schema.mjs
             - title: Generate typescript problem json schema
               run: npx zx --install reserve-schema/problem-schema.mjs
+            - title: Generate baldrick tavern json schema
+              run: npx zx --install reserve-schema/tavern-schema.mjs
+            - title: Generate baldrick tavern engine json schema
+              run: npx zx --install reserve-schema/tavern-engine-schema.mjs
   

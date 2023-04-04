@@ -1,0 +1,150 @@
+{
+  "$ref": "#/definitions/baldrick-tavern-schema",
+  "definitions": {
+    "baldrick-tavern-schema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60,
+          "description": "Title summarizing the nature of the discussion"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "creativity:creative"
+            ]
+          },
+          "maxItems": 50
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80,
+                "description": "Title summarizing the nature of the section"
+              },
+              "engine": {
+                "type": "string",
+                "enum": [
+                  "openai:gpt-4",
+                  "openai:instructGPT:ada",
+                  "openai:instructGPT:babbage",
+                  "openai:instructGPT:curie",
+                  "openai:instructGPT:davinci",
+                  "openai:dall-e",
+                  "classify",
+                  "digraph",
+                  "fs:find",
+                  "git:read",
+                  "gh:read",
+                  "json:read",
+                  "yaml:read",
+                  "csv:read",
+                  "text:read"
+                ]
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "creativity:creative",
+                    "creativity:balanced",
+                    "creativity:precise",
+                    "output:image"
+                  ]
+                },
+                "maxItems": 50
+              },
+              "persona": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 60
+              },
+              "features": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                },
+                "minItems": 1,
+                "maxItems": 24,
+                "description": "List of features detailing the section"
+              }
+            },
+            "required": [
+              "title",
+              "engine",
+              "tags",
+              "persona"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 16,
+          "description": "List of sections describing context, must have, should have, ..."
+        },
+        "limits": {
+          "type": "object",
+          "properties": {
+            "budget": {
+              "type": "object",
+              "properties": {
+                "maxAmount": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 10000,
+                  "default": 1
+                },
+                "targetAmount": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 10000,
+                  "default": 0.5
+                },
+                "currency": {
+                  "type": "string",
+                  "enum": [
+                    "pound",
+                    "euro",
+                    "dollar"
+                  ],
+                  "default": "pound"
+                }
+              },
+              "additionalProperties": false
+            },
+            "requests": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 10000
+            }
+          },
+          "required": [
+            "budget",
+            "requests"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "tags",
+        "sections",
+        "limits"
+      ],
+      "additionalProperties": false,
+      "description": "Model for specifying a discussion for Baldrick tavern"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
