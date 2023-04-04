@@ -28,7 +28,7 @@ const engine = z.enum([
   'openai:instructGPT:curie',
   'openai:instructGPT:davinci',
   'openai:dall-e',
-  'classify',
+  'classify', // https://naturalnode.github.io/natural/bayesian_classifier.html
   'digraph',
   'fs:find',
   'git:read',
