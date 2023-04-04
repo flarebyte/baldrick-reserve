@@ -39,48 +39,353 @@
                 "maxLength": 600,
                 "description": "Description of the command"
               },
-              "mainArgument": {
-                "type": "object",
-                "properties": {
-                  "description": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 600,
-                    "description": "Description of the argument"
+              "options": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 40
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 600,
+                      "description": "Description for the option"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "string",
+                        "string:url",
+                        "string:path",
+                        "string:github:project",
+                        "code:json",
+                        "code:yaml",
+                        "code:javascript",
+                        "code:typescript",
+                        "code:mermaid",
+                        "number:positive",
+                        "true/false",
+                        "yes/no",
+                        "yes/no/maybe",
+                        "5-point-scale",
+                        "7-point-scale",
+                        "currency",
+                        "number:percentage"
+                      ],
+                      "description": "Kind of the data with either:\nstring: Any kind of string\nstring:url: A url\nstring:path: A path relative the current folder\nstring:github:project: A github project\ncode:json: An JSON payload\ncode:yaml: An YAML payload\ncode:javascript: An Javascript payload\ncode:typescript: An Typescript payload\ncode:mermaid: A Mermaid payload\nnumber:positive: A positive integer\ntrue/false: A boolean value\nyes/no: A boolean value\nyes/no/maybe: A boolean value and maybe\n5-point-scale: Strongly _, Somewhat _, Neither _ nor _, Somewhat _, Strongly _\n7-point-scale: Always, Strongly _, Somewhat _, Neither _ nor _, Somewhat _, Strongly _, Never\ncurrency: An amount of money\nnumber:percentage: A percentage"
+                    },
+                    "units": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 40,
+                        "description": "Unit of the data"
+                      },
+                      "minItems": 1,
+                      "maxItems": 20
+                    },
+                    "typical": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/name"
+                      }
+                    },
+                    "default": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "mandatory": {
+                      "type": "boolean",
+                      "default": false
+                    }
                   },
-                  "kind": {
-                    "type": "string",
-                    "enum": [
-                      "string",
-                      "string:url",
-                      "string:path"
-                    ],
-                    "description": "Kind of the argument with either of:\nstring: Any kind of string\nstring:url: A url\nstring:path: A path relative the current folder"
-                  }
+                  "required": [
+                    "name",
+                    "description",
+                    "kind",
+                    "typical"
+                  ],
+                  "additionalProperties": false
                 },
-                "required": [
-                  "description",
-                  "kind"
-                ],
-                "additionalProperties": false
+                "minItems": 1,
+                "maxItems": 10
               }
             },
             "required": [
               "name",
-              "description",
-              "mainArgument"
+              "description"
             ],
             "additionalProperties": false
           },
           "minItems": 1,
           "maxItems": 50
+        },
+        "output": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "error"
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1000,
+                    "description": "How to interpret the error"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "description"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "markdown"
+                  },
+                  "title": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 60
+                  },
+                  "sections": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "title": {
+                          "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/output/items/anyOf/1/properties/title"
+                        },
+                        "description": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 600,
+                          "description": "Description for the section"
+                        },
+                        "mandatory": {
+                          "type": "boolean",
+                          "default": false
+                        }
+                      },
+                      "required": [
+                        "title",
+                        "description"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "minItems": 1,
+                    "maxItems": 20
+                  }
+                },
+                "required": [
+                  "kind",
+                  "title",
+                  "sections"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "table"
+                  },
+                  "title": {
+                    "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/output/items/anyOf/1/properties/title"
+                  },
+                  "introduction": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1000
+                  },
+                  "columns": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/name"
+                        },
+                        "description": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 600,
+                          "description": "Description for the column"
+                        },
+                        "kind": {
+                          "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/kind"
+                        },
+                        "units": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/units/items"
+                          },
+                          "minItems": 1,
+                          "maxItems": 20
+                        },
+                        "typical": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/name"
+                          }
+                        },
+                        "default": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200
+                        },
+                        "mandatory": {
+                          "type": "boolean",
+                          "default": false
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "description",
+                        "kind",
+                        "typical"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "minItems": 1,
+                    "maxItems": 20
+                  },
+                  "conclusion": {
+                    "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/output/items/anyOf/2/properties/introduction"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "title",
+                  "introduction",
+                  "columns",
+                  "conclusion"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "log"
+                  },
+                  "title": {
+                    "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/output/items/anyOf/1/properties/title"
+                  },
+                  "introduction": {
+                    "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/output/items/anyOf/2/properties/introduction"
+                  },
+                  "formats": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/name"
+                        },
+                        "description": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 600,
+                          "description": "Description for the loose format"
+                        },
+                        "example": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 600
+                        },
+                        "fields": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/name"
+                              },
+                              "description": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 600,
+                                "description": "Description for the field loose format"
+                              },
+                              "kind": {
+                                "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/kind"
+                              },
+                              "units": {
+                                "type": "array",
+                                "items": {
+                                  "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/units/items"
+                                },
+                                "minItems": 1,
+                                "maxItems": 20
+                              },
+                              "examples": {
+                                "type": "array",
+                                "items": {
+                                  "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/output/items/anyOf/3/properties/formats/items/properties/example"
+                                }
+                              }
+                            },
+                            "required": [
+                              "name",
+                              "description",
+                              "kind",
+                              "examples"
+                            ],
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "description",
+                        "example",
+                        "fields"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "minItems": 1,
+                    "maxItems": 20
+                  },
+                  "conclusion": {
+                    "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/output/items/anyOf/2/properties/introduction"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "title",
+                  "introduction",
+                  "formats",
+                  "conclusion"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
         }
       },
       "required": [
         "name",
         "title",
         "description",
-        "commands"
+        "commands",
+        "output"
       ],
       "additionalProperties": false,
       "description": "Model for specifying a discussion for Baldrick tavern"
