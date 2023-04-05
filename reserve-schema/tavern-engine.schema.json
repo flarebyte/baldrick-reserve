@@ -89,11 +89,16 @@
                       "minItems": 1,
                       "maxItems": 20
                     },
-                    "typical": {
+                    "examples": {
                       "type": "array",
                       "items": {
                         "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/name"
-                      }
+                      },
+                      "minItems": 1,
+                      "maxItems": 20
+                    },
+                    "counterExamples": {
+                      "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/examples"
                     },
                     "default": {
                       "type": "string",
@@ -108,209 +113,101 @@
                   "required": [
                     "name",
                     "description",
-                    "kind",
-                    "typical"
+                    "kind"
                   ],
                   "additionalProperties": false
                 },
                 "minItems": 1,
                 "maxItems": 10
-              }
-            },
-            "required": [
-              "name",
-              "description"
-            ],
-            "additionalProperties": false
-          },
-          "minItems": 1,
-          "maxItems": 50
-        },
-        "output": {
-          "type": "array",
-          "items": {
-            "anyOf": [
-              {
-                "type": "object",
-                "properties": {
-                  "kind": {
-                    "type": "string",
-                    "const": "error"
-                  },
-                  "description": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 1000,
-                    "description": "How to interpret the error"
-                  }
-                },
-                "required": [
-                  "kind",
-                  "description"
-                ],
-                "additionalProperties": false
               },
-              {
-                "type": "object",
-                "properties": {
-                  "kind": {
-                    "type": "string",
-                    "const": "markdown"
-                  },
-                  "title": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 60
-                  },
-                  "sections": {
-                    "type": "array",
-                    "items": {
+              "output": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
                       "type": "object",
                       "properties": {
-                        "title": {
-                          "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/output/items/anyOf/1/properties/title"
+                        "kind": {
+                          "type": "string",
+                          "const": "error"
                         },
                         "description": {
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 600,
-                          "description": "Description for the section"
-                        },
-                        "mandatory": {
-                          "type": "boolean",
-                          "default": false
+                          "maxLength": 1000,
+                          "description": "How to interpret the error"
                         }
                       },
                       "required": [
-                        "title",
+                        "kind",
                         "description"
                       ],
                       "additionalProperties": false
                     },
-                    "minItems": 1,
-                    "maxItems": 20
-                  }
-                },
-                "required": [
-                  "kind",
-                  "title",
-                  "sections"
-                ],
-                "additionalProperties": false
-              },
-              {
-                "type": "object",
-                "properties": {
-                  "kind": {
-                    "type": "string",
-                    "const": "table"
-                  },
-                  "title": {
-                    "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/output/items/anyOf/1/properties/title"
-                  },
-                  "introduction": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 1000
-                  },
-                  "columns": {
-                    "type": "array",
-                    "items": {
+                    {
                       "type": "object",
                       "properties": {
-                        "name": {
-                          "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/name"
+                        "kind": {
+                          "type": "string",
+                          "const": "markdown"
                         },
-                        "description": {
+                        "title": {
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 600,
-                          "description": "Description for the column"
+                          "maxLength": 60
                         },
-                        "kind": {
-                          "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/kind"
-                        },
-                        "units": {
+                        "sections": {
                           "type": "array",
                           "items": {
-                            "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/units/items"
+                            "type": "object",
+                            "properties": {
+                              "title": {
+                                "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/output/items/anyOf/1/properties/title"
+                              },
+                              "description": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 600,
+                                "description": "Description for the section"
+                              },
+                              "mandatory": {
+                                "type": "boolean",
+                                "default": false
+                              }
+                            },
+                            "required": [
+                              "title",
+                              "description"
+                            ],
+                            "additionalProperties": false
                           },
                           "minItems": 1,
                           "maxItems": 20
-                        },
-                        "typical": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/name"
-                          }
-                        },
-                        "default": {
-                          "type": "string",
-                          "minLength": 1,
-                          "maxLength": 200
-                        },
-                        "mandatory": {
-                          "type": "boolean",
-                          "default": false
                         }
                       },
                       "required": [
-                        "name",
-                        "description",
                         "kind",
-                        "typical"
+                        "title",
+                        "sections"
                       ],
                       "additionalProperties": false
                     },
-                    "minItems": 1,
-                    "maxItems": 20
-                  },
-                  "conclusion": {
-                    "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/output/items/anyOf/2/properties/introduction"
-                  }
-                },
-                "required": [
-                  "kind",
-                  "title",
-                  "introduction",
-                  "columns",
-                  "conclusion"
-                ],
-                "additionalProperties": false
-              },
-              {
-                "type": "object",
-                "properties": {
-                  "kind": {
-                    "type": "string",
-                    "const": "log"
-                  },
-                  "title": {
-                    "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/output/items/anyOf/1/properties/title"
-                  },
-                  "introduction": {
-                    "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/output/items/anyOf/2/properties/introduction"
-                  },
-                  "formats": {
-                    "type": "array",
-                    "items": {
+                    {
                       "type": "object",
                       "properties": {
-                        "name": {
-                          "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/name"
+                        "kind": {
+                          "type": "string",
+                          "const": "table"
                         },
-                        "description": {
+                        "title": {
+                          "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/output/items/anyOf/1/properties/title"
+                        },
+                        "introduction": {
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 600,
-                          "description": "Description for the loose format"
+                          "maxLength": 1000
                         },
-                        "example": {
-                          "type": "string",
-                          "minLength": 1,
-                          "maxLength": 600
-                        },
-                        "fields": {
+                        "columns": {
                           "type": "array",
                           "items": {
                             "type": "object",
@@ -322,7 +219,7 @@
                                 "type": "string",
                                 "minLength": 1,
                                 "maxLength": 600,
-                                "description": "Description for the field loose format"
+                                "description": "Description for the column"
                               },
                               "kind": {
                                 "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/kind"
@@ -336,56 +233,164 @@
                                 "maxItems": 20
                               },
                               "examples": {
+                                "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/examples"
+                              },
+                              "counterExamples": {
+                                "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/examples"
+                              },
+                              "default": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 200
+                              },
+                              "mandatory": {
+                                "type": "boolean",
+                                "default": false
+                              }
+                            },
+                            "required": [
+                              "name",
+                              "description",
+                              "kind"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "minItems": 1,
+                          "maxItems": 20
+                        },
+                        "conclusion": {
+                          "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/output/items/anyOf/2/properties/introduction"
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "title",
+                        "introduction",
+                        "columns",
+                        "conclusion"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "log"
+                        },
+                        "title": {
+                          "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/output/items/anyOf/1/properties/title"
+                        },
+                        "introduction": {
+                          "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/output/items/anyOf/2/properties/introduction"
+                        },
+                        "formats": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/name"
+                              },
+                              "description": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 600,
+                                "description": "Description for the loose format"
+                              },
+                              "example": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 600
+                              },
+                              "fields": {
                                 "type": "array",
                                 "items": {
-                                  "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/output/items/anyOf/3/properties/formats/items/properties/example"
+                                  "type": "object",
+                                  "properties": {
+                                    "name": {
+                                      "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/name"
+                                    },
+                                    "description": {
+                                      "type": "string",
+                                      "minLength": 1,
+                                      "maxLength": 600,
+                                      "description": "Description for the field loose format"
+                                    },
+                                    "kind": {
+                                      "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/kind"
+                                    },
+                                    "units": {
+                                      "type": "array",
+                                      "items": {
+                                        "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/options/items/properties/units/items"
+                                      },
+                                      "minItems": 1,
+                                      "maxItems": 20
+                                    },
+                                    "examples": {
+                                      "type": "array",
+                                      "items": {
+                                        "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/output/items/anyOf/3/properties/formats/items/properties/example"
+                                      }
+                                    }
+                                  },
+                                  "required": [
+                                    "name",
+                                    "description",
+                                    "kind",
+                                    "examples"
+                                  ],
+                                  "additionalProperties": false
                                 }
                               }
                             },
                             "required": [
                               "name",
                               "description",
-                              "kind",
-                              "examples"
+                              "example",
+                              "fields"
                             ],
                             "additionalProperties": false
-                          }
+                          },
+                          "minItems": 1,
+                          "maxItems": 20
+                        },
+                        "conclusion": {
+                          "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/commands/items/properties/output/items/anyOf/2/properties/introduction"
                         }
                       },
                       "required": [
-                        "name",
-                        "description",
-                        "example",
-                        "fields"
+                        "kind",
+                        "title",
+                        "introduction",
+                        "formats",
+                        "conclusion"
                       ],
                       "additionalProperties": false
-                    },
-                    "minItems": 1,
-                    "maxItems": 20
-                  },
-                  "conclusion": {
-                    "$ref": "#/definitions/baldrick-tavern-engine-schema/properties/output/items/anyOf/2/properties/introduction"
-                  }
+                    }
+                  ]
                 },
-                "required": [
-                  "kind",
-                  "title",
-                  "introduction",
-                  "formats",
-                  "conclusion"
-                ],
-                "additionalProperties": false
+                "minItems": 1,
+                "maxItems": 15
               }
-            ]
-          }
+            },
+            "required": [
+              "name",
+              "description",
+              "output"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 50
         }
       },
       "required": [
         "name",
         "title",
         "description",
-        "commands",
-        "output"
+        "commands"
       ],
       "additionalProperties": false,
       "description": "Model for specifying a discussion for Baldrick tavern"

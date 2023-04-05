@@ -43,13 +43,15 @@ const kind = z
   .describe(describeEnum('Kind of the data', kindMeta));
 
 const unit = z.string().min(1).max(40).describe('Unit of the data');
+const examples = z.array(shortName).min(1).max(20).optional()
 
 const commandOption = z.object({
   name: shortName,
   description: conciseParagraph.describe('Description for the option'),
   kind,
   units: z.array(unit).min(1).max(20).optional(),
-  typical: z.array(shortName),
+  examples,
+  counterExamples: examples,
   default: z.string().min(1).max(200).optional(),
   mandatory: z.boolean().default(false),
 });
@@ -59,7 +61,8 @@ const columnName = z.object({
   description: conciseParagraph.describe('Description for the column'),
   kind,
   units: z.array(unit).min(1).max(20).optional(),
-  typical: z.array(shortName),
+  examples,
+  counterExamples: examples,
   default: z.string().min(1).max(200).optional(),
   mandatory: z.boolean().default(false),
 });
@@ -116,6 +119,7 @@ const command = z.object({
   name: shortName.describe('Short name for the command'),
   description: conciseParagraph.describe('Description of the command'),
   options: z.array(commandOption).min(1).max(10).optional(),
+  output: z.array(output).min(1).max(15),
 });
 
 const schema = z
@@ -126,7 +130,6 @@ const schema = z
     ),
     description: smallParagraph.describe('Description of the engine'),
     commands: z.array(command).min(1).max(50),
-    output: z.array(output),
   })
   .describe('Model for specifying a discussion for Baldrick tavern');
 
