@@ -1,0 +1,130 @@
+{
+  "$ref": "#/definitions/baldrick-tavern-agent-schema",
+  "definitions": {
+    "baldrick-tavern-agent-schema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40,
+          "description": "Short name for the tavern agent"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60,
+          "description": "Title for the tavern agent"
+        },
+        "enginePath": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 150
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000,
+          "description": "Description of the agent"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 600,
+                "description": "Description for the option"
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "string",
+                  "string:url",
+                  "string:path",
+                  "string:github:project",
+                  "list:string:url",
+                  "list:string:path",
+                  "list:string",
+                  "code:json",
+                  "code:yaml",
+                  "code:javascript",
+                  "code:typescript",
+                  "code:mermaid",
+                  "number:positive",
+                  "integer:positive",
+                  "true/false",
+                  "yes/no",
+                  "yes/no/maybe",
+                  "5-point-scale",
+                  "7-point-scale",
+                  "currency",
+                  "number:percentage"
+                ],
+                "description": "Kind of the data with either:\nstring: Any kind of string\nstring:url: A url\nstring:path: A path relative to the current folder\nstring:github:project: A github project\nlist:string:url: A list of urls\nlist:string:path: A list of paths relative to the current folder\nlist:string: A list of strings\ncode:json: An JSON payload\ncode:yaml: An YAML payload\ncode:javascript: An Javascript payload\ncode:typescript: An Typescript payload\ncode:mermaid: A Mermaid payload\nnumber:positive: A positive number\ninteger:positive: A positive integer\ntrue/false: A boolean value\nyes/no: A boolean value\nyes/no/maybe: A boolean value and maybe\n5-point-scale: Strongly _, Somewhat _, Neither _ nor _, Somewhat _, Strongly _\n7-point-scale: Always, Strongly _, Somewhat _, Neither _ nor _, Somewhat _, Strongly _, Never\ncurrency: An amount of money\nnumber:percentage: A percentage"
+              },
+              "units": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 40,
+                  "description": "Unit of the data"
+                },
+                "minItems": 1,
+                "maxItems": 20
+              },
+              "examples": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/baldrick-tavern-agent-schema/properties/parameters/items/properties/name"
+                },
+                "minItems": 1,
+                "maxItems": 20
+              },
+              "default": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "mandatory": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            "required": [
+              "name",
+              "description",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "name",
+        "title",
+        "enginePath",
+        "description",
+        "prompt"
+      ],
+      "additionalProperties": false,
+      "description": "Agent for Baldrick tavern"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

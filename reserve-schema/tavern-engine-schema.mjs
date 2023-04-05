@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { z } from 'zod';
+import { dataKind } from './tavern-common.mjs'
 import { zodToJsonSchema } from 'zod-to-json-schema';
 
 const smallParagraph = z.string().min(1).max(1000);
@@ -8,47 +9,13 @@ const conciseParagraph = z.string().min(1).max(600);
 const shortName = z.string().min(1).max(40);
 const shortTitle = z.string().min(1).max(60);
 
-const kindMeta = {
-  string: 'Any kind of string',
-  'string:url': 'A url',
-  'string:path': 'A path relative the current folder',
-  'string:github:project': 'A github project',
-  'code:json': 'An JSON payload',
-  'code:yaml': 'An YAML payload',
-  'code:javascript': 'An Javascript payload',
-  'code:typescript': 'An Typescript payload',
-  'code:mermaid': 'A Mermaid payload',
-  'number:positive': 'A positive integer',
-  'true/false': 'A boolean value',
-  'yes/no': 'A boolean value',
-  'yes/no/maybe': 'A boolean value and maybe',
-  '5-point-scale':
-    'Strongly _, Somewhat _, Neither _ nor _, Somewhat _, Strongly _',
-  '7-point-scale':
-    'Always, Strongly _, Somewhat _, Neither _ nor _, Somewhat _, Strongly _, Never',
-  currency: 'An amount of money',
-  'number:percentage': 'A percentage',
-};
-
-const describeEnum = (intro, objectValue) => {
-  const description = [`${intro} with either:`];
-  for (const [name, title] of Object.entries(objectValue)) {
-    description.push(`${name}: ${title}`);
-  }
-  return description.join('\n');
-};
-
-const kind = z
-  .enum(Object.keys(kindMeta))
-  .describe(describeEnum('Kind of the data', kindMeta));
-
 const unit = z.string().min(1).max(40).describe('Unit of the data');
 const examples = z.array(shortName).min(1).max(20).optional()
 
 const commandOption = z.object({
   name: shortName,
   description: conciseParagraph.describe('Description for the option'),
-  kind,
+  kind: dataKind,
   units: z.array(unit).min(1).max(20).optional(),
   examples,
   counterExamples: examples,
@@ -59,7 +26,7 @@ const commandOption = z.object({
 const columnName = z.object({
   name: shortName,
   description: conciseParagraph.describe('Description for the column'),
-  kind,
+  kind: dataKind,
   units: z.array(unit).min(1).max(20).optional(),
   examples,
   counterExamples: examples,
@@ -72,7 +39,7 @@ const looseFieldFormat = z.object({
   description: conciseParagraph.describe(
     'Description for the field loose format'
   ),
-  kind,
+  kind: dataKind,
   units: z.array(unit).min(1).max(20).optional(),
   examples: z.array(conciseParagraph),
 });

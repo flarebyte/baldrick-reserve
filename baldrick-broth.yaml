@@ -48,4 +48,6 @@ workflows:
               run: npx zx --install reserve-schema/tavern-schema.mjs
             - title: Generate baldrick tavern engine json schema
               run: npx zx --install reserve-schema/tavern-engine-schema.mjs
+            - title: Generate baldrick tavern agent json schema
+              run: npx zx --install reserve-schema/tavern-agent-schema.mjs
   
