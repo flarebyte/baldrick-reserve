@@ -58,14 +58,215 @@
                     "items": {
                       "type": "object",
                       "properties": {
+                        "provided": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200
+                        },
                         "text": {
                           "type": "string",
                           "minLength": 1,
                           "maxLength": 1000
+                        },
+                        "output": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "const": "same as input"
+                                },
+                                "title": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 60
+                                },
+                                "qualities": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 60
+                                  },
+                                  "minItems": 1,
+                                  "maxItems": 16,
+                                  "description": "List of qualities such as reviewed"
+                                }
+                              },
+                              "required": [
+                                "kind",
+                                "title",
+                                "qualities"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "const": "markdown"
+                                },
+                                "title": {
+                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/title"
+                                },
+                                "qualities": {
+                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/qualities"
+                                },
+                                "sections": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "title": {
+                                        "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/title"
+                                      },
+                                      "description": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 600,
+                                        "description": "Description for the section"
+                                      }
+                                    },
+                                    "required": [
+                                      "title",
+                                      "description"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  "minItems": 1,
+                                  "maxItems": 20
+                                }
+                              },
+                              "required": [
+                                "kind",
+                                "title",
+                                "qualities",
+                                "sections"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "const": "table"
+                                },
+                                "title": {
+                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/title"
+                                },
+                                "qualities": {
+                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/qualities"
+                                },
+                                "recordName": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 60,
+                                  "description": "The name for an individual record"
+                                },
+                                "columns": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "name": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 40
+                                      },
+                                      "description": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 600,
+                                        "description": "Description for the column"
+                                      }
+                                    },
+                                    "required": [
+                                      "name",
+                                      "description"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  "minItems": 1,
+                                  "maxItems": 20
+                                }
+                              },
+                              "required": [
+                                "kind",
+                                "title",
+                                "qualities",
+                                "recordName",
+                                "columns"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "const": "log"
+                                },
+                                "title": {
+                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/title"
+                                },
+                                "qualities": {
+                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/qualities"
+                                },
+                                "recordName": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 60,
+                                  "description": "The name for an individual record"
+                                }
+                              },
+                              "required": [
+                                "kind",
+                                "title",
+                                "qualities",
+                                "recordName"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "const": "properties"
+                                },
+                                "title": {
+                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/title"
+                                },
+                                "qualities": {
+                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/qualities"
+                                },
+                                "properties": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/2/properties/columns/items"
+                                  },
+                                  "minItems": 1,
+                                  "maxItems": 40
+                                }
+                              },
+                              "required": [
+                                "kind",
+                                "title",
+                                "qualities",
+                                "properties"
+                              ],
+                              "additionalProperties": false
+                            }
+                          ]
                         }
                       },
                       "required": [
-                        "text"
+                        "provided",
+                        "text",
+                        "output"
                       ],
                       "additionalProperties": false
                     },
@@ -78,6 +279,34 @@
                   "kind",
                   "title",
                   "prompts"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "human"
+                  },
+                  "title": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80,
+                    "description": "Title summarizing the nature of the section"
+                  },
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "review",
+                      "annotate"
+                    ]
+                  }
+                },
+                "required": [
+                  "kind",
+                  "title",
+                  "action"
                 ],
                 "additionalProperties": false
               }
