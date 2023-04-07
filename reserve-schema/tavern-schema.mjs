@@ -57,8 +57,21 @@ const output = z.discriminatedUnion('kind', [
 ]);
 
 const prompt = z.object({
+  title: shortTitle,
   provided: smallSentence,
   text: smallParagraph,
+  output,
+});
+
+const checkpoint = z.object({
+  name: shortName,
+  description: conciseParagraph.describe('Description for the checkpoint'),
+});
+
+const review = z.object({
+  title: shortTitle,
+  provided: smallSentence,
+  checklist: z.array(checkpoint).min(1).max(30).describe('Checklist to review'),
   output,
 });
 
@@ -74,16 +87,6 @@ const shellAgent = z.object({
   shell: z.string().min(1).max(200),
 });
 
-const humanAgent = z.object({
-  kind: z.literal('human'),
-  title: z
-    .string()
-    .min(1)
-    .max(80)
-    .describe('Title summarizing the nature of the section'),
-  action: z.enum(['review', 'annotate']),
-});
-
 const gptAgent = z.object({
   kind: z.literal('openai:text'),
   title: z
@@ -92,6 +95,12 @@ const gptAgent = z.object({
     .max(80)
     .describe('Title summarizing the nature of the section'),
   prompts: z.array(prompt).min(1).max(9).describe('List of prompts'),
+});
+
+const humanAgent = z.object({
+  kind: z.literal('human'),
+  title: z.string().min(1).max(80).describe('Type of human interaction'),
+  reviews: z.array(review).min(1).max(9).describe('List of prompts'),
 });
 
 const agent = z.discriminatedUnion('kind', [shellAgent, gptAgent, humanAgent]);

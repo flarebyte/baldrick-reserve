@@ -58,6 +58,11 @@
                     "items": {
                       "type": "object",
                       "properties": {
+                        "title": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 60
+                        },
                         "provided": {
                           "type": "string",
                           "minLength": 1,
@@ -78,9 +83,7 @@
                                   "const": "same as input"
                                 },
                                 "title": {
-                                  "type": "string",
-                                  "minLength": 1,
-                                  "maxLength": 60
+                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/title"
                                 },
                                 "qualities": {
                                   "type": "array",
@@ -109,7 +112,7 @@
                                   "const": "markdown"
                                 },
                                 "title": {
-                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/title"
+                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/title"
                                 },
                                 "qualities": {
                                   "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/qualities"
@@ -120,7 +123,7 @@
                                     "type": "object",
                                     "properties": {
                                       "title": {
-                                        "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/title"
+                                        "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/title"
                                       },
                                       "description": {
                                         "type": "string",
@@ -155,7 +158,7 @@
                                   "const": "table"
                                 },
                                 "title": {
-                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/title"
+                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/title"
                                 },
                                 "qualities": {
                                   "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/qualities"
@@ -210,7 +213,7 @@
                                   "const": "log"
                                 },
                                 "title": {
-                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/title"
+                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/title"
                                 },
                                 "qualities": {
                                   "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/qualities"
@@ -238,7 +241,7 @@
                                   "const": "properties"
                                 },
                                 "title": {
-                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/title"
+                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/title"
                                 },
                                 "qualities": {
                                   "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/qualities"
@@ -264,6 +267,7 @@
                         }
                       },
                       "required": [
+                        "title",
                         "provided",
                         "text",
                         "output"
@@ -293,20 +297,65 @@
                     "type": "string",
                     "minLength": 1,
                     "maxLength": 80,
-                    "description": "Title summarizing the nature of the section"
+                    "description": "Type of human interaction"
                   },
-                  "action": {
-                    "type": "string",
-                    "enum": [
-                      "review",
-                      "annotate"
-                    ]
+                  "reviews": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "title": {
+                          "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/title"
+                        },
+                        "provided": {
+                          "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/provided"
+                        },
+                        "checklist": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/2/properties/columns/items/properties/name"
+                              },
+                              "description": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 600,
+                                "description": "Description for the checkpoint"
+                              }
+                            },
+                            "required": [
+                              "name",
+                              "description"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "minItems": 1,
+                          "maxItems": 30,
+                          "description": "Checklist to review"
+                        },
+                        "output": {
+                          "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output"
+                        }
+                      },
+                      "required": [
+                        "title",
+                        "provided",
+                        "checklist",
+                        "output"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "minItems": 1,
+                    "maxItems": 9,
+                    "description": "List of prompts"
                   }
                 },
                 "required": [
                   "kind",
                   "title",
-                  "action"
+                  "reviews"
                 ],
                 "additionalProperties": false
               }
