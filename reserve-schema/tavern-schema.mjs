@@ -30,6 +30,11 @@ const output = z.discriminatedUnion('kind', [
     qualities,
   }),
   z.object({
+    kind: z.literal('same as input annotated'),
+    title: shortTitle,
+    qualities,
+  }),
+  z.object({
     kind: z.literal('markdown'),
     title: shortTitle,
     qualities,
@@ -53,6 +58,12 @@ const output = z.discriminatedUnion('kind', [
     title: shortTitle,
     qualities,
     properties: z.array(columnName).min(1).max(40),
+  }),
+  z.object({
+    kind: z.literal('code'),
+    language: z.enum(['Javascript', 'Typescript', 'Bash', 'Elm']),
+    title: shortTitle,
+    qualities,
   }),
 ]);
 

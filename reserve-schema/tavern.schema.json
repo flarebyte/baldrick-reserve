@@ -109,6 +109,27 @@
                               "properties": {
                                 "kind": {
                                   "type": "string",
+                                  "const": "same as input annotated"
+                                },
+                                "title": {
+                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/title"
+                                },
+                                "qualities": {
+                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/qualities"
+                                }
+                              },
+                              "required": [
+                                "kind",
+                                "title",
+                                "qualities"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
                                   "const": "markdown"
                                 },
                                 "title": {
@@ -249,7 +270,7 @@
                                 "properties": {
                                   "type": "array",
                                   "items": {
-                                    "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/2/properties/columns/items"
+                                    "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/3/properties/columns/items"
                                   },
                                   "minItems": 1,
                                   "maxItems": 40
@@ -260,6 +281,37 @@
                                 "title",
                                 "qualities",
                                 "properties"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "const": "code"
+                                },
+                                "language": {
+                                  "type": "string",
+                                  "enum": [
+                                    "Javascript",
+                                    "Typescript",
+                                    "Bash",
+                                    "Elm"
+                                  ]
+                                },
+                                "title": {
+                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/title"
+                                },
+                                "qualities": {
+                                  "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/0/properties/qualities"
+                                }
+                              },
+                              "required": [
+                                "kind",
+                                "language",
+                                "title",
+                                "qualities"
                               ],
                               "additionalProperties": false
                             }
@@ -316,7 +368,7 @@
                             "type": "object",
                             "properties": {
                               "name": {
-                                "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/2/properties/columns/items/properties/name"
+                                "$ref": "#/definitions/baldrick-tavern-schema/properties/agents/additionalProperties/anyOf/1/properties/prompts/items/properties/output/anyOf/3/properties/columns/items/properties/name"
                               },
                               "description": {
                                 "type": "string",
