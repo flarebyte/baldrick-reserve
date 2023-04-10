@@ -1,0 +1,147 @@
+{
+  "$ref": "#/definitions/sequence",
+  "definitions": {
+    "sequence": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60,
+          "description": "Title for the sequence model"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 600,
+          "description": "Description "
+        },
+        "technologies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 600
+          },
+          "minItems": 1,
+          "maxItems": 20,
+          "description": "List of technologies recommended for the implementation"
+        },
+        "lifelines": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 60,
+                "description": "Title for the lifeline"
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 600,
+                "description": "Description for the lifeline"
+              },
+              "technologies": {
+                "$ref": "#/definitions/sequence/properties/technologies"
+              },
+              "mustHave": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1,
+                "maxItems": 12,
+                "description": "Must have features"
+              },
+              "shouldHave": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1,
+                "maxItems": 12,
+                "description": "Should have features"
+              },
+              "niceToHave": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1,
+                "maxItems": 12,
+                "description": "Nice to have features"
+              },
+              "shouldNotHave": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1,
+                "maxItems": 12,
+                "description": "Should not have features"
+              }
+            },
+            "required": [
+              "title",
+              "description"
+            ],
+            "additionalProperties": false
+          },
+          "propertyNames": {
+            "minLength": 1,
+            "maxLength": 40
+          }
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "to": {
+                "$ref": "#/definitions/sequence/properties/messages/items/properties/from"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 60,
+                "description": "Title for the message"
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 600,
+                "description": "Description for the message"
+              }
+            },
+            "required": [
+              "from",
+              "to",
+              "title",
+              "description"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 40
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "lifelines",
+        "messages"
+      ],
+      "additionalProperties": false,
+      "description": "Entity model"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
