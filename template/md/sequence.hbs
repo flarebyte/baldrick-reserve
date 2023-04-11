@@ -1,0 +1,22 @@
+# Sequence diagram for {{title}}
+
+> {{description}}
+
+## Lifelines
+
+{{#each lifelines}}
+    - {{@key}}: {{this.title}}
+{{/each}}
+
+
+## Sequence Diagram
+```mermaid
+sequenceDiagram
+{{#each lifelines}}
+    participant {{@key}}
+{{/each}}
+
+{{#each messages}}
+    {{this.from}}->>+{{this.to}}: {{this.title}}
+  {{/each}}
+```
