@@ -4,9 +4,15 @@
 
 ![npm type definitions](https://img.shields.io/npm/types/{{model.github.name}}) ![node-current](https://img.shields.io/node/v/{{model.github.name}}) ![NPM](https://img.shields.io/npm/l/{{model.github.name}})
 
+![Experimental](https://img.shields.io/badge/status-experimental-blue)
+
 > {{model.project.title}}
 
 {{model.project.description}}
+
+{{#ifSatisfy "equals" model.readme.tags "image-hero"}}
+![Hero image for {{model.github.name}}]({{model.github.name}}-hero-512.jpeg)
+{{/ifSatisfy}}
 
 Highlights:
 
@@ -14,6 +20,9 @@ Highlights:
 * {{this}}
 {{/each}}
 
+{{#ifSatisfy "equals" model.readme.tags "image-demo"}}
+![Example of {{model.github.name}} usage]({{model.github.name}}-usage.gif "cli")
+{{/ifSatisfy}}
 
 ## Documentation and links
 

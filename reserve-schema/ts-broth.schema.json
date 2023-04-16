@@ -77,6 +77,14 @@
                     "maxLength": 200
                   },
                   "description": "A list of related links in Markdown format"
+                },
+                "tags": {
+                  "type": "string",
+                  "enum": [
+                    "image-hero",
+                    "image-demo"
+                  ],
+                  "description": "Activate some code generation for the readme with either:\nimage-hero: Image hero for the readme\nimage-demo: Animated gif to demonstrate the library or the CLI"
                 }
               },
               "required": [
@@ -137,9 +145,13 @@
               "type": "string",
               "enum": [
                 "MIT",
-                "UNLICENSED"
+                "UNLICENSED",
+                "Apache-2.0",
+                "GPL-3.0",
+                "ISC",
+                "BSD-3-Clause"
               ],
-              "description": "License for the source code"
+              "description": "License with either:\nMIT: The MIT License is a permissive free software license originating at the Massachusetts Institute of Technology (MIT). It puts only very limited restriction on reuse and has high license compatibility\nUNLICENSED: The UNLICENSED license means that the code is not licensed and all rights are reserved by the author. This means that you cannot use, modify, or distribute the code without explicit permission from the author.\nApache-2.0: The Apache License 2.0 is a permissive free software license written by the Apache Software Foundation (ASF). It allows users to use, distribute, modify, and redistribute modifications under the same license. It also provides an express grant of patent rights from contributors to users\nGPL-3.0: The GNU General Public License v3.0 (GPL-3.0) is a copyleft license that requires any copy or modification of the original code to be released under the same license. It focuses on free software remaining free and provides four freedoms to every user: the freedom to use, study, share, and improve the software.\nISC: The ISC license is a permissive free software license published by the Internet Systems Consortium (ISC). It is functionally equivalent to the simplified BSD and MIT licenses but without language deemed unnecessary following the Berne Convention.\nBSD-3-Clause: The BSD 3-Clause License is a permissive free software license that replaced the 4-Clause BSD License in 1999. It is similar to the BSD 2-Clause License but with an additional clause that prohibits others from using the name of the copyright holder or its contributors to promote derived products without written consent."
             },
             "author": {
               "type": "object",
@@ -178,9 +190,9 @@
                       "zest",
                       "pest",
                       "railway"
-                    ]
-                  },
-                  "description": "A list of tags used to trigger some code generation"
+                    ],
+                    "description": "Trigger some code generation with either:\ncli: Command line interface program\nlib: Library\ncommander: command-line interface with commander.js: https://github.com/tj/commander.js\nzod: zod for schema validation: https://zod.dev/\nzest: zest library for testing\npest: pest library for testing\nrailway: railway design pattern"
+                  }
                 }
               },
               "required": [
