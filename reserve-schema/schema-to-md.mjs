@@ -10,7 +10,6 @@ const {
   md: actualMarkdownPath,
   title: actualTitle,
 } = args;
-console.log(actualSchemaPath, actualMarkdownPath, actualTitle, args);
 
 const schemaPath = actualSchemaPath || 'model.schema.json';
 const markdownPath = actualMarkdownPath || 'SCHEMA.md';
@@ -80,12 +79,21 @@ function getOneOfAny(value, level, kind) {
   return content;
 }
 
+const getInternalDescription = (value) => {
+  if (value.const) {
+    return value.const;
+  }
+  return '_';
+};
+
 function getProperties(obj, level, kind) {
   let content = '';
   for (const [key, value] of Object.entries(obj)) {
     const levelType =
       typeof value.type === 'undefined' ? '' : ` (${value.type})`;
-    const description = singleLineDescription(value.description || '_');
+    const description = singleLineDescription(
+      value.description || getInternalDescription(value)
+    );
     content += `${pad(level)}- ${kind} ${key}${levelType}: ${description}\n`;
     if (value.properties) {
       content += getProperties(value.properties, level + 1, '◆');
@@ -120,3 +128,4 @@ ${markdownProps}
 `;
 
 fs.writeFileSync(markdownPath, markdown);
+console.log(`Ok! ${markdownPath} has been generated.`);
