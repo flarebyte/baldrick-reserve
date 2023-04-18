@@ -335,18 +335,27 @@ workflows:
             - name: report
               a: template
               title: Create a report
-              template: |
+              template: >
                 # Summary of the change
+
 
                 ## Code check
 
+
                 {{#if _.result-of-build}}- :heavy_check_mark:{{else}}- :heavy_exclamation_mark:{{/if}} Transpile to javascript
+
                 {{#if _.result-of-release-check}}- :heavy_check_mark:{{else}}- :heavy_exclamation_mark:{{/if}} The version has been incremented to "v{{build.model.project.version}}"
+
                 {{#if _.result-of-lint}}- :heavy_check_mark:{{else}}- :heavy_exclamation_mark:{{/if}} Static analysis and linting
+
                 {{#if _.result-of-markdown}}- :heavy_check_mark:{{else}}- :heavy_exclamation_mark:{{/if}} Markdown formatting
+
                 {{#if _.result-of-outdated}}- :heavy_check_mark:{{else}}- :heavy_exclamation_mark:{{/if}} No outdated NPM libraries
+
                 {{#if _.result-of-audit}}- :heavy_check_mark:{{else}}- :heavy_exclamation_mark:{{/if}} Security audit
+
                 {{#if _.result-of-pest}}- :heavy_check_mark:{{else}}- :heavy_exclamation_mark:{{/if}} Integration tests with baldrick-pest {{#unless _.should-run-pest}}(Not supported yet){{/unless}}
+
                 {{#if _.result-of-zest}}- :heavy_check_mark:{{else}}- :heavy_exclamation_mark:{{/if}} Unit tests with baldrick-zest {{#unless _.should-run-zest}}(Not supported yet){{/unless}}
             - name: write-report
               a: append-to-file
@@ -375,7 +384,9 @@ workflows:
               title: Title for the pull request
               description: A short title used for the pull request
               message: Short title describing the pull request
-            - run: gh pr create --title {{escapeSpace _.category}}:{{escapeSpace _.title}} --body-file temp/pull_request_relevant.md
+            - run:
+                gh pr create --title {{escapeSpace _.category}}:{{escapeSpace _.title}}
+                --body-file temp/pull_request_relevant.md
               title: Create the pull request
       publish:
         title: Publish the current library
@@ -589,7 +600,9 @@ workflows:
       custom:
         title: Normalize using the custom script
         description: Normalize the project using a custom script for this project
-        motivation: Enable an imperative approach for some of normalisation to keep the model simple
+        motivation:
+          Enable an imperative approach for some of normalisation to keep the
+          model simple
         main:
           commands:
             - title: Normalize using the custom script
