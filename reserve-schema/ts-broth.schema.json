@@ -85,6 +85,34 @@
                     "image-demo"
                   ],
                   "description": "Activate some code generation for the readme with either:\nimage-hero: Image hero for the readme\nimage-demo: Animated gif to demonstrate the library or the CLI"
+                },
+                "cheatsheet": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 80,
+                        "description": "A title describing the example"
+                      },
+                      "example": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 500,
+                        "description": "An example of command that can be run"
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "example"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "minItems": 1,
+                  "maxItems": 40,
+                  "description": "A cheatsheet with a list of commands"
                 }
               },
               "required": [

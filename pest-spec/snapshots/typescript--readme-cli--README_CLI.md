@@ -4,15 +4,34 @@
 
 ![npm type definitions](https://img.shields.io/npm/types/any-project-name) ![node-current](https://img.shields.io/node/v/any-project-name) ![NPM](https://img.shields.io/npm/l/any-project-name)
 
+![Experimental](https://img.shields.io/badge/status-experimental-blue)
+
 > Project title
 
 Project Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+
+![Hero image for any-project-name](any-project-name-hero-512.jpeg)
 
 Highlights:
 
 * Written in `Typescript`
 * Built to evolve.
 
+![Example of any-project-name usage](any-project-name-usage.gif "cli")
+
+
+A few examples of commands:
+
+Run some tests:
+```bash
+yarn test
+
+```
+Build the code:
+```bash
+yarn build
+
+```
 
 ## Documentation and links
 

@@ -4,9 +4,12 @@
 
 ![npm type definitions](https://img.shields.io/npm/types/any-project-name) ![node-current](https://img.shields.io/node/v/any-project-name) ![NPM](https://img.shields.io/npm/l/any-project-name)
 
+![Experimental](https://img.shields.io/badge/status-experimental-blue)
+
 > Project title
 
 Project Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+
 
 Highlights:
 

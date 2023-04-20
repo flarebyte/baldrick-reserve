@@ -23,6 +23,19 @@ Highlights:
 {{#ifSatisfy "equals" model.readme.tags "image-demo"}}
 ![Example of {{model.github.name}} usage]({{model.github.name}}-usage.gif "cli")
 {{/ifSatisfy}}
+{{#if model.readme.cheatsheet}}
+
+
+A few examples of commands:
+
+{{#each model.readme.cheatsheet}}
+{{title}}:
+```bash
+{{example}}
+
+```
+{{/each}}
+{{/if}}
 
 ## Documentation and links
 

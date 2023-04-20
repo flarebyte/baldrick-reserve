@@ -22,9 +22,8 @@ workflows:
             - name: pest-filename
               values: build.model.pest-filenames
           commands:
-            - title: Run regression on file
-              name: Run regression on {{pest-filename}}.pest.yaml
-              run: npx baldrick-pest@latest test --spec-file pest-spec/{{pest-filename}}.pest.yaml
+            - title: Run regression on {{pest-filename}}.pest.yaml
+              run: npx baldrick-pest@latest test --spec-file pest-spec/{{_.pest-filename}}.pest.yaml
   generate:
     title: Generate documents
     description: Generate documents

@@ -79,7 +79,27 @@ const schema = z
                 'Activate some code generation for the readme',
                 readmeTagEnum
               )
-            ).optional(),
+            )
+            .optional(),
+          cheatsheet: z
+            .array(
+              z.object({
+                title: z
+                  .string()
+                  .min(1)
+                  .max(80)
+                  .describe('A title describing the example'),
+                example: z
+                  .string()
+                  .min(1)
+                  .max(500)
+                  .describe('An example of command that can be run'),
+              })
+            )
+            .min(1)
+            .max(40)
+            .optional()
+            .describe('A cheatsheet with a list of commands'),
         })
         .describe('Information to populate the README.md'),
       github: z
