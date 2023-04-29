@@ -8,268 +8,254 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 60,
-          "description": "Title for the sequence model"
+          "description": "Title for the software health overview"
         },
-        "description": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 600,
-          "description": "Description "
+        "github": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 60,
+              "description": "Github project name"
+            },
+            "owner": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 60,
+              "description": "Github owner"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "additionalProperties": false
         },
-        "objectives": {
+        "code": {
           "type": "object",
           "additionalProperties": {
             "type": "object",
             "properties": {
-              "title": {
+              "automation": {
                 "type": "string",
-                "minLength": 1,
-                "maxLength": 60,
-                "description": "Title for the software health overview"
+                "enum": [
+                  "manual",
+                  "scripted",
+                  "semi-automatic",
+                  "automatic"
+                ],
+                "description": "Automation level with either:\nmanual: The engineer performs the task\nscripted: The engineer performs the task following a checklist\nsemi-automatic: The machine performs the task but may require engineer assistance\nautomatic: The machine performs the task repeatedly"
               },
-              "code": {
-                "type": "object",
-                "additionalProperties": {
-                  "type": "object",
-                  "properties": {
-                    "automation": {
-                      "type": "string",
-                      "enum": [
-                        "manual",
-                        "scripted",
-                        "semi-automatic",
-                        "automatic"
-                      ],
-                      "description": "Automation level with either:\nmanual: The engineer performs the task\nscripted: The engineer performs the task following a checklist\nsemi-automatic: The machine performs the task but may require engineer assistance\nautomatic: The machine performs the task repeatedly"
-                    },
-                    "ai": {
-                      "type": "string",
-                      "enum": [
-                        "suggestion",
-                        "driven",
-                        "full"
-                      ],
-                      "description": "AI level with either:\nsuggestion: The AI system suggests different courses of actions\ndriven: The AI system performs the task but may require engineer assistance\nfull: The AI system performs the task without assistance"
-                    },
-                    "deployment": {
-                      "type": "string",
-                      "enum": [
-                        "local",
-                        "ci"
-                      ],
-                      "description": "Deployment level with either:\nlocal: The task is run locally\nci: The task is run on the continuous integration server"
-                    },
-                    "performanceLevel": {
-                      "type": "string",
-                      "enum": [
-                        "days",
-                        "hours",
-                        "minutes",
-                        "seconds",
-                        "milli-seconds"
-                      ],
-                      "description": "Performance level with either:\ndays: The task takes days to run\nhours: The task takes hours to run\nminutes: The task takes minutes to run\nseconds: The task takes seconds to run\nmilli-seconds: The task takes milli-seconds to run"
-                    }
-                  },
-                  "required": [
-                    "automation",
-                    "ai",
-                    "deployment",
-                    "performanceLevel"
-                  ],
-                  "additionalProperties": false
-                },
-                "propertyNames": {
-                  "enum": [
-                    "readibility",
-                    "refactoring",
-                    "linting"
-                  ]
-                },
-                "description": "System health of the code base"
+              "ai": {
+                "type": "string",
+                "enum": [
+                  "suggestion",
+                  "driven",
+                  "full"
+                ],
+                "description": "AI level with either:\nsuggestion: The AI system suggests different courses of actions\ndriven: The AI system performs the task but may require engineer assistance\nfull: The AI system performs the task without assistance"
               },
-              "deps": {
-                "type": "object",
-                "additionalProperties": {
-                  "$ref": "#/definitions/software-health/properties/objectives/additionalProperties/properties/code/additionalProperties"
-                },
-                "propertyNames": {
-                  "enum": [
-                    "update",
-                    "audit",
-                    "diagram"
-                  ]
-                },
-                "description": "Health of the software dependencies"
+              "deployment": {
+                "type": "string",
+                "enum": [
+                  "local",
+                  "ci"
+                ],
+                "description": "Deployment level with either:\nlocal: The task is run locally\nci: The task is run on the continuous integration server"
               },
-              "doc": {
-                "type": "object",
-                "additionalProperties": {
-                  "$ref": "#/definitions/software-health/properties/objectives/additionalProperties/properties/code/additionalProperties"
-                },
-                "propertyNames": {
-                  "enum": [
-                    "user-guide",
-                    "developer-guide",
-                    "references-api",
-                    "references-schema",
-                    "references-glossary",
-                    "troubleshooting",
-                    "release-notes",
-                    "formatting",
-                    "spell-checking",
-                    "grammar",
-                    "proofreading",
-                    "accessibility-report",
-                    "security-report",
-                    "privacy-report",
-                    "support"
-                  ]
-                },
-                "description": "Health of the documentation"
-              },
-              "diagram": {
-                "type": "object",
-                "additionalProperties": {
-                  "$ref": "#/definitions/software-health/properties/objectives/additionalProperties/properties/code/additionalProperties"
-                },
-                "propertyNames": {
-                  "enum": [
-                    "architecture",
-                    "class",
-                    "sequence",
-                    "flow",
-                    "user-journey",
-                    "mindmap",
-                    "dependencies"
-                  ]
-                },
-                "description": "Health of the diagrams"
-              },
-              "test": {
-                "type": "object",
-                "additionalProperties": {
-                  "$ref": "#/definitions/software-health/properties/objectives/additionalProperties/properties/code/additionalProperties"
-                },
-                "propertyNames": {
-                  "enum": [
-                    "unit",
-                    "regression",
-                    "functional",
-                    "integration",
-                    "end-to-end",
-                    "platform",
-                    "browser",
-                    "device",
-                    "accessibility"
-                  ]
-                },
-                "description": "Health of the testing"
-              },
-              "specs": {
-                "type": "object",
-                "additionalProperties": {
-                  "$ref": "#/definitions/software-health/properties/objectives/additionalProperties/properties/code/additionalProperties"
-                },
-                "propertyNames": {
-                  "enum": [
-                    "business-cases",
-                    "user-stories",
-                    "cost-benefit-analysis",
-                    "risk-assessment",
-                    "roadmap",
-                    "interviews",
-                    "surveys"
-                  ]
-                },
-                "description": "Health of the specifications"
-              },
-              "ux": {
-                "type": "object",
-                "additionalProperties": {
-                  "$ref": "#/definitions/software-health/properties/objectives/additionalProperties/properties/code/additionalProperties"
-                },
-                "propertyNames": {
-                  "enum": [
-                    "user-research",
-                    "personas",
-                    "information-architecture",
-                    "user-flows",
-                    "wireframes",
-                    "prototyping"
-                  ]
-                },
-                "description": "Health of the user experience"
-              },
-              "brainstorming": {
-                "type": "object",
-                "additionalProperties": {
-                  "$ref": "#/definitions/software-health/properties/objectives/additionalProperties/properties/code/additionalProperties"
-                },
-                "propertyNames": {
-                  "enum": [
-                    "ideation",
-                    "drawing"
-                  ]
-                },
-                "description": "Health of the brainstorming capabilities"
-              },
-              "ops": {
-                "type": "object",
-                "additionalProperties": {
-                  "$ref": "#/definitions/software-health/properties/objectives/additionalProperties/properties/code/additionalProperties"
-                },
-                "propertyNames": {
-                  "enum": [
-                    "deployment",
-                    "monitoring",
-                    "rollback",
-                    "alerting",
-                    "backup",
-                    "infrastructure-as-code",
-                    "diagnosis",
-                    null
-                  ]
-                },
-                "description": "Health of operations"
-              },
-              "architecture": {
-                "type": "object",
-                "additionalProperties": {
-                  "$ref": "#/definitions/software-health/properties/objectives/additionalProperties/properties/code/additionalProperties"
-                },
-                "propertyNames": {
-                  "enum": [
-                    "single-responsibility",
-                    "well-defined-interface",
-                    "degrades-gracefully",
-                    "loosely-coupled",
-                    "easy-to-understand",
-                    "clear-source-of-truth",
-                    "data-retention"
-                  ]
-                },
-                "description": "Health of architecture"
+              "performanceLevel": {
+                "type": "string",
+                "enum": [
+                  "days",
+                  "hours",
+                  "minutes",
+                  "seconds",
+                  "milli-seconds"
+                ],
+                "description": "Performance level with either:\ndays: The task takes days to run\nhours: The task takes hours to run\nminutes: The task takes minutes to run\nseconds: The task takes seconds to run\nmilli-seconds: The task takes milli-seconds to run"
               }
             },
-            "required": [
-              "title"
-            ],
             "additionalProperties": false
           },
           "propertyNames": {
-            "minLength": 1,
-            "maxLength": 40
-          }
+            "enum": [
+              "readibility",
+              "refactoring",
+              "linting"
+            ]
+          },
+          "description": "System health of the code base"
+        },
+        "deps": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/software-health/properties/code/additionalProperties"
+          },
+          "propertyNames": {
+            "enum": [
+              "update",
+              "audit",
+              "diagram"
+            ]
+          },
+          "description": "Health of the software dependencies"
+        },
+        "doc": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/software-health/properties/code/additionalProperties"
+          },
+          "propertyNames": {
+            "enum": [
+              "user-guide",
+              "developer-guide",
+              "references-api",
+              "references-schema",
+              "references-glossary",
+              "troubleshooting",
+              "release-notes",
+              "formatting",
+              "spell-checking",
+              "grammar",
+              "proofreading",
+              "accessibility-report",
+              "security-report",
+              "privacy-report",
+              "support"
+            ]
+          },
+          "description": "Health of the documentation"
+        },
+        "diagram": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/software-health/properties/code/additionalProperties"
+          },
+          "propertyNames": {
+            "enum": [
+              "architecture",
+              "class",
+              "sequence",
+              "flow",
+              "user-journey",
+              "mindmap",
+              "dependencies"
+            ]
+          },
+          "description": "Health of the diagrams"
+        },
+        "test": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/software-health/properties/code/additionalProperties"
+          },
+          "propertyNames": {
+            "enum": [
+              "unit",
+              "regression",
+              "functional",
+              "integration",
+              "end-to-end",
+              "platform",
+              "browser",
+              "device",
+              "accessibility"
+            ]
+          },
+          "description": "Health of the testing"
+        },
+        "specs": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/software-health/properties/code/additionalProperties"
+          },
+          "propertyNames": {
+            "enum": [
+              "business-cases",
+              "user-stories",
+              "cost-benefit-analysis",
+              "risk-assessment",
+              "roadmap",
+              "interviews",
+              "surveys"
+            ]
+          },
+          "description": "Health of the specifications"
+        },
+        "ux": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/software-health/properties/code/additionalProperties"
+          },
+          "propertyNames": {
+            "enum": [
+              "user-research",
+              "personas",
+              "information-architecture",
+              "user-flows",
+              "wireframes",
+              "prototyping"
+            ]
+          },
+          "description": "Health of the user experience"
+        },
+        "brainstorming": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/software-health/properties/code/additionalProperties"
+          },
+          "propertyNames": {
+            "enum": [
+              "ideation",
+              "drawing"
+            ]
+          },
+          "description": "Health of the brainstorming capabilities"
+        },
+        "ops": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/software-health/properties/code/additionalProperties"
+          },
+          "propertyNames": {
+            "enum": [
+              "deployment",
+              "monitoring",
+              "rollback",
+              "alerting",
+              "backup",
+              "infrastructure-as-code",
+              "diagnosis",
+              null
+            ]
+          },
+          "description": "Health of operations"
+        },
+        "architecture": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/software-health/properties/code/additionalProperties"
+          },
+          "propertyNames": {
+            "enum": [
+              "single-responsibility",
+              "well-defined-interface",
+              "degrades-gracefully",
+              "loosely-coupled",
+              "easy-to-understand",
+              "clear-source-of-truth",
+              "data-retention"
+            ]
+          },
+          "description": "Health of architecture"
         }
       },
       "required": [
         "title",
-        "description",
-        "objectives"
+        "github"
       ],
       "additionalProperties": false,
-      "description": "Software Health characteristics"
+      "description": "Contribution to software health"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#"
