@@ -51,4 +51,28 @@ workflows:
               run: npx zx --install reserve-schema/tavern-agent-schema.mjs
             - title: Generate baldrick sequence json schema
               run: npx zx --install reserve-schema/sequence-schema.mjs
-   
+            - title: Generate baldrick software health json schema
+              run: npx zx --install reserve-schema/software-health-schema.mjs
+      schema1:
+        title: Generate one json schema
+        description: Generate a single json schema from Zod model
+        main:
+          commands:
+            - title: List schema generator files
+              name: gen-files-string
+              run: find . -type f -name *-schema.mjs
+              onSuccess:
+                - save
+                - silent
+            - a: split-lines
+              name: gen-files
+              title: Split the list of generator files
+              value: data.gen-files-string
+            - a: prompt-select
+              title: Prompt for generator filename
+              message: Select generator script
+              name: gen-file
+              select: data.gen-files
+            - title: Run generator script
+              name: run
+              run: npx zx --install {{_.gen-file}}
