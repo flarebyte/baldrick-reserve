@@ -53,7 +53,7 @@ const score = z.object({
     .enum(Object.keys(deploymentLevel))
     .optional()
     .describe(describeEnum('Deployment level', deploymentLevel)),
-  performanceLevel: z
+  performance: z
     .enum(Object.keys(performanceLevel))
     .optional()
     .describe(describeEnum('Performance level', performanceLevel)),
@@ -67,7 +67,10 @@ const schema = z
       owner: z.string().min(1).max(60).optional().describe('Github owner'),
     }),
     code: z
-      .record(z.enum(['readibility', 'refactoring', 'linting']), score)
+      .record(
+        z.enum(['readibility', 'refactoring', 'linting', 'generation']),
+        score
+      )
       .optional()
       .describe('System health of the code base'),
     deps: z

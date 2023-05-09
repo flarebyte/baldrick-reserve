@@ -63,7 +63,7 @@
                 ],
                 "description": "Deployment level with either:\nlocal: The task is run locally\nci: The task is run on the continuous integration server"
               },
-              "performanceLevel": {
+              "performance": {
                 "type": "string",
                 "enum": [
                   "days",
@@ -81,7 +81,8 @@
             "enum": [
               "readibility",
               "refactoring",
-              "linting"
+              "linting",
+              "generation"
             ]
           },
           "description": "System health of the code base"
