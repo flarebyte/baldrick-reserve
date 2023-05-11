@@ -226,8 +226,7 @@
               "alerting",
               "backup",
               "infrastructure-as-code",
-              "diagnosis",
-              null
+              "diagnosis"
             ]
           },
           "description": "Health of operations"

@@ -59,6 +59,84 @@ const score = z.object({
     .describe(describeEnum('Performance level', performanceLevel)),
 });
 
+const docName = {
+  code: ['readibility', 'refactoring', 'linting', 'generation'],
+  deps: ['update', 'audit', 'diagram'],
+  doc: [
+    'user-guide',
+    'developer-guide',
+    'references-api',
+    'references-schema',
+    'references-glossary',
+    'troubleshooting',
+    'release-notes',
+    'formatting',
+    'spell-checking',
+    'grammar',
+    'proofreading',
+    'accessibility-report',
+    'security-report',
+    'privacy-report',
+    'support',
+  ],
+  diagram: [
+    'architecture',
+    'class',
+    'sequence',
+    'flow',
+    'user-journey',
+    'mindmap',
+    'dependencies',
+  ],
+  test: [
+    'unit',
+    'regression',
+    'functional',
+    'integration',
+    'end-to-end',
+    'platform',
+    'browser',
+    'device',
+    'accessibility',
+  ],
+  specs: [
+    'business-cases',
+    'user-stories',
+    'cost-benefit-analysis',
+    'risk-assessment',
+    'roadmap',
+    'interviews',
+    'surveys',
+  ],
+  ux: [
+    'user-research',
+    'personas',
+    'information-architecture',
+    'user-flows',
+    'wireframes',
+    'prototyping',
+  ],
+  brainstorming: ['ideation', 'drawing'],
+  ops: [
+    'deployment',
+    'monitoring',
+    'rollback',
+    'alerting',
+    'backup',
+    'infrastructure-as-code',
+    'diagnosis',
+  ],
+  architecture: [
+    'single-responsibility',
+    'well-defined-interface',
+    'degrades-gracefully',
+    'loosely-coupled',
+    'easy-to-understand',
+    'clear-source-of-truth',
+    'data-retention',
+  ],
+};
+
 const schema = z
   .object({
     title: shortTitle.describe('Title for the software health overview'),
@@ -67,133 +145,43 @@ const schema = z
       owner: z.string().min(1).max(60).optional().describe('Github owner'),
     }),
     code: z
-      .record(
-        z.enum(['readibility', 'refactoring', 'linting', 'generation']),
-        score
-      )
+      .record(z.enum(docName.code), score)
       .optional()
       .describe('System health of the code base'),
     deps: z
-      .record(z.enum(['update', 'audit', 'diagram']), score)
+      .record(z.enum(docName.deps), score)
       .optional()
       .describe('Health of the software dependencies'),
     doc: z
-      .record(
-        z.enum([
-          'user-guide',
-          'developer-guide',
-          'references-api',
-          'references-schema',
-          'references-glossary',
-          'troubleshooting',
-          'release-notes',
-          'formatting',
-          'spell-checking',
-          'grammar',
-          'proofreading',
-          'accessibility-report',
-          'security-report',
-          'privacy-report',
-          'support',
-        ]),
-        score
-      )
+      .record(z.enum(docName.doc), score)
       .optional()
       .describe('Health of the documentation'),
     diagram: z
-      .record(
-        z.enum([
-          'architecture',
-          'class',
-          'sequence',
-          'flow',
-          'user-journey',
-          'mindmap',
-          'dependencies',
-        ]),
-        score
-      )
+      .record(z.enum(docName.diagram), score)
       .optional()
       .describe('Health of the diagrams'),
     test: z
-      .record(
-        z.enum([
-          'unit',
-          'regression',
-          'functional',
-          'integration',
-          'end-to-end',
-          'platform',
-          'browser',
-          'device',
-          'accessibility',
-        ]),
-        score
-      )
+      .record(z.enum(docName.test), score)
       .optional()
       .describe('Health of the testing'),
     specs: z
-      .record(
-        z.enum([
-          'business-cases',
-          'user-stories',
-          'cost-benefit-analysis',
-          'risk-assessment',
-          'roadmap',
-          'interviews',
-          'surveys',
-        ]),
-        score
-      )
+      .record(z.enum(docName.specs), score)
       .optional()
       .describe('Health of the specifications'),
     ux: z
-      .record(
-        z.enum([
-          'user-research',
-          'personas',
-          'information-architecture',
-          'user-flows',
-          'wireframes',
-          'prototyping',
-        ]),
-        score
-      )
+      .record(z.enum(docName.ux), score)
       .optional()
       .describe('Health of the user experience'),
     brainstorming: z
-      .record(z.enum(['ideation', 'drawing']), score)
+      .record(z.enum(docName.brainstorming), score)
       .optional()
       .describe('Health of the brainstorming capabilities'),
     ops: z
-      .record(
-        z.enum([
-          'deployment',
-          'monitoring',
-          'rollback',
-          'alerting',
-          'backup',
-          'infrastructure-as-code',
-          'diagnosis',
-          ,
-        ]),
-        score
-      )
+      .record(z.enum(docName.ops), score)
       .optional()
       .describe('Health of operations'),
     architecture: z
-      .record(
-        z.enum([
-          'single-responsibility',
-          'well-defined-interface',
-          'degrades-gracefully',
-          'loosely-coupled',
-          'easy-to-understand',
-          'clear-source-of-truth',
-          'data-retention',
-        ]),
-        score
-      )
+      .record(z.enum(docName.architecture), score)
       .optional()
       .describe('Health of architecture'),
   })
