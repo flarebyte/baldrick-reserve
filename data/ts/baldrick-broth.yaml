@@ -181,13 +181,19 @@ workflows:
               run: mkdir -p report
             - name: typedoc
               title: Generate typedoc doc.json
-              run: npx typedoc@latest --json report/doc.json --pretty src/index.ts
+              run: npx typedoc@latest --json report/doc.json --pretty src/index.mts
             - name: api
               title: Generate markdown files for the Api
               run: npx baldrick-doc-ts@latest typedoc --json-source report/doc.json
             - name: ngram
               title: Generate some markdown files with ngram
               run: npx baldrick-doc-ts@latest parse -f internal ngram
+            - name: functions-csv
+              title: Generate csv file with all the functions
+              run: npx baldrick-doc-ts@latest parse --feature functions-csv
+            - name: deps
+              title: Document the npm dependencies
+              run: npx zx https://raw.githubusercontent.com/flarebyte/baldrick-reserve/main/script/npm-dependencies.mjs
             - name: fix
               title: Fix all the markdown files
               run: npx baldrick-dev-ts@latest markdown fix
@@ -507,6 +513,12 @@ workflows:
             - title: Create .remarkrc.yml
               run: npx baldrick-whisker@latest object .remarkrc.yml
                 github:flarebyte:baldrick-reserve:data/ts/remarkrc.yml
+            - title: Create .xo-config.json
+              run: npx baldrick-whisker@latest object .xo-config.json
+                github:flarebyte:baldrick-reserve:data/ts/xo-config.yaml
+              links:
+                - title: TypeScript linter with great defaults
+                  url: https://github.com/xojs/xo
             - title: Create CONTRIBUTING.md with contribution guidelines
               run: npx baldrick-whisker@latest render baldrick-broth.yaml
                 github:flarebyte:baldrick-reserve:template/ts/contributing.hbs
@@ -607,3 +619,12 @@ workflows:
           commands:
             - title: Normalize using the custom script
               run: sh custom-scaffolding.sh
+      readme:
+        title: Update readme
+        description: Updates readme
+        main:
+          commands:
+            - title: Create README.md
+              run: npx baldrick-whisker@latest render baldrick-broth.yaml
+                github:flarebyte:baldrick-reserve:template/ts/readme.hbs
+                README.md
