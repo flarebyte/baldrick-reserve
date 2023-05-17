@@ -53,6 +53,8 @@ workflows:
               run: npx zx --install reserve-schema/sequence-schema.mjs
             - title: Generate baldrick software health json schema
               run: npx zx --install reserve-schema/software-health-schema.mjs
+            - title: Generate baldrick service cost json schema
+              run: npx zx --install reserve-schema/service-cost-schema.mjs
       schema1:
         title: Generate one json schema
         description: Generate a single json schema from Zod model

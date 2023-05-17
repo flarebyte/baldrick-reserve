@@ -1,0 +1,94 @@
+{
+  "$ref": "#/definitions/service-cost-schema",
+  "definitions": {
+    "service-cost-schema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60,
+          "description": "Title for the list of service costs"
+        },
+        "currency": {
+          "type": "string",
+          "enum": [
+            "dollar",
+            "gbp",
+            "euro"
+          ],
+          "description": "Currency with either:\ndollar: American dollar\ngbp: British pound\neuro: Euro"
+        },
+        "year": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "minimum": 1900,
+          "maximum": 3000
+        },
+        "costs": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 60,
+                "description": "Short title for the service cost"
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 600,
+                "description": "Description for the service cost"
+              },
+              "amount": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "human",
+                    "webservice"
+                  ],
+                  "description": "Tag with either:\nhuman: Service provide by human\nwebservice: Web service"
+                },
+                "minItems": 1,
+                "maxItems": 10
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40,
+                "description": "Unit of the data"
+              }
+            },
+            "required": [
+              "title",
+              "amount",
+              "tags",
+              "unit"
+            ],
+            "additionalProperties": false
+          },
+          "propertyNames": {
+            "minLength": 1,
+            "maxLength": 40
+          }
+        }
+      },
+      "required": [
+        "title",
+        "currency",
+        "year",
+        "costs"
+      ],
+      "additionalProperties": false,
+      "description": "Service cost"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
