@@ -32,6 +32,7 @@ const serviceCost = z.object({
     .optional(),
   amount: z.number().positive(),
   tags: z.array(tag).min(1).max(10),
+  currency: currency.optional(),
   unit,
 });
 

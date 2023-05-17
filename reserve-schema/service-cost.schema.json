@@ -59,6 +59,10 @@
                 "minItems": 1,
                 "maxItems": 10
               },
+              "currency": {
+                "$ref": "#/definitions/service-cost-schema/properties/currency",
+                "description": "Currency with either:\ndollar: American dollar\ngbp: British pound\neuro: Euro"
+              },
               "unit": {
                 "type": "string",
                 "minLength": 1,
