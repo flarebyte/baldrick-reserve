@@ -52,9 +52,10 @@
                   "type": "string",
                   "enum": [
                     "human",
-                    "webservice"
+                    "webservice",
+                    "database"
                   ],
-                  "description": "Tag with either:\nhuman: Service provide by human\nwebservice: Web service"
+                  "description": "Tag with either:\nhuman: Service provide by human\nwebservice: Web service\ndatabase: Database"
                 },
                 "minItems": 1,
                 "maxItems": 10

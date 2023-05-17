@@ -10,6 +10,7 @@ const unit = z.string().min(1).max(40).describe('Unit of the data');
 const tagValues = {
   human: 'Service provide by human',
   webservice: 'Web service',
+  database: 'Database'
 };
 
 const currencyValues = {
