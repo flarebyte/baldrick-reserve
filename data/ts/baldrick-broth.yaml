@@ -527,11 +527,6 @@ workflows:
               run: npx baldrick-whisker@latest render baldrick-broth.yaml
                 github:flarebyte:baldrick-reserve:template/code-of-conduct.hbs
                 CODE_OF_CONDUCT.md
-            - title: Create GLOSSARY.md with project vocabulary
-              run: npx baldrick-whisker@latest render
-                github:flarebyte:baldrick-reserve:data/glossary.yaml
-                github:flarebyte:baldrick-reserve:template/glossary.hbs
-                GLOSSARY.md
             - title: Create a starter DECISIONS.md
               run: npx baldrick-whisker@latest render baldrick-broth.yaml
                 github:flarebyte:baldrick-reserve:template/decisions.hbs
