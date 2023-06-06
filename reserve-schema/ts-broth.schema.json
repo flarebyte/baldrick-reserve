@@ -86,6 +86,15 @@
                   ],
                   "description": "Activate some code generation for the readme with either:\nimage-hero: Image hero for the readme\nimage-demo: Animated gif to demonstrate the library or the CLI"
                 },
+                "cheatsheetFormat": {
+                  "type": "string",
+                  "enum": [
+                    "bash",
+                    "typescript",
+                    "javascript"
+                  ],
+                  "description": "Format for the cheatsheet examples with either:\nbash: Bash script\ntypescript: Typescript\njavascript: Javascript"
+                },
                 "cheatsheet": {
                   "type": "array",
                   "items": {
@@ -118,7 +127,8 @@
               "required": [
                 "highlights",
                 "links",
-                "related"
+                "related",
+                "cheatsheetFormat"
               ],
               "additionalProperties": false,
               "description": "Information to populate the README.md"

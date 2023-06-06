@@ -37,6 +37,12 @@ const readmeTagEnum = {
   'image-demo': 'Animated gif to demonstrate the library or the CLI',
 };
 
+const cheatsheetFormatEnum = {
+  bash: 'Bash script',
+  typescript: 'Typescript',
+  javascript: 'Javascript',
+};
+
 const schema = z
   .object({
     model: z.object({
@@ -81,6 +87,14 @@ const schema = z
               )
             )
             .optional(),
+          cheatsheetFormat: z
+            .enum(Object.keys(cheatsheetFormatEnum))
+            .describe(
+              describeEnum(
+                'Format for the cheatsheet examples',
+                cheatsheetFormatEnum
+              )
+            ),
           cheatsheet: z
             .array(
               z.object({
