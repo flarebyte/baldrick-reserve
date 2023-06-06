@@ -23,12 +23,12 @@ Highlights:
 A few examples of commands:
 
 Run some tests:
-```
+```bash
 yarn test
 
 ```
 Build the code:
-```
+```bash
 yarn build
 
 ```
