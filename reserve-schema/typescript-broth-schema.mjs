@@ -94,7 +94,7 @@ const schema = z
                 'Format for the cheatsheet examples',
                 cheatsheetFormatEnum
               )
-            ),
+            ).optional(),
           cheatsheet: z
             .array(
               z.object({

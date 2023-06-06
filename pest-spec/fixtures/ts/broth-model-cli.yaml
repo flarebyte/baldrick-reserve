@@ -25,6 +25,7 @@ model:
     tags:
       - image-hero
       - image-demo
+    cheatsheetFormat: bash
     cheatsheet:
       - title: Run some tests
         example: yarn test

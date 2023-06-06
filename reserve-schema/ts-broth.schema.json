@@ -127,8 +127,7 @@
               "required": [
                 "highlights",
                 "links",
-                "related",
-                "cheatsheetFormat"
+                "related"
               ],
               "additionalProperties": false,
               "description": "Information to populate the README.md"
