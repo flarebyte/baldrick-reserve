@@ -16,7 +16,7 @@
           "maxLength": 3000,
           "description": "Description for the user interface form"
         },
-        "component": {
+        "components": {
           "type": "array",
           "items": {
             "anyOf": [
@@ -110,25 +110,25 @@
                     "description": "A short name for the group"
                   },
                   "title": {
-                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/title"
+                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/title"
                   },
                   "description": {
-                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/description"
+                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/description"
                   },
                   "purpose": {
-                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/purpose"
+                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/purpose"
                   },
                   "mustHave": {
-                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/mustHave"
+                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/mustHave"
                   },
                   "shouldHave": {
-                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/shouldHave"
+                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/shouldHave"
                   },
                   "niceToHave": {
-                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/niceToHave"
+                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/niceToHave"
                   },
                   "shouldNotHave": {
-                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/shouldNotHave"
+                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/shouldNotHave"
                   }
                 },
                 "required": [
@@ -182,25 +182,25 @@
                     "default": true
                   },
                   "title": {
-                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/title"
+                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/title"
                   },
                   "description": {
-                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/description"
+                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/description"
                   },
                   "purpose": {
-                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/purpose"
+                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/purpose"
                   },
                   "mustHave": {
-                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/mustHave"
+                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/mustHave"
                   },
                   "shouldHave": {
-                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/shouldHave"
+                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/shouldHave"
                   },
                   "niceToHave": {
-                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/niceToHave"
+                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/niceToHave"
                   },
                   "shouldNotHave": {
-                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/shouldNotHave"
+                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/shouldNotHave"
                   }
                 },
                 "required": [
@@ -222,7 +222,7 @@
       "required": [
         "title",
         "description",
-        "component"
+        "components"
       ],
       "additionalProperties": false,
       "description": "Form User Interface model"

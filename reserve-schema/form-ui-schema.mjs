@@ -102,7 +102,7 @@ const schema = z
       .min(1)
       .max(3000)
       .describe('Description for the user interface form'),
-    component: z.array(component).min(1).max(500),
+    components: z.array(component).min(1).max(500),
   })
   .describe('Form User Interface model');
 
