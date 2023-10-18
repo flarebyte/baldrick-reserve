@@ -1,0 +1,232 @@
+{
+  "$ref": "#/definitions/form-ui-schema",
+  "definitions": {
+    "form-ui-schema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60,
+          "description": "Title for the user interface form"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3000,
+          "description": "Description for the user interface form"
+        },
+        "component": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "start"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 40,
+                    "description": "A short name for the group"
+                  },
+                  "title": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 60,
+                    "description": "Title for the field"
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 3000,
+                    "description": "Description for the field"
+                  },
+                  "purpose": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1000,
+                    "description": "Why is this entity needed"
+                  },
+                  "mustHave": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "maxItems": 12,
+                    "description": "Must have features"
+                  },
+                  "shouldHave": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "maxItems": 12,
+                    "description": "Should have features"
+                  },
+                  "niceToHave": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "maxItems": 12,
+                    "description": "Nice to have features"
+                  },
+                  "shouldNotHave": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "maxItems": 12,
+                    "description": "Should not have features"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "name",
+                  "title",
+                  "description"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "finish"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 40,
+                    "description": "A short name for the group"
+                  },
+                  "title": {
+                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/title"
+                  },
+                  "description": {
+                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/description"
+                  },
+                  "purpose": {
+                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/purpose"
+                  },
+                  "mustHave": {
+                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/mustHave"
+                  },
+                  "shouldHave": {
+                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/shouldHave"
+                  },
+                  "niceToHave": {
+                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/niceToHave"
+                  },
+                  "shouldNotHave": {
+                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/shouldNotHave"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "name",
+                  "title",
+                  "description"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "field"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 40,
+                    "description": "A short name for the field"
+                  },
+                  "path": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 400,
+                    "description": "A path in dot prop format"
+                  },
+                  "widget": {
+                    "type": "string",
+                    "enum": [
+                      "lines",
+                      "text",
+                      "numeral",
+                      "choices",
+                      "multiselect",
+                      "checkbox",
+                      "dateTime",
+                      "date",
+                      "time",
+                      "timeRange",
+                      "rating",
+                      "survey"
+                    ],
+                    "description": "Widget with either:\nlines: The field can have multiple lines\ntext: The field contains text\nnumeral: The field contains a numeric value\nchoices: The field is picked from a list of choices\nmultiselect: Select multiple items from a list of options\ncheckbox: The field is a checkbox\ndateTime: The field allows to select a date and a time\ndate: The field allows to select a date\ntime: The field allows to select a time\ntimeRange: The field allows to select a time period\nrating: The field represents a rating\nsurvey: The field represents a survey"
+                  },
+                  "optional": {
+                    "type": "boolean",
+                    "description": "If the field is optional",
+                    "default": true
+                  },
+                  "title": {
+                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/title"
+                  },
+                  "description": {
+                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/description"
+                  },
+                  "purpose": {
+                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/purpose"
+                  },
+                  "mustHave": {
+                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/mustHave"
+                  },
+                  "shouldHave": {
+                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/shouldHave"
+                  },
+                  "niceToHave": {
+                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/niceToHave"
+                  },
+                  "shouldNotHave": {
+                    "$ref": "#/definitions/form-ui-schema/properties/component/items/anyOf/0/properties/shouldNotHave"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "name",
+                  "path",
+                  "widget",
+                  "title",
+                  "description"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 500
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "component"
+      ],
+      "additionalProperties": false,
+      "description": "Form User Interface model"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
