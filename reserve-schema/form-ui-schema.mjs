@@ -31,6 +31,7 @@ const requirements = {
     .string()
     .min(1)
     .max(3000)
+    .optional()
     .describe('Description for the field'),
   purpose: z
     .string()
@@ -81,7 +82,6 @@ const startGroup = z.object({
 const finishGroup = z.object({
   kind: z.literal('finish'),
   name: shortName.describe('A short name for the group'),
-  ...requirements,
 });
 
 const component = z.discriminatedUnion('kind', [

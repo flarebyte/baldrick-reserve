@@ -91,8 +91,7 @@
                 "required": [
                   "kind",
                   "name",
-                  "title",
-                  "description"
+                  "title"
                 ],
                 "additionalProperties": false
               },
@@ -108,34 +107,11 @@
                     "minLength": 1,
                     "maxLength": 40,
                     "description": "A short name for the group"
-                  },
-                  "title": {
-                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/title"
-                  },
-                  "description": {
-                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/description"
-                  },
-                  "purpose": {
-                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/purpose"
-                  },
-                  "mustHave": {
-                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/mustHave"
-                  },
-                  "shouldHave": {
-                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/shouldHave"
-                  },
-                  "niceToHave": {
-                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/niceToHave"
-                  },
-                  "shouldNotHave": {
-                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/shouldNotHave"
                   }
                 },
                 "required": [
                   "kind",
-                  "name",
-                  "title",
-                  "description"
+                  "name"
                 ],
                 "additionalProperties": false
               },
@@ -208,8 +184,7 @@
                   "name",
                   "path",
                   "widget",
-                  "title",
-                  "description"
+                  "title"
                 ],
                 "additionalProperties": false
               }
