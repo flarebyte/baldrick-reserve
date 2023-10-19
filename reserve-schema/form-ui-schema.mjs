@@ -67,8 +67,8 @@ const requirements = {
 const formField = z.object({
   kind: z.literal('field'),
   name: shortName.describe('A short name for the field'),
-  path: propPath.describe('An absolute path in dot prop format'),
-  relativePath: propPath.describe('A relative path in dot prop format'),
+  path: propPath.optional().describe('An absolute path in dot prop format'),
+  relativePath: propPath.optional().describe('A relative path in dot prop format'),
   widget,
   optional: z.boolean().describe('If the field is optional').default(true),
   ...requirements,

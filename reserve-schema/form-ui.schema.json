@@ -128,15 +128,11 @@
                     "description": "A short name for the field"
                   },
                   "path": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 400,
+                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/path",
                     "description": "An absolute path in dot prop format"
                   },
                   "relativePath": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 400,
+                    "$ref": "#/definitions/form-ui-schema/properties/components/items/anyOf/0/properties/path",
                     "description": "A relative path in dot prop format"
                   },
                   "widget": {
@@ -187,8 +183,6 @@
                 "required": [
                   "kind",
                   "name",
-                  "path",
-                  "relativePath",
                   "widget",
                   "title"
                 ],
