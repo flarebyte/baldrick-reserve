@@ -4,7 +4,6 @@ import { zodToJsonSchema } from 'zod-to-json-schema';
 import { describeEnum } from './tavern-common.mjs';
 
 const shortName = z.string().min(1).max(40);
-const shortId = z.string().cuid();
 const propPath = z.string().min(1).max(400);
 
 const widgetValues = {
@@ -67,7 +66,6 @@ const requirements = {
 };
 const formField = z.object({
   kind: z.literal('field'),
-  id: shortId.describe('A unique ID for the field'),
   name: shortName.describe('A short name for the field'),
   path: propPath.describe('An absolute path in dot prop format'),
   relativePath: propPath.describe('A relative path in dot prop format'),
@@ -78,7 +76,6 @@ const formField = z.object({
 
 const startGroup = z.object({
   kind: z.literal('start =>'),
-  id: shortId.describe('A unique ID for the group'),
   name: shortName.describe('A short name for the group'),
   path: propPath.optional().describe('An absolute path in dot prop format'),
   ...requirements,
@@ -86,7 +83,6 @@ const startGroup = z.object({
 
 const finishGroup = z.object({
   kind: z.literal('finish <='),
-  id: shortId.describe('A unique ID for the group'),
 });
 
 const component = z.discriminatedUnion('kind', [

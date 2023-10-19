@@ -27,11 +27,6 @@
                     "type": "string",
                     "const": "start =>"
                   },
-                  "id": {
-                    "type": "string",
-                    "pattern": "^c[^\\s-]{8,}$",
-                    "description": "A unique ID for the group"
-                  },
                   "name": {
                     "type": "string",
                     "minLength": 1,
@@ -101,7 +96,6 @@
                 },
                 "required": [
                   "kind",
-                  "id",
                   "name",
                   "title"
                 ],
@@ -113,16 +107,10 @@
                   "kind": {
                     "type": "string",
                     "const": "finish <="
-                  },
-                  "id": {
-                    "type": "string",
-                    "pattern": "^c[^\\s-]{8,}$",
-                    "description": "A unique ID for the group"
                   }
                 },
                 "required": [
-                  "kind",
-                  "id"
+                  "kind"
                 ],
                 "additionalProperties": false
               },
@@ -132,11 +120,6 @@
                   "kind": {
                     "type": "string",
                     "const": "field"
-                  },
-                  "id": {
-                    "type": "string",
-                    "pattern": "^c[^\\s-]{8,}$",
-                    "description": "A unique ID for the field"
                   },
                   "name": {
                     "type": "string",
@@ -203,7 +186,6 @@
                 },
                 "required": [
                   "kind",
-                  "id",
                   "name",
                   "path",
                   "relativePath",
