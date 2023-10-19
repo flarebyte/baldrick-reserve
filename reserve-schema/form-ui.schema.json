@@ -25,13 +25,24 @@
                 "properties": {
                   "kind": {
                     "type": "string",
-                    "const": "start"
+                    "const": "start =>"
+                  },
+                  "id": {
+                    "type": "string",
+                    "pattern": "^c[^\\s-]{8,}$",
+                    "description": "A unique ID for the group"
                   },
                   "name": {
                     "type": "string",
                     "minLength": 1,
                     "maxLength": 40,
                     "description": "A short name for the group"
+                  },
+                  "path": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 400,
+                    "description": "An absolute path in dot prop format"
                   },
                   "title": {
                     "type": "string",
@@ -90,6 +101,7 @@
                 },
                 "required": [
                   "kind",
+                  "id",
                   "name",
                   "title"
                 ],
@@ -100,18 +112,17 @@
                 "properties": {
                   "kind": {
                     "type": "string",
-                    "const": "finish"
+                    "const": "finish <="
                   },
-                  "name": {
+                  "id": {
                     "type": "string",
-                    "minLength": 1,
-                    "maxLength": 40,
-                    "description": "A short name for the group"
+                    "pattern": "^c[^\\s-]{8,}$",
+                    "description": "A unique ID for the group"
                   }
                 },
                 "required": [
                   "kind",
-                  "name"
+                  "id"
                 ],
                 "additionalProperties": false
               },
@@ -121,6 +132,11 @@
                   "kind": {
                     "type": "string",
                     "const": "field"
+                  },
+                  "id": {
+                    "type": "string",
+                    "pattern": "^c[^\\s-]{8,}$",
+                    "description": "A unique ID for the field"
                   },
                   "name": {
                     "type": "string",
@@ -132,7 +148,13 @@
                     "type": "string",
                     "minLength": 1,
                     "maxLength": 400,
-                    "description": "A path in dot prop format"
+                    "description": "An absolute path in dot prop format"
+                  },
+                  "relativePath": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 400,
+                    "description": "A relative path in dot prop format"
                   },
                   "widget": {
                     "type": "string",
@@ -181,8 +203,10 @@
                 },
                 "required": [
                   "kind",
+                  "id",
                   "name",
                   "path",
+                  "relativePath",
                   "widget",
                   "title"
                 ],
