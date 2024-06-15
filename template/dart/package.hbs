@@ -4,6 +4,6 @@ version: {{model.project.version}}
 homepage: https://github.com/{{model.github.account}}/{{model.github.name}}
 repository: https://github.com/{{model.github.account}}/{{model.github.name}}
 topics:
-{{#with model.project}}
-  - {{#each keywords}}{{this}}{{/each}}
-{{/with}}
+{{#each model.project.keywords}}
+  - {{this}}
+{{/each}}
