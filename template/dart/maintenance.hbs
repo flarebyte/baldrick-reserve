@@ -1,0 +1,32 @@
+# Maintenance of the code
+
+## Commands
+
+{{#each workflows as |workflow workflowId|}}
+
+{{#each workflow.tasks as |task taskId|}}
+### {{task.title}}
+
+{{#if task.motivation}}
+> {{task.description}}
+
+{{/if}}
+{{#if task.motivation}}
+__Motivation:__ {{task.motivation}}
+
+{{/if}}
+
+__Run:__ ```npx baldrick-broth {{workflowId}} {{taskId}}```
+
+{{#if task.links}}
+See also:
+
+{{#each task.links as |link|}}
+* [{{link.title}}]({{link.url}})
+{{/each}}
+{{/if}}
+
+---
+{{/each}}
+
+{{/each}}
