@@ -29,22 +29,16 @@ or if you prefer to always use the latest version:
 alias broth='npx baldrick-broth@latest'
 ```
 
-Install the `npm` dependencies:
+Install the `dart` dependencies:
 
 ```bash
-yarn install
+dart pub get 
 ```
 
-Run the `zest` unit tests:
+Run the unit tests:
 
 ```bash
-broth test spec
-```
-
-Run the `pest` CLI integration tests:
-
-```bash
-broth test pest
+broth test unit
 ```
 
 A list of [most used commands](MAINTENANCE.md) is available:
@@ -62,7 +56,7 @@ broth release ready
 
 You will probably want to update the documentation:
 ```bash
-broth doc ts
+broth doc api
 ```
 
 You can also simulate [Github actions](https://docs.github.com/en/actions)

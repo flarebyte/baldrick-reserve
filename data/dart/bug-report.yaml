@@ -33,8 +33,8 @@ body:
       multiple: true
       options:
         - Any
-        - Node.js
-        - Typescript node
+        - Dart
+        - Flutter
         - Firefox
         - Chrome
         - Safari

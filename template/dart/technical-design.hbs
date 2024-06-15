@@ -10,28 +10,10 @@ Highlights:
 
 ## Code structure
 
- - __src__: Typescript source code
-
-{{#ifSatisfy "equals" model.implementation.tags "jest"}}
- - __test__: Jest unit tests
- {{/ifSatisfy}}
-
- {{#ifSatisfy "equals" model.implementation.tags "node-test"}}
- - __test__: Node.js unit tests. Please prefer `zest` unit tests whenever possible.
- {{/ifSatisfy}}
-
-{{#ifSatisfy "equals" model.implementation.tags "zest"}}
- - __spec__: [baldrick-zest unit regression tests](https://github.com/flarebyte/baldrick-zest-engine)
- {{/ifSatisfy}}
-
-{{#ifSatisfy "equals" model.implementation.tags "pest"}}
- - __pest-spec__: [baldrick-pest acceptance tests](https://github.com/flarebyte/baldrick-pest)
- {{/ifSatisfy}}
+ - [Dart packages](https://dart.dev/guides/libraries/create-packages)
 
  - __script__: Folder for bash, python, zx or ts-node scripts
 
- - __dist__: Temporary folder for building distribution code
- 
  - __temp__: Temporary folder used by some of the tooling (tests...)
 
  - __report__: Temporary folder for reporting; usually for continuous integration
@@ -41,8 +23,6 @@ Highlights:
  - __.vscode__: Folder for visual code snippets
 
 ## Useful links
-
- - Guideline for [Clean Code in Typescript](https://labs42io.github.io/clean-code-typescript/)
 
  - [Supporting node.js ESM](https://the-guild.dev/blog/support-nodejs-esm)
 {{#ifSatisfy "equals" model.implementation.tags "i18n"}}

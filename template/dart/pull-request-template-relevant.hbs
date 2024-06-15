@@ -9,28 +9,10 @@
 
 ## Code check
 
-{{#ifSatisfy "equals" check.build "ok"}}
- - [x]  Typescript code can be transpiled to javascript
-{{/ifSatisfy}}
-{{#ifSatisfy "equals" check.build "ko"}}
- - [ ]  Some Typescript code cannot be transpiled to javascript ⛈
-{{/ifSatisfy}}
-{{#ifSatisfy "equals" check.zest-spec "ok"}}
- - [x]  Regression unit tests are passing (zest-spec}
-{{/ifSatisfy}}
-{{#ifSatisfy "equals" check.zest-spec "ko"}}
- - [ ]  Some regression unit tests are failing (zest-spec} ⛈
-{{/ifSatisfy}}
-{{#ifSatisfy "equals" check.pest-spec "ok"}}
- - [x]  Acceptance tests are passing (pest-spec}
-{{/ifSatisfy}}
-{{#ifSatisfy "equals" check.pest-spec "ko"}}
- - [ ]  Some acceptance tests are failing (pest-spec} ⛈
-{{/ifSatisfy}}
-{{#ifSatisfy "equals" check.nodejs-test "ok"}}
+{{#ifSatisfy "equals" check.dart-test "ok"}}
  - [x]  Regular unit tests are passing
 {{/ifSatisfy}}
-{{#ifSatisfy "equals" check.nodejs-test "ko"}}
+{{#ifSatisfy "equals" check.dart-test "ko"}}
  - [ ]  Some regular unit tests are failing ⛈
 {{/ifSatisfy}}
 {{#ifSatisfy "equals" check.version "ok"}}
@@ -56,11 +38,5 @@
 {{/ifSatisfy}}
 {{#ifSatisfy "equals" check.outdated "ko"}}
  - [ ]  Some npm dependencies have not been updated to the latest ⛈
-{{/ifSatisfy}}
-{{#ifSatisfy "equals" check.audit "ok"}}
- - [x]  No vulnerabilities have been found
-{{/ifSatisfy}}
-{{#ifSatisfy "equals" check.audit "ko"}}
- - [ ]  Some vulnerabilities have been found ⛈
 {{/ifSatisfy}}
 
