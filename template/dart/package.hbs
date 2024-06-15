@@ -1,0 +1,9 @@
+name: {{model.github.name}}
+description: {{model.project.title}}
+version: {{model.project.version}}
+homepage: https://github.com/{{model.github.account}}/{{model.github.name}}
+repository: https://github.com/{{model.github.account}}/{{model.github.name}}
+topics:
+{{#with model.project}}
+  - {{#each keywords}}{{this}}{{/each}}
+{{/with}}

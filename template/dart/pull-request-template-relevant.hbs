@@ -1,0 +1,42 @@
+# Summary of the change
+
+{{#each features}}
+- {{title}}
+{{#each includes}}
+    - {{title}}
+{{/each}}
+{{/each}}
+
+## Code check
+
+{{#ifSatisfy "equals" check.dart-test "ok"}}
+ - [x]  Regular unit tests are passing
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.dart-test "ko"}}
+ - [ ]  Some regular unit tests are failing ⛈
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.version "ok"}}
+ - [x]  Version has been incremented
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.version "ko"}}
+ - [ ]  Version has not been incremented ⛈
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.linting "ok"}}
+ - [x]  All linting rules are satisfied
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.linting "ko"}}
+ - [ ]  Some linting rules are not satisfied ⛈
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.markdown "ok"}}
+ - [x]  Markdown files are correctly formatted
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.markdown "ko"}}
+ - [ ]  Some markdown files are not correctly formatted ⛈
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.outdated "ok"}}
+ - [x]  All npm dependencies have been updated to the latest
+{{/ifSatisfy}}
+{{#ifSatisfy "equals" check.outdated "ko"}}
+ - [ ]  Some npm dependencies have not been updated to the latest ⛈
+{{/ifSatisfy}}
+
