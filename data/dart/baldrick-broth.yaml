@@ -15,6 +15,10 @@ workflows:
             url: https://pub.dev/packages/test
         main:
           commands:
+            - title: Format nicely the lib source code
+              run:  dart format lib
+            - title:  Format nicely the test source code
+              run:  dart format test
             - title: Run unit tests
               run: dart test
   deps:
@@ -33,14 +37,24 @@ workflows:
     title: Generate the documentation
     description: Generate the documentation automatically
     tasks:
-      api:
+      dart:
         title: Generate documentation
         description: Generate the api documentation for Dart
         motivation: Good documentation is essential for developer experience
         main:
           commands:
-              - title: Gnerate API documentation
-                run: dart doc
+            - title: Generate API documentation
+              run: dart doc
+            - name: deps
+              title: Document the dart dependencies
+              run: npx zx https://raw.githubusercontent.com/flarebyte/baldrick-reserve/main/script/dart-dependencies.mjs
+            - name: fix
+              title: Fix all the markdown files
+              run: npx baldrick-dev-ts@latest markdown fix
+            - name: github
+              title: Fixes markdown in github folder
+              run: npx baldrick-dev-ts@latest markdown fix -s .github/
+          
   github:
     title: Management of the github project
     description: Generate the documentation based on the source code
@@ -68,7 +82,7 @@ workflows:
               title: Lint check sources
               run: dart analyze
             - name: check fix
-              title:  Preview of the proposed changes for a project
+              title: Preview of the proposed changes for a project
               run: dart fix --dry-run
       fix:
         title: Fix static code analysis
@@ -97,8 +111,7 @@ workflows:
               run: npx baldrick-dev-ts@latest markdown check -s .github/
       fix:
         title: Fix Markdown files
-        description:
-          Modify the markdown documents to ensure they follow some consistent
+        description: Modify the markdown documents to ensure they follow some consistent
           guidelines
         motivation: Make the markdown documents consistent in style
         main:
@@ -112,8 +125,7 @@ workflows:
     tasks:
       ready:
         title: Ready for publishing
-        description:
-          Run a sequence of commands to check that the library is ready to be
+        description: Run a sequence of commands to check that the library is ready to be
           published
         motivation: Detect quality flaws before pushing the code
         parameters:
@@ -158,7 +170,6 @@ workflows:
                 {{#if _.result-of-markdown}}- :heavy_check_mark:{{else}}- :heavy_exclamation_mark:{{/if}} Markdown formatting
 
                 {{#if _.result-of-outdated}}- :heavy_check_mark:{{else}}- :heavy_exclamation_mark:{{/if}} No outdated NPM libraries
-
             - name: write-report
               a: append-to-file
               title: Write the report
@@ -186,8 +197,7 @@ workflows:
               title: Title for the pull request
               description: A short title used for the pull request
               message: Short title describing the pull request
-            - run:
-                gh pr create --title {{escapeSpace _.category}}:{{escapeSpace _.title}}
+            - run: gh pr create --title {{escapeSpace _.category}}:{{escapeSpace _.title}}
                 --body-file temp/pull_request_relevant.md
               title: Create the pull request
       publish:
@@ -242,23 +252,21 @@ workflows:
               a: write-to-file
               title: Save baldrick-broth file with existing model
               value: data.broth-model
-              filename: temp/broth/baldrick-broth-model.json
+              filename: temp/broth/baldrick-broth-model.yaml
             - title: merge model with new workflow
               run: npx baldrick-whisker@latest object baldrick-broth.yaml
-                temp/broth/baldrick-broth-model.json
+                temp/broth/baldrick-broth-model.yaml
                 github:flarebyte:baldrick-reserve:data/dart/baldrick-broth.yaml
       norm:
         title: Normalize the project
-        description: Normalize the project in a similar fashion that the other
-          dart projects
+        description: Normalize the project in a similar fashion that the other dart projects
         motivation: Make the project structure consistent and easier to navigate
         main:
           commands:
             - title: Create all github repositories
               run: mkdir -p .github/workflows .github/ISSUE_TEMPLATE
             - title: Github - create bug report form
-              run:
-                npx baldrick-whisker@latest object .github/ISSUE_TEMPLATE/bug_report.yaml
+              run: npx baldrick-whisker@latest object .github/ISSUE_TEMPLATE/bug_report.yaml
                 github:flarebyte:baldrick-reserve:data/dart/bug-report.yaml
             - title: Github - create feature request form
               run: npx baldrick-whisker@latest object
@@ -277,13 +285,11 @@ workflows:
               links:
                 - title: Specify files to ignore in source control
                   url: https://git-scm.com/docs/gitignore
-              run:
-                npx baldrick-whisker@latest render --no-ext baldrick-broth.yaml
+              run: npx baldrick-whisker@latest render --no-ext baldrick-broth.yaml
                 github:flarebyte:baldrick-reserve:template/dart/gitignore.hbs
                 .gitignore.sh
             - title: Create .editorconfig
-              run:
-                npx baldrick-whisker@latest render --no-ext baldrick-broth.yaml
+              run: npx baldrick-whisker@latest render --no-ext baldrick-broth.yaml
                 github:flarebyte:baldrick-reserve:template/editorconfig.hbs
                 .editorconfig.sh
               links:
@@ -321,24 +327,29 @@ workflows:
                 github:flarebyte:baldrick-reserve:template/dart/maintenance.hbs
                 MAINTENANCE.md
             - title: Create LICENSE
-              run:
-                npx baldrick-whisker@latest render --no-ext baldrick-broth.yaml
+              run: npx baldrick-whisker@latest render --no-ext baldrick-broth.yaml
                 github:flarebyte:baldrick-reserve:template/dart/license.hbs
                 LICENSE.md
             - title: Fix markdown
               run: npx baldrick-broth@latest md fix
+      norm-package:
+        title: Normalize the project
+        description: Normalize the project in a similar fashion that the other dart projects
+        motivation: Make the project structure consistent and easier to navigate
+        main:
+          commands:
             - name: package-yaml
               title: Backup dependencies
               run: cat pubspec.yaml
               onSuccess:
                 - save
                 - silent
-                - json
+                - yaml
             - a: mask-object
               title: Extracts dependencies from pubspec.yaml
-              name: package-json-deps
+              name: package-yaml-deps
               value: data.package-yaml
-              mask: dependencies,dev_dependencies,environment
+              mask: environment,dependencies,dev_dependencies
             - name: save-package-yaml-deps
               title: Save pubspec.yaml with only dependencies
               stdin: data.package-yaml-deps
@@ -350,42 +361,10 @@ workflows:
             - title: merge dependencies with broth model info
               run: npx baldrick-whisker@latest object pubspec.yaml
                 temp/broth/package-specific.yaml temp/broth/package-deps.yaml
-      norm-package:
-        title: Normalize the project
-        description: Normalize the project in a similar fashion that the other
-          dart projects
-        motivation: Make the project structure consistent and easier to navigate
-        main:
-          commands:
-            - name: package-json
-              title: Backup dependencies
-              run: cat package.json
-              onSuccess:
-                - save
-                - silent
-                - json
-            - a: mask-object
-              title: Extracts dependencies from package.json
-              name: package-json-deps
-              value: data.package-json
-              mask: dependencies,devDependencies,peerDependencies
-            - a: write-to-file
-              title: Save package.json with only dependencies
-              name: save-package-json-deps
-              value: data.package-json-deps
-              filename: temp/broth/package-deps.json
-            - title: Create package.json metadata from broth model
-              run: npx baldrick-whisker@latest render baldrick-broth.yaml
-                github:flarebyte:baldrick-reserve:template/ts/package.hbs
-                temp/broth/package-specific.json
-            - title: merge dependencies with broth model info
-              run: npx baldrick-whisker@latest object package.json
-                temp/broth/package-specific.json temp/broth/package-deps.json
       custom:
         title: Normalize using the custom script
         description: Normalize the project using a custom script for this project
-        motivation:
-          Enable an imperative approach for some of normalisation to keep the
+        motivation: Enable an imperative approach for some of normalisation to keep the
           model simple
         main:
           commands:
@@ -398,5 +377,5 @@ workflows:
           commands:
             - title: Create README.md
               run: npx baldrick-whisker@latest render baldrick-broth.yaml
-                github:flarebyte:baldrick-reserve:template/ts/readme.hbs
+                github:flarebyte:baldrick-reserve:template/dart/readme.hbs
                 README.md
