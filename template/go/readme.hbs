@@ -31,6 +31,7 @@ A few examples of commands:
 {{title}}:
 ```{{@root.model.readme.cheatsheetFormat}}
 {{example}}
+```
 
 {{/each}}
 {{/if}}
@@ -44,11 +45,11 @@ A few examples of commands:
 * [Diagram for the code base :triangular_ruler:](INTERNAL.md)
 * [Vocabulary used in the code base :book:](CODE_VOCABULARY.md)
 * [Architectural Decision Records :memo:](DECISIONS.md)
-* [Contributors :busts_in_silhouette:](https://github.com/{{model.github.account}}/{{model.github.name}}/graphs/contributors)
+* [Contributors :busts_in_silhouette: ](https://github.com/{{model.github.account}}/{{model.github.name}}/graphs/contributors)
 * [Dependencies](https://github.com/{{model.github.account}}/{{model.github.name}}/network/dependencies)
-* [Glossary :book:](https://github.com/flarebyte/overview/blob/main/GLOSSARY.md)
-* [Software engineering principles :gem:](https://github.com/flarebyte/overview/blob/main/PRINCIPLES.md)
-* [Overview of Flarebyte.com ecosystem :factory:](https://github.com/flarebyte/overview)
+* [Glossary :book: ](https://github.com/flarebyte/overview/blob/main/GLOSSARY.md)
+* [Software engineering principles :gem: ](https://github.com/flarebyte/overview/blob/main/PRINCIPLES.md)
+* [Overview of Flarebyte.com ecosystem :factory: ](https://github.com/flarebyte/overview)
 {{#each model.readme.links}}
 * {{this}}
 {{/each}}
@@ -66,12 +67,12 @@ To install the CLI tool:
 ```bash
 go install github.com/{{model.github.account}}/{{model.github.name}}@latest
 ```
+
 To run directly from source:
 ```bash
 git clone https://github.com/{{model.github.account}}/{{model.github.name}}.git
 cd {{model.github.name}}
 go run ./cmd/{{model.github.name}}
-```
 ```
 {{/ifSatisfy}}
 {{#ifSatisfy "not equals" model.implementation.tags "cli"}}
