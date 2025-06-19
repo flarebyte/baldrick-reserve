@@ -1,9 +1,8 @@
 # {{model.github.name}}
 
-![npm](https://img.shields.io/npm/v/{{model.github.name}}) ![Build status](https://github.com/{{model.github.account}}/{{model.github.name}}/actions/workflows/main.yml/badge.svg) ![npm bundle size](https://img.shields.io/bundlephobia/min/{{model.github.name}})
-
-![npm type definitions](https://img.shields.io/npm/types/{{model.github.name}}) ![node-current](https://img.shields.io/node/v/{{model.github.name}}) ![NPM](https://img.shields.io/npm/l/{{model.github.name}})
-
+![Go Report Card](https://goreportcard.com/badge/github.com/{{model.github.account}}/{{model.github.name}})
+![Build status](https://github.com/{{model.github.account}}/{{model.github.name}}/actions/workflows/go.yml/badge.svg)
+![License](https://img.shields.io/github/license/{{model.github.account}}/{{model.github.name}})
 ![Experimental](https://img.shields.io/badge/status-experimental-blue)
 
 > {{model.project.title}}
@@ -23,8 +22,8 @@ Highlights:
 {{#ifSatisfy "equals" model.readme.tags "image-demo"}}
 ![Example of {{model.github.name}} usage]({{model.github.name}}-usage.gif "cli")
 {{/ifSatisfy}}
-{{#if model.readme.cheatsheet}}
 
+{{#if model.readme.cheatsheet}}
 
 A few examples of commands:
 
@@ -33,7 +32,6 @@ A few examples of commands:
 ```{{@root.model.readme.cheatsheetFormat}}
 {{example}}
 
-```
 {{/each}}
 {{/if}}
 
@@ -63,25 +61,26 @@ A few examples of commands:
 
 ## Installation
 
-This package is [ESM only](https://blog.sindresorhus.com/get-ready-for-esm-aa53530b3f77).
-
 {{#ifSatisfy "equals" model.implementation.tags "cli"}}
+To install the CLI tool:
 ```bash
-yarn global add {{model.github.name}}
-{{model.github.name}} --help
+go install github.com/{{model.github.account}}/{{model.github.name}}@latest
 ```
-Or alternatively run it:
+To run directly from source:
 ```bash
-npx {{model.github.name}} --help
+git clone https://github.com/{{model.github.account}}/{{model.github.name}}.git
+cd {{model.github.name}}
+go run ./cmd/{{model.github.name}}
 ```
-If you want to tun the latest version from github. Mostly useful for dev:
-```bash
-git clone git@github.com:{{model.github.account}}/{{model.github.name}}.git
-yarn global add `pwd`
 ```
 {{/ifSatisfy}}
 {{#ifSatisfy "not equals" model.implementation.tags "cli"}}
+To use as a module in your Go project:
+```go
+import "github.com/{{model.github.account}}/{{model.github.name}}"
+```
+Install the module:
 ```bash
-yarn add {{model.github.name}}
+go get github.com/{{model.github.account}}/{{model.github.name}}@latest
 ```
 {{/ifSatisfy}}

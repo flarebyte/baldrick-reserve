@@ -10,41 +10,21 @@ Highlights:
 
 ## Code structure
 
- - __src__: Typescript source code
-
-{{#ifSatisfy "equals" model.implementation.tags "jest"}}
- - __test__: Jest unit tests
- {{/ifSatisfy}}
-
- {{#ifSatisfy "equals" model.implementation.tags "node-test"}}
- - __test__: Node.js unit tests. Please prefer `zest` unit tests whenever possible.
- {{/ifSatisfy}}
-
-{{#ifSatisfy "equals" model.implementation.tags "zest"}}
- - __spec__: [baldrick-zest unit regression tests](https://github.com/flarebyte/baldrick-zest-engine)
- {{/ifSatisfy}}
-
-{{#ifSatisfy "equals" model.implementation.tags "pest"}}
- - __pest-spec__: [baldrick-pest acceptance tests](https://github.com/flarebyte/baldrick-pest)
- {{/ifSatisfy}}
-
- - __script__: Folder for bash, python, zx or ts-node scripts
-
- - __dist__: Temporary folder for building distribution code
- 
- - __temp__: Temporary folder used by some of the tooling (tests...)
-
- - __report__: Temporary folder for reporting; usually for continuous integration
-
- - __.github__: Folder for github pipeline
-
- - __.vscode__: Folder for visual code snippets
+ - __cmd__: Entry points to the application (main packages)
+ - __internal__: Private application and library code
+ - __pkg__: Public libraries intended for use by external applications
+ - __api__: Protobuf definitions or OpenAPI specs if applicable
+ - __config__: Configuration files and helpers
+ - __test__: Go unit and integration tests (uses Go's built-in `testing` package)
+ - __scripts__: Tooling scripts (bash, makefiles, etc.)
+ - __build__: Packaging and distribution assets
+ - __.github__: GitHub Actions workflows
+ - __.vscode__: Visual Studio Code settings and tasks
 
 ## Useful links
 
- - Guideline for [Clean Code in Typescript](https://labs42io.github.io/clean-code-typescript/)
-
- - [Supporting node.js ESM](https://the-guild.dev/blog/support-nodejs-esm)
+ - [Effective Go](https://go.dev/doc/effective_go)
+ - [Go Code Review Comments](https://go.dev/wiki/CodeReviewComments)
 {{#ifSatisfy "equals" model.implementation.tags "i18n"}}
  - [Internationalization](INTERNATIONALIZATION.md)
  {{/ifSatisfy}}
@@ -54,6 +34,6 @@ Highlights:
 {{#ifSatisfy "equals" model.implementation.tags "railway"}}
  - [Railway oriented programming](https://fsharpforfunandprofit.com/posts/recipe-part2/)
  {{/ifSatisfy}}
- {{#each model.technical-design.links}}
+{{#each model.technical-design.links}}
 - {{this}}
 {{/each}}
