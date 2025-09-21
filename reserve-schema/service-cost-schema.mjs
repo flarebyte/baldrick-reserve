@@ -1,4 +1,10 @@
-#!/usr/bin/env node
+#!/usr/bin/env zx
+// Usage: npx zx --install reserve-schema/service-cost-schema.mjs
+// Purpose: Generate JSON Schema describing service cost structures; writes
+//          reserve-schema/service-cost.schema.json.
+// Example:
+//   npx zx --install reserve-schema/service-cost-schema.mjs
+// Overview: Specifies cost models in Zod and converts to JSON Schema.
 import { z } from 'zod';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 import { describeEnum } from './tavern-common.mjs';

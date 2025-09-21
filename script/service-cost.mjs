@@ -1,4 +1,11 @@
-#!/usr/bin/env node
+#!/usr/bin/env zx
+// Usage: npx zx --install script/service-cost.mjs -- --filename <cost.yaml>
+// Purpose: Read a service cost YAML and print a quick budget view with unicode
+//          bars and GBP normalization to stdout.
+// Example:
+//   npx zx --install script/service-cost.mjs -- --filename data/cost.yaml
+// Overview: Parses YAML, normalizes currency, renders tiny bar charts, and logs
+//           results; uses zx globals (argv, fs, YAML).
 
 if (!argv.filename){
     throw new Error('I was expecting --filename')

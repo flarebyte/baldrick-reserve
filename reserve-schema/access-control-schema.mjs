@@ -1,4 +1,11 @@
-#!/usr/bin/env node
+#!/usr/bin/env zx
+// Usage: npx zx --install reserve-schema/access-control-schema.mjs
+// Purpose: Generate JSON Schema for access control (attributes, principals,
+//          conditions) and write to reserve-schema/access-control.schema.json.
+// Example:
+//   npx zx --install reserve-schema/access-control-schema.mjs
+// Overview: Builds Zod models for attribute-based rules and principals, then
+//           converts them to JSON Schema with zod-to-json-schema.
 import { z } from 'zod';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 

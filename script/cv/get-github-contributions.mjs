@@ -1,4 +1,11 @@
 #!/usr/bin/env zx
+// Usage: npx zx --install script/cv/get-github-contributions.mjs -- --start 2020 --end 2023 [--company <login>]
+// Purpose: Fetch GitHub commit contributions via gh CLI GraphQL and summarize
+//          them per repository/year into TSV files.
+// Example:
+//   npx zx --install script/cv/get-github-contributions.mjs -- --start 2021 --end 2024 --company flarebyte
+// Overview: Uses gh api GraphQL, maps results to rows, filters optionally by
+//           organization, and writes per-year and all-years TSV files.
 $.verbose = false;
 
 const startYear = parseInt(argv.start || '2020');

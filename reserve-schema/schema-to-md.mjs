@@ -1,4 +1,10 @@
 #!/usr/bin/env zx
+// Usage: npx zx --install reserve-schema/schema-to-md.mjs -- --schema <path> --md <path> --title <name>
+// Purpose: Expand a JSON Schema (resolving $ref) into a readable Markdown tree.
+// Example:
+//   npx zx --install reserve-schema/schema-to-md.mjs -- --schema reserve-schema/entity.schema.json --md ENTITY.md --title entity
+// Overview: Loads JSON Schema, inline-resolves refs, walks properties/anyOf, and
+//           writes a bullet-list representation to Markdown.
 // @ts-check
 const fs = require('node:fs');
 const { argv } = require('node:process');

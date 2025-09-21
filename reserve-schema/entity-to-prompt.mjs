@@ -1,4 +1,11 @@
-#!/usr/bin/env node
+#!/usr/bin/env zx
+// Usage: npx zx --install reserve-schema/entity-to-prompt.mjs -- --filename <entity.yaml>
+// Purpose: Convert an entity YAML (matching entity schema) into a descriptive
+//          prompt text for documentation or LLM input.
+// Example:
+//   npx zx --install reserve-schema/entity-to-prompt.mjs -- --filename data/entity.yaml
+// Overview: Reads YAML, formats salient fields into a concise paragraph using
+//           zx globals (argv, fs, YAML), and prints to stdout.
 
 const entityFilename = argv.filename;
 

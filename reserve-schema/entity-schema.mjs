@@ -1,10 +1,15 @@
-#!/usr/bin/env node
+#!/usr/bin/env zx
+// Usage: npx zx --install reserve-schema/entity-schema.mjs
+// Purpose: Generate a JSON Schema from the Zod entity model and write it to
+//          reserve-schema/entity.schema.json for downstream tooling and docs.
+// Example:
+//   - Generate: npx zx --install reserve-schema/entity-schema.mjs
+//   - Inspect:  cat reserve-schema/entity.schema.json | head -n 20
+// Overview: Defines an entity domain model (frequencies, relationships, fields,
+//           privacy, etc.) using Zod, converts it via zod-to-json-schema, and
+//           writes the result using zx’s fs.writeJson.
 import { z } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
-
-/**
- * Run: `npx zx --install reserve-schema/entity-schema.mjs`
- */
 
 const frequency = z.enum([
   "never",

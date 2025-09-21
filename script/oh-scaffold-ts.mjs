@@ -1,4 +1,11 @@
 #!/usr/bin/env zx
+// Usage: npx zx --install script/oh-scaffold-ts.mjs
+// Purpose: Scaffold a TypeScript project using Baldrick Whisker and local broth
+//          presets, then tailor files based on current directory name.
+// Example:
+//   npx zx --install script/oh-scaffold-ts.mjs
+// Overview: Merges broth data, computes a project model, and applies templates
+//           for README, package.json, and related files using baldrick-whisker.
 
 await $`npx baldrick-whisker@latest object baldrick-broth.yaml github:flarebyte:baldrick-reserve:data/ts/baldrick-broth.yaml`;
 const target = "lib";

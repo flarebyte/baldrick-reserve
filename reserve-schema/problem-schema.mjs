@@ -1,4 +1,11 @@
-#!/usr/bin/env node
+#!/usr/bin/env zx
+// Usage: npx zx --install reserve-schema/problem-schema.mjs
+// Purpose: Generate a JSON Schema for problem reports and tracking; writes to
+//          reserve-schema/problem.schema.json.
+// Example:
+//   npx zx --install reserve-schema/problem-schema.mjs
+// Overview: Models issues, statuses, and metadata in Zod and outputs JSON
+//           Schema via zod-to-json-schema.
 import { z } from 'zod';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 

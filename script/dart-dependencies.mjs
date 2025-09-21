@@ -1,4 +1,11 @@
-#!/usr/bin/env node
+#!/usr/bin/env zx
+// Usage: npx zx --install script/dart-dependencies.mjs
+// Purpose: Summarize Dart pubspec dependencies and flag which are recognized in
+//          a curated registry; outputs to stdout or can be extended to MD.
+// Example:
+//   npx zx --install script/dart-dependencies.mjs
+// Overview: Parses pubspec.yaml via zx YAML, compares deps against a registry,
+//           and reports gaps.
 
 const pubspecFile = await fs.readFile('pubspec.yaml', { encoding: 'utf8' });
 const pubspec = YAML.parse(pubspecFile);

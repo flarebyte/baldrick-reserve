@@ -1,4 +1,11 @@
-#!/usr/bin/env node
+#!/usr/bin/env zx
+// Usage: npx zx --install reserve-schema/tavern-schema.mjs
+// Purpose: Generate JSON Schema for the Baldrick tavern discussion model; writes
+//          reserve-schema/tavern.schema.json.
+// Example:
+//   npx zx --install reserve-schema/tavern-schema.mjs
+// Overview: Defines prompts, outputs, and agents via Zod discriminated unions,
+//           then emits JSON Schema with zod-to-json-schema.
 import { z } from 'zod';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 

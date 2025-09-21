@@ -1,4 +1,10 @@
-#!/usr/bin/env node
+#!/usr/bin/env zx
+// Usage: npx zx --install reserve-schema/typescript-broth-schema.mjs
+// Purpose: Generate JSON Schema for TypeScript broth configuration; writes
+//          reserve-schema/ts-broth.schema.json.
+// Example:
+//   npx zx --install reserve-schema/typescript-broth-schema.mjs
+// Overview: Captures TS project config in Zod and converts to JSON Schema.
 import { z } from 'zod';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 import { describeEnum } from './zod-common.mjs';

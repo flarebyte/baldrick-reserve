@@ -1,4 +1,10 @@
-#!/usr/bin/env node
+#!/usr/bin/env zx
+// Usage: npx zx --install reserve-schema/sequence-schema.mjs
+// Purpose: Generate JSON Schema for sequences/workflows; writes
+//          reserve-schema/sequence.schema.json.
+// Example:
+//   npx zx --install reserve-schema/sequence-schema.mjs
+// Overview: Defines sequence structures in Zod and converts to JSON Schema.
 import { z } from 'zod';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 

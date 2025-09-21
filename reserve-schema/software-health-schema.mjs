@@ -1,4 +1,10 @@
-#!/usr/bin/env node
+#!/usr/bin/env zx
+// Usage: npx zx --install reserve-schema/software-health-schema.mjs
+// Purpose: Generate JSON Schema for software health metrics and dashboards;
+//          writes reserve-schema/software-health.schema.json.
+// Example:
+//   npx zx --install reserve-schema/software-health-schema.mjs
+// Overview: Declares quality aspects in Zod and emits JSON Schema.
 import { z } from 'zod';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 import { describeEnum } from './zod-common.mjs';
