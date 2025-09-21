@@ -507,6 +507,10 @@ workflows:
               run: npx baldrick-whisker@latest render baldrick-broth.yaml
                 github:flarebyte:baldrick-reserve:template/ts/maintenance.hbs
                 MAINTENANCE.md
+            - title: Create AGENTS.md
+              run: npx baldrick-whisker@latest render baldrick-broth.yaml
+                github:flarebyte:baldrick-reserve:template/ts/agents.hbs
+                AGENTS.md
             - title: Create LICENSE
               run:
                 npx baldrick-whisker@latest render --no-ext baldrick-broth.yaml
