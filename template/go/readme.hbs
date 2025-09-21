@@ -9,9 +9,17 @@
 
 {{model.project.description}}
 
-{{#ifSatisfy "equals" model.readme.tags "image-hero"}}
+{{#if model.readme.summary}}
+{{model.readme.summary}}
+{{/if}}
+
+{{#if model.readme.images.hero}}
+![Hero image for {{model.github.name}}]({{model.readme.images.hero}})
+{{else}}
+  {{#ifSatisfy "equals" model.readme.tags "image-hero"}}
 ![Hero image for {{model.github.name}}]({{model.github.name}}-hero-512.jpeg)
-{{/ifSatisfy}}
+  {{/ifSatisfy}}
+{{/if}}
 
 Highlights:
 
@@ -19,9 +27,25 @@ Highlights:
 * {{this}}
 {{/each}}
 
-{{#ifSatisfy "equals" model.readme.tags "image-demo"}}
+{{#if model.readme.valueProps}}
+## Value
+
+{{#each model.readme.valueProps}}
+* {{this}}
+{{/each}}
+{{/if}}
+
+{{#if model.readme.personas}}
+> For: {{#each model.readme.personas}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+{{/if}}
+
+{{#if model.readme.images.demo}}
+![Example of {{model.github.name}} usage]({{model.readme.images.demo}} "demo")
+{{else}}
+  {{#ifSatisfy "equals" model.readme.tags "image-demo"}}
 ![Example of {{model.github.name}} usage]({{model.github.name}}-usage.gif "cli")
-{{/ifSatisfy}}
+  {{/ifSatisfy}}
+{{/if}}
 
 {{#if model.readme.cheatsheet}}
 
@@ -33,6 +57,111 @@ A few examples of commands:
 {{example}}
 ```
 
+{{/each}}
+{{/if}}
+
+{{#if model.readme.cliExamples}}
+## CLI Examples
+
+{{#each model.readme.cliExamples}}
+{{title}}:
+```bash
+{{command}}
+```
+{{/each}}
+{{/if}}
+
+{{#if model.readme.quickstart}}
+## Quickstart
+
+{{model.readme.quickstart.intro}}
+
+{{#each model.readme.quickstart.steps}}
+1. {{this}}
+{{/each}}
+
+{{#if model.readme.quickstart.code}}
+```{{model.readme.quickstart.code.lang}}
+{{model.readme.quickstart.code.snippet}}
+```
+{{/if}}
+{{/if}}
+
+{{#if model.readme.useCases}}
+## Use Cases
+
+{{#each model.readme.useCases}}
+### {{title}}
+{{description}}
+{{#if steps}}
+{{#each steps}}
+- {{this}}
+{{/each}}
+{{/if}}
+{{#if code}}
+```{{code.lang}}
+{{code.snippet}}
+```
+{{/if}}
+{{/each}}
+{{/if}}
+
+{{#if model.readme.configuration}}
+## Configuration
+
+{{#if model.readme.configuration.env}}
+Environment variables:
+{{#each model.readme.configuration.env}}
+- `{{name}}`: {{description}}{{#if required}} (required){{/if}}{{#if default}} (default: `{{default}}`){{/if}}
+{{/each}}
+{{/if}}
+
+{{#if model.readme.configuration.files}}
+Config files:
+{{#each model.readme.configuration.files}}
+- `{{path}}`: {{purpose}}
+{{/each}}
+{{/if}}
+{{/if}}
+
+{{#if model.readme.apiExamples}}
+## API Examples
+
+{{#each model.readme.apiExamples}}
+### {{title}}
+```{{lang}}
+{{snippet}}
+```
+{{/each}}
+{{/if}}
+
+{{#if model.readme.architecture}}
+## Architecture
+
+{{#each model.readme.architecture.overview}}
+- {{this}}
+{{/each}}
+{{#if model.readme.architecture.diagram}}
+![Architecture diagram]({{model.readme.architecture.diagram}})
+{{/if}}
+{{/if}}
+
+{{#if model.readme.faq}}
+## FAQ
+
+{{#each model.readme.faq}}
+Q: {{q}}
+
+A: {{a}}
+
+{{/each}}
+{{/if}}
+
+{{#if model.readme.troubleshooting}}
+## Troubleshooting
+
+{{#each model.readme.troubleshooting}}
+- {{symptom}}{{#if cause}} (cause: {{cause}}){{/if}} → {{fix}}
 {{/each}}
 {{/if}}
 

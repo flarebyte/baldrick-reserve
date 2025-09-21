@@ -1,4 +1,11 @@
-#!/usr/bin/env node
+#!/usr/bin/env zx
+// Usage: npx zx --install reserve-schema/tavern-agent-schema.mjs
+// Purpose: Generate JSON Schema for Baldrick tavern agent definitions; writes
+//          reserve-schema/tavern-agent.schema.json.
+// Example:
+//   npx zx --install reserve-schema/tavern-agent-schema.mjs
+// Overview: Encodes agent variants with Zod discriminated unions; exports JSON
+//           Schema for tooling and docs.
 import { z } from 'zod';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 import { dataKind } from './tavern-common.mjs'

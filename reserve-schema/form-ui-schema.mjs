@@ -1,4 +1,11 @@
-#!/usr/bin/env node
+#!/usr/bin/env zx
+// Usage: npx zx --install reserve-schema/form-ui-schema.mjs
+// Purpose: Generate a UI Form JSON Schema describing widgets and field
+//          requirements; writes reserve-schema/form-ui.schema.json.
+// Example:
+//   npx zx --install reserve-schema/form-ui-schema.mjs
+// Overview: Declares enums and shapes for UI widgets and requirements using
+//           Zod, then emits JSON Schema via zod-to-json-schema.
 import { z } from 'zod';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 import { describeEnum } from './tavern-common.mjs';

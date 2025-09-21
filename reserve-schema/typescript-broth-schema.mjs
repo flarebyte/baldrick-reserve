@@ -1,6 +1,25 @@
-#!/usr/bin/env node
+#!/usr/bin/env zx
+// Usage: npx zx reserve-schema/typescript-broth-schema.mjs
+// Purpose: Generate JSON Schema for a "broth" configuration; writes
+//          reserve-schema/ts-broth.schema.json.
+// Note: Despite the filename, this broth model is used across languages
+//       (TypeScript, Go, Dart) to drive README and workflow scaffolding.
+//       The name remains for backward compatibility.
+// Example:
+//   npx zx reserve-schema/typescript-broth-schema.mjs
+// Overview: Captures TS project config in Zod and converts to JSON Schema.
+// Pinning: This script expects zod@3.24.x and zod-to-json-schema@3.24.x.
+//          Please add them to your devDependencies. It does not auto-install.
 import { z } from 'zod';
 import { zodToJsonSchema } from 'zod-to-json-schema';
+try {
+  // Ensure modules are resolvable; version is advisory only.
+  await import('zod');
+  await import('zod-to-json-schema');
+} catch (err) {
+  console.error('Missing dependencies. Install: npm i -D zod@3.24.1 zod-to-json-schema@3.24.6');
+  process.exit(1);
+}
 import { describeEnum } from './zod-common.mjs';
 
 const link = z.object({
@@ -43,6 +62,41 @@ const cheatsheetFormatEnum = {
   javascript: 'Javascript',
 };
 
+const codeSnippet = z.object({
+  lang: z.string().min(1).max(40).describe('Language for the code snippet'),
+  snippet: z.string().min(1).max(4000).describe('Code snippet example'),
+});
+
+const envVar = z.object({
+  name: z.string().min(1).max(60).describe('Environment variable name'),
+  description: z.string().min(1).max(200).describe('What it controls'),
+  required: z.boolean().default(false).optional(),
+  default: z.string().max(200).optional(),
+});
+
+const configFile = z.object({
+  path: z.string().min(1).max(200).describe('Relative file path'),
+  purpose: z.string().min(1).max(200).describe('Why this config matters'),
+});
+
+const useCase = z.object({
+  title: z.string().min(1).max(80),
+  description: z.string().min(1).max(600),
+  steps: z.array(z.string().min(1).max(200)).min(1).max(20).optional(),
+  code: codeSnippet.optional(),
+});
+
+const qaItem = z.object({
+  q: z.string().min(1).max(200),
+  a: z.string().min(1).max(1000),
+});
+
+const troubleshootItem = z.object({
+  symptom: z.string().min(1).max(200),
+  cause: z.string().min(1).max(400).optional(),
+  fix: z.string().min(1).max(600),
+});
+
 const schema = z
   .object({
     model: z.object({
@@ -69,9 +123,27 @@ const schema = z
         .describe('About the project'),
       readme: z
         .object({
+          summary: z
+            .string()
+            .min(1)
+            .max(200)
+            .optional()
+            .describe('Short one-liner under the title'),
           highlights: z
             .array(z.string().min(1).max(500))
             .describe('Main highlights for the project'),
+          personas: z
+            .array(z.string().min(1).max(60))
+            .min(1)
+            .max(8)
+            .optional()
+            .describe('Primary audiences (e.g., Maintainers, CLI authors)'),
+          valueProps: z
+            .array(z.string().min(1).max(200))
+            .min(1)
+            .max(10)
+            .optional()
+            .describe('Benefits/value bullets to complement highlights'),
           links: z
             .array(z.string().min(1).max(200))
             .describe('A list of links in Markdown format'),
@@ -87,6 +159,13 @@ const schema = z
               )
             )
             .optional(),
+          images: z
+            .object({
+              hero: z.string().min(1).max(200).optional(),
+              demo: z.string().min(1).max(200).optional(),
+            })
+            .optional()
+            .describe('Custom image paths for hero and demo'),
           cheatsheetFormat: z
             .enum(Object.keys(cheatsheetFormatEnum))
             .describe(
@@ -114,6 +193,52 @@ const schema = z
             .max(40)
             .optional()
             .describe('A cheatsheet with a list of commands'),
+          cliExamples: z
+            .array(
+              z.object({
+                title: z.string().min(1).max(80),
+                command: z.string().min(1).max(500),
+              })
+            )
+            .min(1)
+            .max(40)
+            .optional()
+            .describe('CLI examples with title + command'),
+          apiExamples: z
+            .array(
+              z.object({
+                title: z.string().min(1).max(80),
+                lang: z.string().min(1).max(40),
+                snippet: z.string().min(1).max(4000),
+              })
+            )
+            .min(1)
+            .max(20)
+            .optional()
+            .describe('Small API examples as code snippets'),
+          quickstart: z
+            .object({
+              intro: z.string().min(1).max(400),
+              steps: z.array(z.string().min(1).max(200)).min(1).max(12),
+              code: codeSnippet.optional(),
+            })
+            .optional()
+            .describe('Narrative quickstart, steps and optional code'),
+          useCases: z.array(useCase).min(1).max(10).optional(),
+          configuration: z
+            .object({
+              env: z.array(envVar).min(1).max(40).optional(),
+              files: z.array(configFile).min(1).max(20).optional(),
+            })
+            .optional(),
+          architecture: z
+            .object({
+              overview: z.array(z.string().min(1).max(200)).min(1).max(20),
+              diagram: z.string().min(1).max(200).optional(),
+            })
+            .optional(),
+          faq: z.array(qaItem).min(1).max(20).optional(),
+          troubleshooting: z.array(troubleshootItem).min(1).max(20).optional(),
         })
         .describe('Information to populate the README.md'),
       github: z

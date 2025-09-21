@@ -14,9 +14,52 @@ model:
       - pest
       - node-test
   readme:
+    summary: Tiny library scaffold with reproducible conventions.
+    personas:
+      - Maintainers
+      - CLI authors
+    valueProps:
+      - One-command normalization with sensible defaults
+    images:
+      hero: any-project-name-hero-512.jpeg
     highlights:
       - Written in `Typescript`
       - Built to evolve.
+    quickstart:
+      intro: Get up and running quickly.
+      steps:
+        - yarn install
+        - yarn build
+      code:
+        lang: bash
+        snippet: |
+          yarn test
+    configuration:
+      env:
+        - name: LOG_LEVEL
+          description: Verbosity of logs
+          default: info
+      files:
+        - path: tsconfig.json
+          purpose: TypeScript compiler options
+    cliExamples:
+      - title: Normalize repo
+        command: npx my-cli normalize
+    apiExamples:
+      - title: Import module
+        lang: typescript
+        snippet: |
+          import { something } from 'any-project-name';
+    architecture:
+      overview:
+        - Layered modules with small helpers
+    faq:
+      - q: Does it support ESM only?
+        a: Yes, this package is ESM-only.
+    troubleshooting:
+      - symptom: CLI not found
+        cause: Package not installed globally
+        fix: Use npx or install globally
     links:
       - "[Usage](USAGE.md)"
     related:

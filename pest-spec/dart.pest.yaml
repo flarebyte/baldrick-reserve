@@ -1,0 +1,26 @@
+---
+title: dart scaffolding
+description: Acceptance testing dart scaffolding
+cases:
+  readme:
+    title: Generate README.md (Dart)
+    steps:
+      - title: reset
+        run: rm temp/dart/README.md
+      - title: README.md
+        run: npx baldrick-whisker@latest render pest-spec/fixtures/dart/broth-model.yaml template/dart/readme.hbs temp/dart/README.md
+      - title: save
+        run: cat temp/dart/README.md
+        expect:
+          snapshot: README.md
+  pubspec:
+    title: Generate pubspec.yaml content
+    steps:
+      - title: reset
+        run: rm temp/dart/pubspec-specific.yaml
+      - title: pubspec
+        run: npx baldrick-whisker@latest render pest-spec/fixtures/dart/broth-model.yaml template/dart/package.hbs temp/dart/pubspec-specific.yaml
+      - title: save
+        run: cat temp/dart/pubspec-specific.yaml
+        expect:
+          snapshot: pubspec.yaml

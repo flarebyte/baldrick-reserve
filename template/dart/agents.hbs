@@ -21,6 +21,22 @@ Core docs in this repo (generated from templates):
 -   Usage reference: `USAGE.md`
 -   Dependencies: `DEPENDENCIES.md`, `INTERNAL-DEPENDENCIES.md`
 
+## Write/Customize README via Broth
+
+README is generated from `baldrick-broth.yaml` using the Dart README template.
+
+-   Render locally:
+    -   `npx baldrick-whisker@latest render baldrick-broth.yaml github:flarebyte:baldrick-reserve:template/dart/readme.hbs README.md`
+-   Populate `model.readme` in `baldrick-broth.yaml` to customize content. Supported optional fields include:
+    -   `summary`, `personas`, `valueProps`
+    -   `images.hero`, `images.demo`
+    -   `quickstart` (intro, steps, code), `useCases`
+    -   `configuration.env[]`, `configuration.files[]`
+    -   `cliExamples[]`, `apiExamples[]`
+    -   `architecture.overview[]`, `architecture.diagram`
+    -   `faq[]`, `troubleshooting[]`
+-   Existing `highlights` and `cheatsheet` remain supported as fallbacks.
+
 Day‑to‑day commands (local):
 
 -   Install deps: `dart pub get`
@@ -160,4 +176,3 @@ Editing guidance for agents:
                 baldrick-dev-ts@latest markdown check && dart test)`
             -   `git worktree remove -f "$tmp" && rm -rf "$tmp"`
     -   If warnings also appear on `main`, they are not regressions.
-

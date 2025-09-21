@@ -4,6 +4,7 @@ model:
     title: Reserve of templates used for scaffolding
   pest-filenames:
     - typescript
+    - dart
 
 workflows:
   test:

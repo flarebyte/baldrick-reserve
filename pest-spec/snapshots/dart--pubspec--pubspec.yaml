@@ -1,0 +1,8 @@
+name: any-dart-project
+description: Dart Project title
+version: 0.1.0
+homepage: https://github.com/flarebyte/any-dart-project
+repository: https://github.com/flarebyte/any-dart-project
+topics:
+  - dart
+  - cli

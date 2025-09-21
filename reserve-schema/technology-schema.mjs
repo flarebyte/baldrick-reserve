@@ -1,4 +1,10 @@
-#!/usr/bin/env node
+#!/usr/bin/env zx
+// Usage: npx zx --install reserve-schema/technology-schema.mjs
+// Purpose: Generate JSON Schema for technology descriptors and output to
+//          reserve-schema/technology.schema.json.
+// Example:
+//   npx zx --install reserve-schema/technology-schema.mjs
+// Overview: Defines technology metadata using Zod and converts to JSON Schema.
 import { z } from 'zod';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 

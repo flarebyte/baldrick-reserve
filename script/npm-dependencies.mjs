@@ -1,4 +1,11 @@
-#!/usr/bin/env node
+#!/usr/bin/env zx
+// Usage: npx zx --install script/npm-dependencies.mjs
+// Purpose: Generate DEPENDENCIES.md with a table of deps/devDeps/peerDeps and
+//          whether they are registered (documented) in the curated list.
+// Example:
+//   npx zx --install script/npm-dependencies.mjs && open DEPENDENCIES.md
+// Overview: Reads package.json, queries metadata for unregistered deps via
+//           `npm info`, and writes a Markdown summary.
 
 const packageJson = await fs.readJson('package.json');
 

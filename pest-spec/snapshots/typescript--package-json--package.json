@@ -36,11 +36,10 @@
   ],
   "bin": {},
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "scripts": {
     "build": "tsc --outDir dist",
-    "test": "node --test --loader ts-node/esm test/*.test.ts",
-    "spec": "node --loader ts-node/esm .baldrick-zest.ts"
+    "test": "node --test --loader ts-node/esm test/*.test.ts"
   }
 }

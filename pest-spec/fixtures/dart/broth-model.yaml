@@ -1,0 +1,60 @@
+---
+model:
+  project:
+    title: Dart Project title
+    description: Dart Project Description for README rendering and pubspec.
+    version: 0.1.0
+    keywords:
+      - dart
+      - cli
+  implementation:
+    tags:
+      - cli
+      - pest
+  readme:
+    summary: Minimal Dart CLI scaffold with reproducible conventions.
+    personas:
+      - Maintainers
+      - CLI authors
+    valueProps:
+      - Deterministic scaffolding and docs via broth
+    images:
+      hero: any-dart-project-hero-512.jpeg
+      demo: any-dart-project-usage.gif
+    highlights:
+      - Written in `Dart`
+      - Built to evolve.
+    quickstart:
+      intro: Initialize and run the CLI locally.
+      steps:
+        - dart pub get
+        - dart --version
+      code:
+        lang: bash
+        snippet: |
+          dart --help
+    configuration:
+      env:
+        - name: LOG_LEVEL
+          description: Verbosity of logs
+          default: info
+    cliExamples:
+      - title: Run help
+        command: dart run --help
+    architecture:
+      overview:
+        - Simple CLI entrypoint with subcommands
+    faq:
+      - q: Does it require Flutter?
+        a: No, pure Dart SDK is sufficient.
+    troubleshooting:
+      - symptom: Dart SDK not found
+        fix: "Install Dart SDK and ensure it's on PATH"
+  github:
+    account: flarebyte
+    name: any-dart-project
+  license: MIT
+  author:
+    name: First name
+    url: https://github.com/super-cool-name
+

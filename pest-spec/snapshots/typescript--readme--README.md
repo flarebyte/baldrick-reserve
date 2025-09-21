@@ -10,12 +10,72 @@
 
 Project Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
 
+Tiny library scaffold with reproducible conventions.
+
+![Hero image for any-project-name](any-project-name-hero-512.jpeg)
 
 Highlights:
 
 * Written in `Typescript`
 * Built to evolve.
 
+## Value
+
+* One-command normalization with sensible defaults
+
+> For: Maintainers, CLI authors
+
+
+## CLI Examples
+
+Normalize repo:
+```bash
+npx my-cli normalize
+```
+
+## Quickstart
+
+Get up and running quickly.
+
+1. yarn install
+1. yarn build
+
+```bash
+yarn test
+
+```
+
+
+## Configuration
+
+Environment variables:
+- `LOG_LEVEL`: Verbosity of logs (default: `info`)
+
+Config files:
+- `tsconfig.json`: TypeScript compiler options
+
+## API Examples
+
+### Import module
+```typescript
+import { something } from 'any-project-name';
+
+```
+
+## Architecture
+
+- Layered modules with small helpers
+
+## FAQ
+
+Q: Does it support ESM only?
+
+A: Yes, this package is ESM-only.
+
+
+## Troubleshooting
+
+- CLI not found (cause: Package not installed globally) → Use npx or install globally
 
 ## Documentation and links
 
@@ -44,3 +104,4 @@ This package is [ESM only](https://blog.sindresorhus.com/get-ready-for-esm-aa535
 ```bash
 yarn add any-project-name
 ```
+

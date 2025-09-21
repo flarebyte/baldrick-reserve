@@ -51,6 +51,12 @@
             "readme": {
               "type": "object",
               "properties": {
+                "summary": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200,
+                  "description": "Short one-liner under the title"
+                },
                 "highlights": {
                   "type": "array",
                   "items": {
@@ -59,6 +65,28 @@
                     "maxLength": 500
                   },
                   "description": "Main highlights for the project"
+                },
+                "personas": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 60
+                  },
+                  "minItems": 1,
+                  "maxItems": 8,
+                  "description": "Primary audiences (e.g., Maintainers, CLI authors)"
+                },
+                "valueProps": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "minItems": 1,
+                  "maxItems": 10,
+                  "description": "Benefits/value bullets to complement highlights"
                 },
                 "links": {
                   "type": "array",
@@ -85,6 +113,23 @@
                     "image-demo"
                   ],
                   "description": "Activate some code generation for the readme with either:\nimage-hero: Image hero for the readme\nimage-demo: Animated gif to demonstrate the library or the CLI"
+                },
+                "images": {
+                  "type": "object",
+                  "properties": {
+                    "hero": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "demo": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    }
+                  },
+                  "additionalProperties": false,
+                  "description": "Custom image paths for hero and demo"
                 },
                 "cheatsheetFormat": {
                   "type": "string",
@@ -122,6 +167,297 @@
                   "minItems": 1,
                   "maxItems": 40,
                   "description": "A cheatsheet with a list of commands"
+                },
+                "cliExamples": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 80
+                      },
+                      "command": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 500
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "command"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "minItems": 1,
+                  "maxItems": 40,
+                  "description": "CLI examples with title + command"
+                },
+                "apiExamples": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 80
+                      },
+                      "lang": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 40
+                      },
+                      "snippet": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 4000
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "lang",
+                      "snippet"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "minItems": 1,
+                  "maxItems": 20,
+                  "description": "Small API examples as code snippets"
+                },
+                "quickstart": {
+                  "type": "object",
+                  "properties": {
+                    "intro": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 400
+                    },
+                    "steps": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 200
+                      },
+                      "minItems": 1,
+                      "maxItems": 12
+                    },
+                    "code": {
+                      "type": "object",
+                      "properties": {
+                        "lang": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 40,
+                          "description": "Language for the code snippet"
+                        },
+                        "snippet": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 4000,
+                          "description": "Code snippet example"
+                        }
+                      },
+                      "required": [
+                        "lang",
+                        "snippet"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "intro",
+                    "steps"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Narrative quickstart, steps and optional code"
+                },
+                "useCases": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 80
+                      },
+                      "description": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 600
+                      },
+                      "steps": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200
+                        },
+                        "minItems": 1,
+                        "maxItems": 20
+                      },
+                      "code": {
+                        "$ref": "#/definitions/typescript-broth/properties/model/properties/readme/properties/quickstart/properties/code"
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "description"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "minItems": 1,
+                  "maxItems": 10
+                },
+                "configuration": {
+                  "type": "object",
+                  "properties": {
+                    "env": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 60,
+                            "description": "Environment variable name"
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 200,
+                            "description": "What it controls"
+                          },
+                          "required": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "default": {
+                            "type": "string",
+                            "maxLength": 200
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "description"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "minItems": 1,
+                      "maxItems": 40
+                    },
+                    "files": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 200,
+                            "description": "Relative file path"
+                          },
+                          "purpose": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 200,
+                            "description": "Why this config matters"
+                          }
+                        },
+                        "required": [
+                          "path",
+                          "purpose"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "minItems": 1,
+                      "maxItems": 20
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "architecture": {
+                  "type": "object",
+                  "properties": {
+                    "overview": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 200
+                      },
+                      "minItems": 1,
+                      "maxItems": 20
+                    },
+                    "diagram": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    }
+                  },
+                  "required": [
+                    "overview"
+                  ],
+                  "additionalProperties": false
+                },
+                "faq": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "q": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 200
+                      },
+                      "a": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 1000
+                      }
+                    },
+                    "required": [
+                      "q",
+                      "a"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "minItems": 1,
+                  "maxItems": 20
+                },
+                "troubleshooting": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "symptom": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 200
+                      },
+                      "cause": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 400
+                      },
+                      "fix": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 600
+                      }
+                    },
+                    "required": [
+                      "symptom",
+                      "fix"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "minItems": 1,
+                  "maxItems": 20
                 }
               },
               "required": [

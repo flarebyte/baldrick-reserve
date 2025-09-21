@@ -6,27 +6,6 @@ workflows:
     title: Test the library
     description: Test the library for defects
     tasks:
-      jest:
-        title: Run the unit tests with Jest
-        description: Use the Jest framework to run unit test (deprecated)
-        links:
-          - title: Jest is a JavaScript Testing Framework
-            url: https://jestjs.io/
-        main:
-          commands:
-            - title: Test all test files in test folder
-              run: npx baldrick-dev-ts test check
-      spec:
-        title: Run unit tests declaratively
-        description: Run unit tests for pure functions declaratively using YAML files
-        motivation: Check that the units of code behave as intended
-        links:
-          - title: Baldrick Zest run tests declaratively
-            url: https://github.com/flarebyte/baldrick-zest-engine
-        main:
-          commands:
-            - title: Run all baldrick zest files
-              run: node --loader ts-node/esm .baldrick-zest.ts
       unit:
         title: Run node.js unit tests
         description: Run traditional unit tests
@@ -225,7 +204,7 @@ workflows:
           commands:
             - name: check
               title: Lint check sources
-              run: npx xo
+              run: npx @biomejs/biome check .
       fix:
         title: Fix static code analysis
         description: Fix problems in Typescript code
@@ -234,7 +213,10 @@ workflows:
           commands:
             - name: fix
               title: Fix source code
-              run: npx xo --fix
+              run: npx @biomejs/biome check --apply .
+            - name: format
+              title: Format source files
+              run: npx @biomejs/biome format . --write
   md:
     title: Markdown documentation
     description: Manage markdown documentation
@@ -275,7 +257,6 @@ workflows:
         parameters:
           - description: |
               Pull request mode.
-              Run the pest and zest tests.
             flags: -pr, --pull-request
         main:
           commands:
@@ -290,7 +271,7 @@ workflows:
               run: npx baldrick-dev-ts@latest release check
             - name: lint
               title: Check linting
-              run: npx xo
+              run: npx @biomejs/biome check .
             - name: markdown
               title: Check markdown files
               run: npx baldrick-dev-ts@latest markdown check
@@ -319,22 +300,6 @@ workflows:
               title: Run the integration pest tests
               if: data.should-run-pest
               run: npx baldrick-broth@latest test pest
-            - name: has-zest-files
-              title: Check if there are any zest files
-              run: find . -type f -name *.zest.yaml
-              onSuccess:
-                - save
-                - silent
-            - a: every-truthy
-              name: should-run-zest
-              title: Is this a PR and is there some zest files
-              values:
-                - data.has-zest-files
-                - runtime.parameters.pullRequest
-            - name: zest
-              title: Run the unit zest tests
-              if: data.should-run-zest
-              run: npx npx baldrick-broth@latest test spec
             - name: rm-report
               title: Remove previous report
               run: rm -f temp/pull_request_relevant.md
@@ -362,7 +327,6 @@ workflows:
 
                 {{#if _.result-of-pest}}- :heavy_check_mark:{{else}}- :heavy_exclamation_mark:{{/if}} Integration tests with baldrick-pest {{#unless _.should-run-pest}}(Not supported yet){{/unless}}
 
-                {{#if _.result-of-zest}}- :heavy_check_mark:{{else}}- :heavy_exclamation_mark:{{/if}} Unit tests with baldrick-zest {{#unless _.should-run-zest}}(Not supported yet){{/unless}}
             - name: write-report
               a: append-to-file
               title: Write the report
@@ -504,21 +468,21 @@ workflows:
               run: npx baldrick-whisker@latest object .vscode/settings.json
                 github:flarebyte:baldrick-reserve:data/ts/vscode-settings.json
                 --no-overwrite
-            - title: Create tsconfig.json
+            - title: Create tsconfig.json (ES2024)
               run: npx baldrick-whisker@latest object tsconfig.json
-                github:flarebyte:baldrick-reserve:data/ts/tsconfig-2021.yaml
+                github:flarebyte:baldrick-tsconfig-es2024:tsconfig.json
             - title: Create .prettierrc.json
               run: npx baldrick-whisker@latest object .prettierrc.json
                 github:flarebyte:baldrick-reserve:data/ts/prettierrc.json
             - title: Create .remarkrc.yml
               run: npx baldrick-whisker@latest object .remarkrc.yml
                 github:flarebyte:baldrick-reserve:data/ts/remarkrc.yml
-            - title: Create .xo-config.json
-              run: npx baldrick-whisker@latest object .xo-config.json
-                github:flarebyte:baldrick-reserve:data/ts/xo-config.yaml
+            - title: Create Biome configuration
+              run: npx baldrick-whisker@latest object biome.json
+                github:flarebyte:baldrick-reserve:data/ts/biome.json
               links:
-                - title: TypeScript linter with great defaults
-                  url: https://github.com/xojs/xo
+                - title: Biome (formatter + linter)
+                  url: https://biomejs.dev/
             - title: Create CONTRIBUTING.md with contribution guidelines
               run: npx baldrick-whisker@latest render baldrick-broth.yaml
                 github:flarebyte:baldrick-reserve:template/ts/contributing.hbs
@@ -543,6 +507,10 @@ workflows:
               run: npx baldrick-whisker@latest render baldrick-broth.yaml
                 github:flarebyte:baldrick-reserve:template/ts/maintenance.hbs
                 MAINTENANCE.md
+            - title: Create AGENTS.md
+              run: npx baldrick-whisker@latest render baldrick-broth.yaml
+                github:flarebyte:baldrick-reserve:template/ts/agents.hbs
+                AGENTS.md
             - title: Create LICENSE
               run:
                 npx baldrick-whisker@latest render --no-ext baldrick-broth.yaml
