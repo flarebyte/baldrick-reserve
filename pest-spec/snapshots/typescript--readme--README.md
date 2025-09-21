@@ -104,3 +104,4 @@ This package is [ESM only](https://blog.sindresorhus.com/get-ready-for-esm-aa535
 ```bash
 yarn add any-project-name
 ```
+
