@@ -32,4 +32,4 @@ This repository is a curated reserve of assets for the Baldrick toolchain: JSON 
 - Explicit zx globals: consider `#!/usr/bin/env zx` or `import 'zx/globals'` for clarity and portability.
 - Minor typos in models (e.g., `relationhship`) may propagate to schemas; consider review/renaming strategy.
 - Expand tests: add specs for Dart/Go/Elm templates and additional schema generators.
-- Add npm scripts (e.g., `test`, `gen:schema:<name>`) or a Makefile to streamline commands.
+- Prefer baldrick-broth as the canonical task runner (no Makefile required). Optionally add thin npm scripts that delegate to named Broth workflows for developer ergonomics.

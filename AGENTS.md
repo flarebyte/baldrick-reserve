@@ -9,9 +9,9 @@
 - Config: `.editorconfig`, `.prettierrc.json`, `baldrick-broth.yaml`.
 
 ## Build, Test, and Development Commands
+- Prefer Baldrick Broth workflows (no Makefile needed). See `workflows` in `baldrick-broth.yaml`; use the Broth runner to execute tasks (e.g., the `test` and `generate` workflows as declared).
 - Run a specific acceptance test: `npx baldrick-pest@latest test --spec-file pest-spec/typescript.pest.yaml`.
-- Run all declared tests (see broth): refer to `workflows.test` in `baldrick-broth.yaml`.
-- Generate all schemas: use `workflows.generate.tasks.schema` in `baldrick-broth.yaml` or run, e.g., `npx zx --install reserve-schema/entity-schema.mjs`.
+- Generate all schemas: follow `workflows.generate.tasks.schema` in `baldrick-broth.yaml` or run, e.g., `npx zx --install reserve-schema/entity-schema.mjs`.
 - Generate one schema (discover file): `find . -type f -name *-schema.mjs` then `npx zx --install <path>`.
 - Format check/fix: `npx prettier -c .` / `npx prettier -w .`.
 
@@ -32,4 +32,3 @@
 - PRs: include a clear description, linked issues, and steps to reproduce.
 - When schemas or snapshots change, include the command used and a summary of the impact.
 - Ensure Prettier passes and acceptance tests are green before requesting review.
-
