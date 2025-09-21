@@ -465,9 +465,9 @@ workflows:
               run: npx baldrick-whisker@latest object .vscode/settings.json
                 github:flarebyte:baldrick-reserve:data/ts/vscode-settings.json
                 --no-overwrite
-            - title: Create tsconfig.json
+            - title: Create tsconfig.json (ES2024)
               run: npx baldrick-whisker@latest object tsconfig.json
-                github:flarebyte:baldrick-reserve:data/ts/tsconfig-2021.yaml
+                github:flarebyte:baldrick-tsconfig-es2024:tsconfig.json
             - title: Create .prettierrc.json
               run: npx baldrick-whisker@latest object .prettierrc.json
                 github:flarebyte:baldrick-reserve:data/ts/prettierrc.json
