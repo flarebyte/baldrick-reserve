@@ -204,7 +204,7 @@ workflows:
           commands:
             - name: check
               title: Lint check sources
-              run: npx xo
+              run: npx @biomejs/biome check .
       fix:
         title: Fix static code analysis
         description: Fix problems in Typescript code
@@ -213,7 +213,10 @@ workflows:
           commands:
             - name: fix
               title: Fix source code
-              run: npx xo --fix
+              run: npx @biomejs/biome check --apply .
+            - name: format
+              title: Format source files
+              run: npx @biomejs/biome format . --write
   md:
     title: Markdown documentation
     description: Manage markdown documentation
@@ -268,7 +271,7 @@ workflows:
               run: npx baldrick-dev-ts@latest release check
             - name: lint
               title: Check linting
-              run: npx xo
+              run: npx @biomejs/biome check .
             - name: markdown
               title: Check markdown files
               run: npx baldrick-dev-ts@latest markdown check
@@ -474,12 +477,12 @@ workflows:
             - title: Create .remarkrc.yml
               run: npx baldrick-whisker@latest object .remarkrc.yml
                 github:flarebyte:baldrick-reserve:data/ts/remarkrc.yml
-            - title: Create .xo-config.json
-              run: npx baldrick-whisker@latest object .xo-config.json
-                github:flarebyte:baldrick-reserve:data/ts/xo-config.yaml
+            - title: Create Biome configuration
+              run: npx baldrick-whisker@latest object biome.json
+                github:flarebyte:baldrick-reserve:data/ts/biome.json
               links:
-                - title: TypeScript linter with great defaults
-                  url: https://github.com/xojs/xo
+                - title: Biome (formatter + linter)
+                  url: https://biomejs.dev/
             - title: Create CONTRIBUTING.md with contribution guidelines
               run: npx baldrick-whisker@latest render baldrick-broth.yaml
                 github:flarebyte:baldrick-reserve:template/ts/contributing.hbs
