@@ -6,27 +6,6 @@ workflows:
     title: Test the library
     description: Test the library for defects
     tasks:
-      jest:
-        title: Run the unit tests with Jest
-        description: Use the Jest framework to run unit test (deprecated)
-        links:
-          - title: Jest is a JavaScript Testing Framework
-            url: https://jestjs.io/
-        main:
-          commands:
-            - title: Test all test files in test folder
-              run: npx baldrick-dev-ts test check
-      spec:
-        title: Run unit tests declaratively
-        description: Run unit tests for pure functions declaratively using YAML files
-        motivation: Check that the units of code behave as intended
-        links:
-          - title: Baldrick Zest run tests declaratively
-            url: https://github.com/flarebyte/baldrick-zest-engine
-        main:
-          commands:
-            - title: Run all baldrick zest files
-              run: node --loader ts-node/esm .baldrick-zest.ts
       unit:
         title: Run node.js unit tests
         description: Run traditional unit tests
@@ -275,7 +254,6 @@ workflows:
         parameters:
           - description: |
               Pull request mode.
-              Run the pest and zest tests.
             flags: -pr, --pull-request
         main:
           commands:
@@ -319,22 +297,6 @@ workflows:
               title: Run the integration pest tests
               if: data.should-run-pest
               run: npx baldrick-broth@latest test pest
-            - name: has-zest-files
-              title: Check if there are any zest files
-              run: find . -type f -name *.zest.yaml
-              onSuccess:
-                - save
-                - silent
-            - a: every-truthy
-              name: should-run-zest
-              title: Is this a PR and is there some zest files
-              values:
-                - data.has-zest-files
-                - runtime.parameters.pullRequest
-            - name: zest
-              title: Run the unit zest tests
-              if: data.should-run-zest
-              run: npx npx baldrick-broth@latest test spec
             - name: rm-report
               title: Remove previous report
               run: rm -f temp/pull_request_relevant.md
@@ -362,7 +324,6 @@ workflows:
 
                 {{#if _.result-of-pest}}- :heavy_check_mark:{{else}}- :heavy_exclamation_mark:{{/if}} Integration tests with baldrick-pest {{#unless _.should-run-pest}}(Not supported yet){{/unless}}
 
-                {{#if _.result-of-zest}}- :heavy_check_mark:{{else}}- :heavy_exclamation_mark:{{/if}} Unit tests with baldrick-zest {{#unless _.should-run-zest}}(Not supported yet){{/unless}}
             - name: write-report
               a: append-to-file
               title: Write the report
