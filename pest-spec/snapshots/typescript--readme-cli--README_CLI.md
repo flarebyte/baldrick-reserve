@@ -10,12 +10,15 @@
 
 Project Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
 
+
 ![Hero image for any-project-name](any-project-name-hero-512.jpeg)
 
 Highlights:
 
 * Written in `Typescript`
 * Built to evolve.
+
+
 
 ![Example of any-project-name usage](any-project-name-usage.gif "cli")
 
@@ -32,6 +35,14 @@ Build the code:
 yarn build
 
 ```
+
+
+
+
+
+
+
+
 
 ## Documentation and links
 
