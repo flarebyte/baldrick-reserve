@@ -10,6 +10,7 @@
 
 Project Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
 
+CLI scaffold with reproducible conventions.
 
 ![Hero image for any-project-name](any-project-name-hero-512.jpeg)
 
@@ -18,9 +19,13 @@ Highlights:
 * Written in `Typescript`
 * Built to evolve.
 
+## Value
 
+* Deterministic CLI scaffolding and docs
 
-![Example of any-project-name usage](any-project-name-usage.gif "cli")
+> For: Maintainers, CLI authors
+
+![Example of any-project-name usage](any-project-name-usage.gif "demo")
 
 
 A few examples of commands:
@@ -36,13 +41,57 @@ yarn build
 
 ```
 
+## CLI Examples
+
+Normalize repo:
+```bash
+npx any-project-name normalize
+```
+
+## Quickstart
+
+Initialize and run the CLI locally.
+
+1. yarn install
+1. yarn build
+1. yarn cli --help
+
+```bash
+npx any-project-name --version
+
+```
 
 
+## Configuration
+
+Environment variables:
+- `DEBUG`: Enable debug logs
+
+Config files:
+- `config.yml`: CLI configuration
+
+## API Examples
+
+### Import command
+```typescript
+import { main } from 'any-project-name';
+
+```
+
+## Architecture
+
+- Commander-based CLI entrypoint
+
+## FAQ
+
+Q: Does it support Windows?
+
+A: Yes, Node.js 22+ is recommended across platforms.
 
 
+## Troubleshooting
 
-
-
+- ESM import error → Ensure 'type': 'module' in package.json
 
 ## Documentation and links
 

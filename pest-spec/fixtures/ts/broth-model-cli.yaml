@@ -15,6 +15,15 @@ model:
       - railway
       - commander
   readme:
+    summary: CLI scaffold with reproducible conventions.
+    personas:
+      - Maintainers
+      - CLI authors
+    valueProps:
+      - Deterministic CLI scaffolding and docs
+    images:
+      hero: any-project-name-hero-512.jpeg
+      demo: any-project-name-usage.gif
     highlights:
       - Written in `Typescript`
       - Built to evolve.
@@ -31,6 +40,41 @@ model:
         example: yarn test
       - title: Build the code
         example: yarn build
+    quickstart:
+      intro: Initialize and run the CLI locally.
+      steps:
+        - yarn install
+        - yarn build
+        - yarn cli --help
+      code:
+        lang: bash
+        snippet: |
+          npx any-project-name --version
+    configuration:
+      env:
+        - name: DEBUG
+          description: Enable debug logs
+          default: ""
+      files:
+        - path: config.yml
+          purpose: CLI configuration
+    cliExamples:
+      - title: Normalize repo
+        command: npx any-project-name normalize
+    apiExamples:
+      - title: Import command
+        lang: typescript
+        snippet: |
+          import { main } from 'any-project-name';
+    architecture:
+      overview:
+        - Commander-based CLI entrypoint
+    faq:
+      - q: Does it support Windows?
+        a: Yes, Node.js 22+ is recommended across platforms.
+    troubleshooting:
+      - symptom: ESM import error
+        fix: "Ensure 'type': 'module' in package.json"
   github:
     account: flarebyte
     name: any-project-name
