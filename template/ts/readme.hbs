@@ -1,70 +1,70 @@
-# {{model.github.name}}
+# {{github.name}}
 
-![npm](https://img.shields.io/npm/v/{{model.github.name}}) ![Build status](https://github.com/{{model.github.account}}/{{model.github.name}}/actions/workflows/main.yml/badge.svg) ![npm bundle size](https://img.shields.io/bundlephobia/min/{{model.github.name}})
+![npm](https://img.shields.io/npm/v/{{github.name}}) ![Build status](https://github.com/{{github.account}}/{{github.name}}/actions/workflows/main.yml/badge.svg) ![npm bundle size](https://img.shields.io/bundlephobia/min/{{github.name}})
 
-![npm type definitions](https://img.shields.io/npm/types/{{model.github.name}}) ![node-current](https://img.shields.io/node/v/{{model.github.name}}) ![NPM](https://img.shields.io/npm/l/{{model.github.name}})
+![npm type definitions](https://img.shields.io/npm/types/{{github.name}}) ![node-current](https://img.shields.io/node/v/{{github.name}}) ![NPM](https://img.shields.io/npm/l/{{github.name}})
 
 ![Experimental](https://img.shields.io/badge/status-experimental-blue)
 
-> {{model.project.title}}
+> {{project.title}}
 
-{{model.project.description}}
+{{project.description}}
 
-{{#if model.readme.summary}}
-{{model.readme.summary}}
+{{#if readme.summary}}
+{{readme.summary}}
 {{/if}}
 
-{{#if model.readme.images.hero}}
-![Hero image for {{model.github.name}}]({{model.readme.images.hero}})
+{{#if readme.images.hero}}
+![Hero image for {{github.name}}]({{readme.images.hero}})
 {{else}}
-  {{#ifSatisfy "equals" model.readme.tags "image-hero"}}
-![Hero image for {{model.github.name}}]({{model.github.name}}-hero-512.jpeg)
+  {{#ifSatisfy "equals" readme.tags "image-hero"}}
+![Hero image for {{github.name}}]({{github.name}}-hero-512.jpeg)
   {{/ifSatisfy}}
 {{/if}}
 
 Highlights:
 
-{{#each model.readme.highlights}}
+{{#each readme.highlights}}
 * {{this}}
 {{/each}}
 
-{{#if model.readme.valueProps}}
+{{#if readme.valueProps}}
 ## Value
 
-{{#each model.readme.valueProps}}
+{{#each readme.valueProps}}
 * {{this}}
 {{/each}}
 {{/if}}
 
-{{#if model.readme.personas}}
-> For: {{#each model.readme.personas}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+{{#if readme.personas}}
+> For: {{#each readme.personas}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
 {{/if}}
 
-{{#if model.readme.images.demo}}
-![Example of {{model.github.name}} usage]({{model.readme.images.demo}} "demo")
+{{#if readme.images.demo}}
+![Example of {{github.name}} usage]({{readme.images.demo}} "demo")
 {{else}}
-  {{#ifSatisfy "equals" model.readme.tags "image-demo"}}
-![Example of {{model.github.name}} usage]({{model.github.name}}-usage.gif "cli")
+  {{#ifSatisfy "equals" readme.tags "image-demo"}}
+![Example of {{github.name}} usage]({{github.name}}-usage.gif "cli")
   {{/ifSatisfy}}
 {{/if}}
-{{#if model.readme.cheatsheet}}
+{{#if readme.cheatsheet}}
 
 
 A few examples of commands:
 
-{{#each model.readme.cheatsheet}}
+{{#each readme.cheatsheet}}
 {{title}}:
-```{{@root.model.readme.cheatsheetFormat}}
+```{{@root.readme.cheatsheetFormat}}
 {{example}}
 
 ```
 {{/each}}
 {{/if}}
 
-{{#if model.readme.cliExamples}}
+{{#if readme.cliExamples}}
 ## CLI Examples
 
-{{#each model.readme.cliExamples}}
+{{#each readme.cliExamples}}
 {{title}}:
 ```bash
 {{command}}
@@ -72,26 +72,26 @@ A few examples of commands:
 {{/each}}
 {{/if}}
 
-{{#if model.readme.quickstart}}
+{{#if readme.quickstart}}
 ## Quickstart
 
-{{model.readme.quickstart.intro}}
+{{readme.quickstart.intro}}
 
-{{#each model.readme.quickstart.steps}}
+{{#each readme.quickstart.steps}}
 1. {{this}}
 {{/each}}
 
-{{#if model.readme.quickstart.code}}
-```{{model.readme.quickstart.code.lang}}
-{{model.readme.quickstart.code.snippet}}
+{{#if readme.quickstart.code}}
+```{{readme.quickstart.code.lang}}
+{{readme.quickstart.code.snippet}}
 ```
 {{/if}}
 {{/if}}
 
-{{#if model.readme.useCases}}
+{{#if readme.useCases}}
 ## Use Cases
 
-{{#each model.readme.useCases}}
+{{#each readme.useCases}}
 ### {{title}}
 {{description}}
 {{#if steps}}
@@ -107,28 +107,28 @@ A few examples of commands:
 {{/each}}
 {{/if}}
 
-{{#if model.readme.configuration}}
+{{#if readme.configuration}}
 ## Configuration
 
-{{#if model.readme.configuration.env}}
+{{#if readme.configuration.env}}
 Environment variables:
-{{#each model.readme.configuration.env}}
+{{#each readme.configuration.env}}
 - `{{name}}`: {{description}}{{#if required}} (required){{/if}}{{#if default}} (default: `{{default}}`){{/if}}
 {{/each}}
 {{/if}}
 
-{{#if model.readme.configuration.files}}
+{{#if readme.configuration.files}}
 Config files:
-{{#each model.readme.configuration.files}}
+{{#each readme.configuration.files}}
 - `{{path}}`: {{purpose}}
 {{/each}}
 {{/if}}
 {{/if}}
 
-{{#if model.readme.apiExamples}}
+{{#if readme.apiExamples}}
 ## API Examples
 
-{{#each model.readme.apiExamples}}
+{{#each readme.apiExamples}}
 ### {{title}}
 ```{{lang}}
 {{snippet}}
@@ -136,21 +136,21 @@ Config files:
 {{/each}}
 {{/if}}
 
-{{#if model.readme.architecture}}
+{{#if readme.architecture}}
 ## Architecture
 
-{{#each model.readme.architecture.overview}}
+{{#each readme.architecture.overview}}
 - {{this}}
 {{/each}}
-{{#if model.readme.architecture.diagram}}
-![Architecture diagram]({{model.readme.architecture.diagram}})
+{{#if readme.architecture.diagram}}
+![Architecture diagram]({{readme.architecture.diagram}})
 {{/if}}
 {{/if}}
 
-{{#if model.readme.faq}}
+{{#if readme.faq}}
 ## FAQ
 
-{{#each model.readme.faq}}
+{{#each readme.faq}}
 Q: {{q}}
 
 A: {{a}}
@@ -158,10 +158,10 @@ A: {{a}}
 {{/each}}
 {{/if}}
 
-{{#if model.readme.troubleshooting}}
+{{#if readme.troubleshooting}}
 ## Troubleshooting
 
-{{#each model.readme.troubleshooting}}
+{{#each readme.troubleshooting}}
 - {{symptom}}{{#if cause}} (cause: {{cause}}){{/if}} → {{fix}}
 {{/each}}
 {{/if}}
@@ -170,23 +170,23 @@ A: {{a}}
 
 * [Code Maintenance :wrench:](MAINTENANCE.md)
 * [Code Of Conduct](CODE_OF_CONDUCT.md)
-* [Api for {{model.github.name}}](API.md)
+* [Api for {{github.name}}](API.md)
 * [Contributing :busts_in_silhouette: :construction:](CONTRIBUTING.md)
 * [Diagram for the code base :triangular_ruler:](INTERNAL.md)
 * [Vocabulary used in the code base :book:](CODE_VOCABULARY.md)
 * [Architectural Decision Records :memo:](DECISIONS.md)
-* [Contributors :busts_in_silhouette:](https://github.com/{{model.github.account}}/{{model.github.name}}/graphs/contributors)
-* [Dependencies](https://github.com/{{model.github.account}}/{{model.github.name}}/network/dependencies)
+* [Contributors :busts_in_silhouette:](https://github.com/{{github.account}}/{{github.name}}/graphs/contributors)
+* [Dependencies](https://github.com/{{github.account}}/{{github.name}}/network/dependencies)
 * [Glossary :book:](https://github.com/flarebyte/overview/blob/main/GLOSSARY.md)
 * [Software engineering principles :gem:](https://github.com/flarebyte/overview/blob/main/PRINCIPLES.md)
 * [Overview of Flarebyte.com ecosystem :factory:](https://github.com/flarebyte/overview)
-{{#each model.readme.links}}
+{{#each readme.links}}
 * {{this}}
 {{/each}}
 
 ## Related
 
-{{#each model.readme.related}}
+{{#each readme.related}}
 * {{this}}
 {{/each}}
 
@@ -194,23 +194,23 @@ A: {{a}}
 
 This package is [ESM only](https://blog.sindresorhus.com/get-ready-for-esm-aa53530b3f77).
 
-{{#ifSatisfy "equals" model.implementation.tags "cli"}}
+{{#ifSatisfy "equals" implementation.tags "cli"}}
 ```bash
-yarn global add {{model.github.name}}
-{{model.github.name}} --help
+yarn global add {{github.name}}
+{{github.name}} --help
 ```
 Or alternatively run it:
 ```bash
-npx {{model.github.name}} --help
+npx {{github.name}} --help
 ```
 If you want to tun the latest version from github. Mostly useful for dev:
 ```bash
-git clone git@github.com:{{model.github.account}}/{{model.github.name}}.git
+git clone git@github.com:{{github.account}}/{{github.name}}.git
 yarn global add `pwd`
 ```
 {{/ifSatisfy}}
-{{#ifSatisfy "not equals" model.implementation.tags "cli"}}
+{{#ifSatisfy "not equals" implementation.tags "cli"}}
 ```bash
-yarn add {{model.github.name}}
+yarn add {{github.name}}
 ```
 {{/ifSatisfy}}

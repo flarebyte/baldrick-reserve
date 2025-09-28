@@ -1,41 +1,41 @@
 {
-  "name": "{{model.github.name}}",
-  "description": "{{model.project.title}}",
-  "version": "{{model.project.version}}",
+  "name": "{{github.name}}",
+  "description": "{{project.title}}",
+  "version": "{{project.version}}",
   "author": {
-    "name": "{{model.author.name}}",
-    "url": "{{model.author.url}}"
+    "name": "{{author.name}}",
+    "url": "{{author.url}}"
   },
   "keywords": [
-  {{#with model.project}}
+  {{#with project}}
   {{#listJoin "," keywords}} "{{this}}" {{/listJoin}}
   {{/with}}
   ],
-  "license": "{{model.license}}",
-  "homepage": "https://github.com/{{model.github.account}}/{{model.github.name}}",
+  "license": "{{license}}",
+  "homepage": "https://github.com/{{github.account}}/{{github.name}}",
   "repository": {
     "type": "git",
-    "url": "https://github.com/{{model.github.account}}/{{model.github.name}}.git"
+    "url": "https://github.com/{{github.account}}/{{github.name}}.git"
   },
-  "bugs": "https://github.com/{{model.github.account}}/{{model.github.name}}/issues"
-  {{#ifSatisfy "equals" model.implementation.tags "cli"}}
+  "bugs": "https://github.com/{{github.account}}/{{github.name}}/issues"
+  {{#ifSatisfy "equals" implementation.tags "cli"}}
    , "bin": {
-    "{{model.github.name}}": "dist/src/cli.mjs"
+    "{{github.name}}": "dist/src/cli.mjs"
   },
     "type": "module",
     "exports": {
       ".": {
-        "import": "./dist/src/cli.mjs",
-        "default": "./dist/src/cli.mjs",
-        "types": "./dist/src"
+        "import": "./dist/cli.mjs",
+        "default": "./dist/cli.mjs",
+        "types": "./src"
       },
       "./package.json": {
         "default": "./package.json"
       }
     },
-    "main": "./dist/src/index.mjs",
+    "main": "./dist/index.js",
     "files": [
-      "dist/src",
+      "dist",
       "src"
     ],
     "engines": {
@@ -43,35 +43,66 @@
     },
     "scripts": {
       "build": "tsc --outDir dist",
-      "test": "node --test --loader ts-node/esm test/*.test.ts",
-      "cli": "node --loader ts-node/esm src/cli.mts"
-    }
+      "test": "tsx --test test/*.test.ts",
+      "cli": "tsx src/cli.mts",
+      "test:cov": "c8 --reporter=text-summary --reporter=lcov yarn -s test"
+    },
+    "c8": {
+    "all": true,
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "dist/**",
+      "test/**",
+      "pest-spec/**",
+      "spec/**",
+      "**/*.d.ts"
+    ]
+  }
   {{/ifSatisfy}}
-  {{#ifSatisfy "equals" model.implementation.tags "lib"}}
+  {{#ifSatisfy "equals" implementation.tags "lib"}}
     , "type": "module",
-    "types": "./dist/src/index.d.mts",
+    "types": "./dist/index.d.mts",
     "exports": {
       ".": {
-        "import": "./dist/src/index.mjs",
-        "default": "./dist/src/index.mjs",
-        "types": "./dist/src"
+        "import": "./dist/index.mjs",
+        "default": "./dist/index.mjs",
+        "types": "./dist"
       },
       "./package.json": {
         "default": "./package.json"
       }
     },
-    "main": "./dist/src/index.mjs",
+    "main": "./dist/index.mjs",
     "files": [
-      "dist/src",
+      "dist",
       "src"
     ],
-    "bin": {},
+    "bin": {
+      "{{github.name}}": "dist/cli.mjs"
+    },
     "engines": {
       "node": ">=22"
     },
     "scripts": {
       "build": "tsc --outDir dist",
-      "test": "node --test --loader ts-node/esm test/*.test.ts"
-    }
+      "test": "tsx --test test/*.test.ts",
+      "cli": "tsx src/cli.mts",
+      "test:cov": "c8 --reporter=text-summary --reporter=lcov yarn -s test"
+    },
+    "c8": {
+    "all": true,
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "dist/**",
+      "test/**",
+      "pest-spec/**",
+      "spec/**",
+      "**/*.d.ts"
+    ]
+  }
   {{/ifSatisfy}}
 }
