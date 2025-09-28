@@ -20,25 +20,30 @@ Highlights:
  - __test__: Node.js unit tests. Please prefer `zest` unit tests whenever possible.
  {{/ifSatisfy}}
 
-{{#ifSatisfy "equals" implementation.tags "zest"}}
- - __spec__: [baldrick-zest unit regression tests](https://github.com/flarebyte/baldrick-zest-engine)
- {{/ifSatisfy}}
-
 {{#ifSatisfy "equals" implementation.tags "pest"}}
  - __pest-spec__: [baldrick-pest acceptance tests](https://github.com/flarebyte/baldrick-pest)
  {{/ifSatisfy}}
 
- - __script__: Folder for bash, python, zx or ts-node scripts
+ -  **src**: Typescript source code
 
- - __dist__: Temporary folder for building distribution code
- 
- - __temp__: Temporary folder used by some of the tooling (tests...)
+-   **spec**: [baldrick-zest unit regression
+    tests](https://github.com/flarebyte/baldrick-zest-engine)
 
- - __report__: Temporary folder for reporting; usually for continuous integration
+-   **pest-spec**: [baldrick-pest acceptance
+    tests](https://github.com/flarebyte/baldrick-pest)
 
- - __.github__: Folder for github pipeline
+-   **script**: Folder for bash, python, zx or ts-node scripts
 
- - __.vscode__: Folder for visual code snippets
+-   **dist**: Temporary folder for building distribution code
+
+-   **temp**: Temporary folder used by some of the tooling (tests...)
+
+-   **report**: Temporary folder for reporting; usually for continuous
+    integration
+
+-   **.github**: Folder for github pipeline
+
+-   **.vscode**: Folder for visual code snippets
 
 ## Useful links
 
