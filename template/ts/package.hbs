@@ -1,26 +1,26 @@
 {
-  "name": "{{model.github.name}}",
-  "description": "{{model.project.title}}",
-  "version": "{{model.project.version}}",
+  "name": "{{github.name}}",
+  "description": "{{project.title}}",
+  "version": "{{project.version}}",
   "author": {
-    "name": "{{model.author.name}}",
-    "url": "{{model.author.url}}"
+    "name": "{{author.name}}",
+    "url": "{{author.url}}"
   },
   "keywords": [
-  {{#with model.project}}
+  {{#with project}}
   {{#listJoin "," keywords}} "{{this}}" {{/listJoin}}
   {{/with}}
   ],
-  "license": "{{model.license}}",
-  "homepage": "https://github.com/{{model.github.account}}/{{model.github.name}}",
+  "license": "{{license}}",
+  "homepage": "https://github.com/{{github.account}}/{{github.name}}",
   "repository": {
     "type": "git",
-    "url": "https://github.com/{{model.github.account}}/{{model.github.name}}.git"
+    "url": "https://github.com/{{github.account}}/{{github.name}}.git"
   },
-  "bugs": "https://github.com/{{model.github.account}}/{{model.github.name}}/issues"
-  {{#ifSatisfy "equals" model.implementation.tags "cli"}}
+  "bugs": "https://github.com/{{github.account}}/{{github.name}}/issues"
+  {{#ifSatisfy "equals" implementation.tags "cli"}}
    , "bin": {
-    "{{model.github.name}}": "dist/src/cli.mjs"
+    "{{github.name}}": "dist/src/cli.mjs"
   },
     "type": "module",
     "exports": {
@@ -47,7 +47,7 @@
       "cli": "node --loader ts-node/esm src/cli.mts"
     }
   {{/ifSatisfy}}
-  {{#ifSatisfy "equals" model.implementation.tags "lib"}}
+  {{#ifSatisfy "equals" implementation.tags "lib"}}
     , "type": "module",
     "types": "./dist/src/index.d.mts",
     "exports": {
