@@ -32,6 +32,14 @@ Templates, schemas, and acceptance tests used across the Baldrick toolchain.
   - `workflow_code_analysis.md`
   - `workflow_drift_improvements.md`
 
+## Curated shared files
+
+Files under `shared/<language>/<profile>/<consumer-relative-path>` are canonical
+files copied unchanged into compatible repositories. Profiles describe the
+compatibility group (`all`, `cli`, `gh`, or `library`); language names are written
+in full. See [shared/CATALOG.md](shared/CATALOG.md) for prerequisites, verified
+consumers, and sync guidance. Existing template and schema paths remain in place.
+
 ## Use From Other Repos
 Reference these templates directly in your broth with baldrick-whisker.
 
