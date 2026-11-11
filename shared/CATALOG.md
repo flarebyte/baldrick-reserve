@@ -33,6 +33,39 @@ structure and do not execute tests. Go method maps and test-case titles are
 outside the selected Go rule set. All pipelines keep going on errors; inspect
 debug records rather than relying only on populated YAML files.
 
+## Python Thoth metadata pipelines
+
+| Canonical path | Purpose | Verified consumers |
+| --- | --- | --- |
+| `python/all/pipeline-python-maat.thoth.cue` | Python source imports, functions, methods, and classes | `flarebyte/astrea-fake-mail-generator` |
+| `python/all/pipeline-python-test-maat.thoth.cue` | Python test symbols and statically detected test titles | `flarebyte/astrea-fake-mail-generator` |
+
+Run from the consumer root with `thoth run --config <filename>`. Requirements:
+Thoth with input-pipeline/Lua/shell support, `sh`, Node.js 24+, and npm/npx.
+These pipelines pin `maat-ostraca@0.9.0`; the initial run needs npm registry
+access. They analyze source statically without importing or executing Python.
+No executable bit is required.
+
+Discovery respects `.gitignore`, excludes common virtual environments and build
+outputs, and does not assume a package name or `src/` layout. Files in `test/`
+or `tests/`, or named `test_*.py` or `*_test.py`, use the test pipeline. Other
+Python files, including maintenance scripts, use the source pipeline. Repositories
+with other test conventions must assess compatibility before adopting these
+files unchanged.
+
+Durable YAML goes to `thoth-meta/python/` and `thoth-meta/python-test/`; ignore
+debug JSON under `temp/`. Generated symbol lists refresh while curated `purpose`,
+`responsibilities`, and `architecture_notes` survive merges. Pipelines fail fast
+on analysis errors. Test titles are not a runtime test count. Deleted or moved
+source files need explicit metadata cleanup.
+
+Verification: both promoted files match the consumer byte-for-byte. Both
+pipelines ran successfully in `astrea-fake-mail-generator`, covering all 22
+tracked Python files exactly once, including release scripts, pytest functions,
+and unittest methods. A second run preserved structural and curated metadata.
+Other Python consumers have not yet been verified. Consumer remote integration
+is pending a published immutable reserve commit containing these files.
+
 ## Updating consumers
 
 Change the canonical file here, validate the declared consumers, commit and
